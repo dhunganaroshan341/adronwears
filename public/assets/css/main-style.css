@@ -1,0 +1,147 @@
+
+        body {
+            background: #f1f1f1 !important;
+        }
+
+
+
+        .inline-icon {
+            display: inline !important;
+        }
+
+        .links li {
+            color: white;
+        }
+
+        .slider-content a:hover {
+            color: var(--omundum-green) !important;
+        }
+
+        /* .trending .trend-item .trend-content-main {
+            position: absolute !important;
+        } */
+        .footer-about img {
+
+            max-width: 240px !important;
+
+        }
+
+
+
+        /* destination-slingle slick slider image fix */
+        .slider-store img {
+            height: 500px !important;
+            object-fit: cover !important;
+        }
+
+        .slider-thumbs img {
+            height: 90px !important;
+            object-fit: cover !important;
+        }
+
+        .blog-full img {
+            height: 200px !important;
+            object-fit: cover !important;
+            min-width: 300px !important;
+        }
+
+
+        .book-now-a :hover {
+            color: #fff !important;
+            background: #f06925 !important;
+            transition: all ease-in-out 0.5s;
+        }
+
+        .price-white i :hover {
+            color: black;
+        }
+
+        /* blog page starts overriting boostrap  */
+        .active>.page-link,
+        .page-link.active {
+            z-index: 3;
+            color: white;
+            background-color: var(--omundum-green);
+            border-color: var(--bs-pagination-active-border-color);
+        }
+
+        .blog-content>a:hover {
+            color: var(--omundum-green) !important;
+            transition: all ease-in-out 0.5s;
+        }
+
+        .blog-content a:hover,
+        a:focus {
+            text-decoration: none;
+            color: var(--omundum-green);
+            transition: all ease-in-out 0.5s;
+            outline: none;
+        }
+
+        /* nav-bar custom styles */
+        /* Logo Control */
+
+        .dropdown-menu.grand-sub-menu-ul {
+            min-width: 280px;
+        }
+
+
+
+        .grand-dropdown-li {
+            min-width: 280px !important;
+        }
+
+        .grand-dropdown-a {
+            min-width: 280px !important;
+        }
+
+        /* nav-bar custom style ends */
+
+        .header_menu .navbar.navbar-default .nav.navbar-nav li.submenu .dropdown-menu li.submenu .dropdown-menu li a {
+            font-size: 12px;
+        }
+
+        .navbar-header {
+            max-height: 100px;
+        }
+
+        .navbar-default a.navbar-brand {
+            font-size: 24px;
+            position: relative;
+            color: #f49b00;
+            letter-spacing: 2px;
+            font-weight: 400;
+            display: block;
+            object-fit: contain;
+            padding: 0;
+            /* height: 200px; */
+            max-height: 140px;
+            transition: all ease-in-out 0.5s;
+            transition: color 0.5s ease;
+            -webkit-transition: color 0.5s ease;
+            -moz-transition: color 0.5s ease;
+            margin-right: 0;
+            flex: 1;
+            max-width: 140px;
+            bottom: 15px;
+        }
+
+
+    /* {{-- flipping child and grand chiold dropdown styles --}} */
+
+        /* Flip dropdown to left */
+        /* Flip dropdown to the left of its parent */
+        /* Flip nested dropdown to the left of its parent */
+        .dropdown-menu-left {
+            left: auto !important;
+            right: 100% !important;
+            top: 0;
+            /* keep aligned */
+        }
+
+        .child-a-reversed {
+            /* transform: rotate(180deg); */
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }

@@ -1,0 +1,615 @@
+
+:root {
+    /* Primary Brand Color */
+    --realm-yellow: #f5ca44;
+
+    /* Tints (lighter shades) */
+    --realm-yellow-light: #f9dd79;
+    --realm-yellow-lighter: #fceba8;
+    --realm-yellow-background: #fff9e5;
+
+    /* Shades (darker tones) */
+    --realm-yellow-dark: #c9a537;
+    --realm-yellow-darker: #a1842c;
+
+    /* Accent Colors */
+    --realm-blue: #292771; /* Already mentioned */
+    --realm-blue-light: #4a4992;
+    --realm-blue-dark: #1f1e59;
+
+    --realm-gray: #4f4f4f;
+    --realm-gray-light: #bdbdbd;
+    --realm-gray-background: #f5f5f5;
+
+    /* Supporting Colors */
+    --realm-success: #4caf50;
+    --realm-warning: #ff9800;
+    --realm-error: #f44336;
+    --realm-info: #2196f3;
+
+    /* Text Colors */
+    --realm-text: #333333;
+    --realm-text-light: #ffffff;
+  }
+/* Text Color Utility Classes */
+.text-realm-yellow           { color: var(--realm-yellow); }
+.text-realm-yellow-light     { color: var(--realm-yellow-light); }
+.text-realm-yellow-lighter   { color: var(--realm-yellow-lighter); }
+.text-realm-yellow-dark      { color: var(--realm-yellow-dark); }
+.text-realm-yellow-darker    { color: var(--realm-yellow-darker); }
+
+.text-realm-blue             { color: var(--realm-blue); }
+.text-realm-blue-light       { color: var(--realm-blue-light); }
+.text-realm-blue-dark        { color: var(--realm-blue-dark); }
+
+.text-realm-gray             { color: var(--realm-gray); }
+.text-realm-gray-light       { color: var(--realm-gray-light); }
+
+.text-realm-success          { color: var(--realm-success); }
+.text-realm-warning          { color: var(--realm-warning); }
+.text-realm-error            { color: var(--realm-error); }
+.text-realm-info             { color: var(--realm-info); }
+
+.text-realm-text             { color: var(--realm-text); }
+.text-realm-text-light       { color: var(--realm-text-light); }
+
+/* Background Color Utility Classes */
+.bg-realm-yellow             { background-color: var(--realm-yellow); }
+.bg-realm-yellow-light       { background-color: var(--realm-yellow-light); }
+.bg-realm-yellow-lighter     { background-color: var(--realm-yellow-lighter); }
+.bg-realm-yellow-background  { background-color: var(--realm-yellow-background); }
+.bg-realm-yellow-dark        { background-color: var(--realm-yellow-dark); }
+.bg-realm-yellow-darker      { background-color: var(--realm-yellow-darker); }
+
+.bg-realm-blue               { background: var(--realm-blue); }
+.bg-realm-blue-light         { background-color: var(--realm-blue-light); }
+.bg-realm-blue-dark          { background-color: var(--realm-blue-dark); }
+
+.bg-realm-gray               { background-color: var(--realm-gray); }
+.bg-realm-gray-light         { background-color: var(--realm-gray-light); }
+.bg-realm-gray-background    { background-color: var(--realm-gray-background); }
+
+.bg-realm-success            { background-color: var(--realm-success); }
+.bg-realm-warning            { background-color: var(--realm-warning); }
+.bg-realm-error              { background-color: var(--realm-error); }
+.bg-realm-info               { background-color: var(--realm-info); }
+
+.bg-realm-text               { background-color: var(--realm-text); }
+.bg-realm-text-light         { background-color: var(--realm-text-light); }
+/* Border Color Utility Classes */
+.border-realm-yellow             { border-color: var(--realm-yellow) !important; }
+.border-realm-yellow-light       { border-color: var(--realm-yellow-light) !important; }
+.border-realm-yellow-lighter     { border-color: var(--realm-yellow-lighter) !important; }
+.border-realm-yellow-dark        { border-color: var(--realm-yellow-dark) !important; }
+.border-realm-yellow-darker      { border-color: var(--realm-yellow-darker) !important; }
+
+.border-realm-blue               { border-color: var(--realm-blue) !important; }
+.border-realm-blue-light         { border-color: var(--realm-blue-light) !important; }
+.border-realm-blue-dark          { border-color: var(--realm-blue-dark) !important; }
+
+.border-realm-gray               { border-color: var(--realm-gray) !important; }
+.border-realm-gray-light         { border-color: var(--realm-gray-light) !important; }
+
+.border-realm-success            { border-color: var(--realm-success) !important; }
+.border-realm-warning            { border-color: var(--realm-warning) !important; }
+.border-realm-error              { border-color: var(--realm-error) !important; }
+.border-realm-info               { border-color: var(--realm-info) !important; }
+
+.border-realm-text               { border-color: var(--realm-text) !important; }
+.border-realm-text-light         { border-color: var(--realm-text-light) !important; }
+
+/* Button Color Utility Classes */
+.btn-realm-yellow             { background-color: var(--realm-yellow); color: #000; }
+.btn-realm-yellow-light       { background-color: var(--realm-yellow-light); color: #000; }
+.btn-realm-yellow-lighter     { background-color: var(--realm-yellow-lighter); color: #000; }
+.btn-realm-yellow-background  { background-color: var(--realm-yellow-background); color: #000; }
+.btn-realm-yellow-dark        { background-color: var(--realm-yellow-dark); color: #fff; }
+.btn-realm-yellow-darker      { background-color: var(--realm-yellow-darker); color: #fff; }
+
+.btn-realm-blue               { background-color: var(--realm-blue); color: #fff; }
+
+.btn-realm-blue-light         { background-color: var(--realm-blue-light); color: #000; }
+.btn-realm-blue-dark          { background-color: var(--realm-blue-dark); color: #fff; }
+
+.btn-realm-gray               { background-color: var(--realm-gray); color: #000; }
+.btn-realm-gray-light         { background-color: var(--realm-gray-light); color: #000; }
+.btn-realm-gray-background    { background-color: var(--realm-gray-background); color: #000; }
+
+.btn-realm-success            { background-color: var(--realm-success); color: #fff; }
+.btn-realm-warning            { background-color: var(--realm-warning); color: #000; }
+.btn-realm-error              { background-color: var(--realm-error); color: #fff; }
+.btn-realm-info               { background-color: var(--realm-info); color: #fff; }
+
+/* Optional shared button styling */
+[class^="btn-realm-"], [class*=" btn-realm-"] {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+}
+
+ .fancy-btn {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  height: 60px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  padding: 0;
+  margin: 0 5px;
+}
+
+.fancy-btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 60px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  z-index: 1;
+}
+
+.fancy-btn span {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 16px;
+  line-height: 60px;
+  font-family: 'Lato', sans-serif;
+}
+
+
+body{
+    /* display: none; */
+    font-family: 'Roboto', sans-serif;
+    color: #6F8BA4;
+
+}
+a{
+    text-decoration: none;
+}
+.top-right-bar a span {
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    vertical-align: middle;
+}
+
+.navigation .dropdown-menu {
+    padding: 0px;
+    border: 0px;
+    border-top: 5px solid var(--realm-blue);
+    background: #fff;
+    border-radius: 0px;
+}
+
+.header-top-bar {
+    background: var(--realm-blue);
+    font-size: 14px;
+    padding: 10px 0px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+    color: #fff;
+}
+
+.top-bar-info li a {
+    color: #fff;
+    margin-right: 20px;
+}
+
+#navbarmain .nav-link:hover, #navbarmain .active .nav-link {
+    color:var(--realm-yellow);
+}
+
+#navbarmain .nav-link {
+    font-weight: 600;
+    padding: 15px 20px;
+    color: #222;
+    font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
+    font-size: 16px;
+    transition: all .25s ease;
+}
+
+.navigation .dropdown-item {
+    padding: 13px 20px;
+    background: transparent;
+    font-weight: 400;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+.navigation .dropdown-item:hover {
+    background: rgba(225, 36, 84, 0.05);
+    color: var(--realm-blue);
+}
+
+.hero .carousel-item{
+    height: 600px;
+}
+.hero .block {
+    z-index: 999;
+    position: relative;
+}
+
+.hero .block span {
+    color: #FFF;
+}
+
+.hero .block h1 {
+    font-size: 60px;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    text-transform: capitalize;
+    color: #FFF;
+}
+
+.hero .block p {
+    color: #FFF;
+}
+
+.divider {
+    width: 40px;
+    height: 5px;
+    background: var(--realm-yellow-darker);
+}.divider-blue {
+    width: 40px;
+    height: 5px;
+    background: var(--realm-blue);
+}
+
+.hero-background-overlay{
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.hero-small-background-overlay{
+    background-color: rgba(60 92 159 / 60%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.carousel-control-prev,
+.carousel-control-next{
+    z-index: 99;
+}
+
+.hero-small .carousel-item{
+    height: 350px;
+    background-position: center center;
+}
+.hero-small .block {
+    width: 100%;
+    z-index: 999;
+    position: relative;
+}
+
+.hero-small .block span {
+    color: #FFF;
+}
+
+.hero-small .block h1 {
+    font-size: 60px;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    text-transform: capitalize;
+    color: #FFF;
+}
+
+.hero-small .block p {
+    color: #FFF;
+}
+
+
+
+.section-2 .text-muted{
+    font-size: 18px;
+}
+
+.hero  .btn-primary{
+    padding: 10px 25px;
+    text-transform: uppercase;
+}
+
+
+.text-muted{
+    color: #9b9b9b!important
+}
+
+.title-color {
+    color:var(--realm-blue);
+}
+.title-color a{
+    color:var(--realm-yellow);
+}
+.image-red-background{
+    position: relative;
+}.image-realm-background-before{
+    position: relative;
+}
+.image-red-background::before {
+    border: 1px solid var(--realm-yellow);
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    -webkit-transform: translateX(3%) translateY(-4%);
+    transform: translateX(3%) translateY(-4%);
+    background-color: var(--realm-blue);
+    z-index: -1;
+}
+.image-realm-background-before::before {
+    border: 1px solid var(--realm-blue-light);
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    -webkit-transform: translateX(3%) translateY(-4%);
+    transform: translateX(3%) translateY(-4%);
+    background-color: var(--realm-blue-dark);
+    z-index: -1;
+}
+
+.section-3{
+    background-color: #f9f9f9;
+}
+
+.section-3 .cards{
+    position: relative;
+}
+
+
+.section-3 .cards .card{
+    width: 100%;
+}
+
+.section-3 .cards .card .card-title{
+    font-size: 24px;
+    color: var(--realm-blue);
+}
+
+.section-3 .cards .card .card-title a{
+    color: var(--realm-blue);
+}.section-3 .cards .card .card-title-blog{
+    font-size: 24px;
+ color:black;
+}
+
+.section-3 .cards .card .card-title-blog a{
+    color: black;
+}
+
+
+.section-3 .cards .card .btn-primary{
+    padding: 10px 25px;
+    text-transform: uppercase;
+}
+
+
+.btn-primary {
+	background-color: var(--realm-blue);
+	color: var(--realm-yellow);
+	border-color: var(--realm-yellow-dark);
+	box-shadow: 3px 3px 5px var(--realm-blue);
+}
+
+.btn-primary:hover{
+    background-color: var(--realm-blue-light);
+    border-color: var(--realm-blue);
+    box-shadow: none;
+}
+
+.btn-primary:active{
+     background-color: var(--realm-blue-light);
+    border-color: var(--realm-blue);
+    box-shadow: none;
+}
+
+
+.btn-primary:focus{
+     background-color: var(--realm-blue-light);
+    border-color: var(--realm-blue);
+    box-shadow: none;
+}
+
+.section-3  .btn-primary i{
+    margin-left: 10px;
+}
+
+.section-3  .slick-list {
+    margin: 0 -10px;
+}
+
+.section-3   .slick-list  .slick-slide {
+    margin: 0 10px;
+}
+
+
+.section-3 .slick-prev{
+    position: absolute;
+    top: -60px;
+    right: 50px;
+
+    width: 40px;
+    background: #FFF;
+    text-align: center;
+    align-items: center;
+    height: 40px;
+    display: flex;
+    justify-content:center;
+    border-radius: 5PX;
+    color: #000;
+}
+
+
+.section-3 .slick-next{
+    position: absolute;
+    top: -60px;
+    right: 0px;
+
+    width: 40px;
+    background: #FFF;
+    text-align: center;
+    align-items: center;
+    height: 40px;
+    display: flex;
+    justify-content:center;
+    border-radius: 5PX;
+    color: #000;
+
+}
+
+.section-4{
+    background-image: url('../images/hero_cta.jpg');
+    background-position: center center;
+    min-height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.section-4  .btn-primary{
+    padding: 10px 25px;
+    text-transform: uppercase;
+}
+
+.section-4  .btn-primary i{
+    margin-left: 10px;
+}
+
+.section-4 .title{
+    color: #FFF;
+}
+
+.section-4 .help-container{
+    z-index: 99;
+    position: relative;
+    padding-left: 100px;
+    padding-left: 100px;
+}
+
+.section-4 .help-container p{
+    color: rgb(255, 255, 255, 0.8);
+}
+
+.footer{
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.footer.gray-bg{
+    background-color: #f4f9fc;
+    padding-bottom: 10px;
+}
+
+
+
+.footer-menu a {
+    color: #e4e0e0;
+    line-height: 35px;
+}
+.footer-menu a:hover {
+    color: var(--realm-yellow);
+    line-height: 35px;
+}
+
+
+.footer-socials li a {
+    width: 45px;
+    height: 45px;
+    background: #6F8BA4;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    border-radius: 100%;
+    padding-top: 12px;
+}
+
+
+.footer h4 {
+    color:#223a66;
+}
+.footer h4 a{
+    font-size: 16px;
+    color: #6F8BA4;
+}
+
+.footer h4 i{
+    font-size: 18px;
+}
+
+.accordion-item{
+    margin-bottom: 5px;
+}
+
+.accordion-item:first-of-type {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.accordion-item:last-of-type {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.accordion-item:not(:first-of-type) {
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.accordion-button:focus{
+    box-shadow:none;
+}
+
+.accordion-button{
+    background: rgb(0, 0, 0);
+    color:#FFF;
+}
+
+.accordion-button:not(.collapsed){
+    color: #FFF;
+    background-color: #000;
+}
+
+.accordion-item:first-of-type .accordion-button {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.accordion-button::after{
+    background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFF'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+.accordion-button:not(.collapsed)::after{
+    background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFF'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+.contact-box a{
+    color:#6F8BA4;
+}
+
+.call-now a{
+    color:#FFF;
+}
+
+.h4 {
+    color:var(--realm-blue);
+}

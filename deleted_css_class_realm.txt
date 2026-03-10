@@ -1,0 +1,61 @@
+
+    It was deleted because it has now been defined in tailwind.config.js
+    === Background Colors ===
+    .bg-realm-yellow            { background-color: var(--realm-yellow); }
+
+    .bg-realm-yellow-light      { background-color: var(--realm-yellow-light); }
+    .bg-realm-yellow-lighter    { background-color: var(--realm-yellow-lighter); }
+    .bg-realm-yellow-background { background-color: var(--realm-yellow-background); }
+
+    .bg-realm-yellow-dark       { background-color: var(--realm-yellow-dark); }
+    .bg-realm-yellow-darker     { background-color: var(--realm-yellow-darker); }
+
+    .bg-realm-blue              { background-color: var(--realm-blue); }
+    .bg-realm-blue-light        { background-color: var(--realm-blue-light); }
+    .bg-realm-blue-dark         { background-color: var(--realm-blue-dark); }
+
+    .bg-realm-gray              { background-color: var(--realm-gray); }
+    .bg-realm-gray-light        { background-color: var(--realm-gray-light); }
+    .bg-realm-gray-background   { background-color: var(--realm-gray-background); }
+
+    .bg-realm-success           { background-color: var(--realm-success); }
+    .bg-realm-warning           { background-color: var(--realm-warning); }
+    .bg-realm-error             { background-color: var(--realm-error); }
+    .bg-realm-info              { background-color: var(--realm-info); }
+
+
+    /* === Text Colors === */
+    .text-realm-yellow          { color: var(--realm-yellow); }
+    .text-realm-yellow-light    { color: var(--realm-yellow-light); }
+    .text-realm-yellow-lighter  { color: var(--realm-yellow-lighter); }
+    .text-realm-yellow-dark     { color: var(--realm-yellow-dark); }
+    .text-realm-yellow-darker   { color: var(--realm-yellow-darker); }
+
+    .text-realm-blue            { color: var(--realm-blue); }
+    .text-realm-blue-light      { color: var(--realm-blue-light); }
+    .text-realm-blue-dark       { color: var(--realm-blue-dark); }
+
+    .text-realm-gray            { color: var(--realm-gray); }
+    .text-realm-gray-light      { color: var(--realm-gray-light); }
+    .text-realm-text            { color: var(--realm-text); }
+    .text-realm-text-light      { color: var(--realm-text-light); }
+
+    .text-realm-success         { color: var(--realm-success); }
+    .text-realm-warning         { color: var(--realm-warning); }
+    .text-realm-error           { color: var(--realm-error); }
+    .text-realm-info            { color: var(--realm-info); }
+
+
+    /* === Border Colors === */
+    .border-realm-yellow        { border-color: var(--realm-yellow); }
+    .border-realm-yellow-light  { border-color: var(--realm-yellow-light); }
+    .border-realm-yellow-dark   { border-color: var(--realm-yellow-dark); }
+
+    .border-realm-blue          { border-color: var(--realm-blue); }
+    .border-realm-blue-dark     { border-color: var(--realm-blue-dark); }
+
+    .border-realm-gray          { border-color: var(--realm-gray); }
+    .border-realm-success       { border-color: var(--realm-success); }
+    .border-realm-warning       { border-color: var(--realm-warning); }
+    .border-realm-error         { border-color: var(--realm-error); }
+    .border-realm-info          { border-color: var(--realm-info); }

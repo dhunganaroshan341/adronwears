@@ -1,0 +1,43 @@
+[
+  {
+    "our_country_id": 1,
+    "package_type": "trekking",
+    "location": "Everest Base Camp",
+    "title": "Rolwaling Valley Trek ",
+    "drop": "Kathmandu",
+    "accomodation": "Tea Houses",
+    "pickup": "Tribhuvan International Airport",
+    "price": 1200,
+    "slug": "everest-base-camp-trek",
+    "short_description": "Trek to the base of the world’s highest mountain.",
+    "long_description": "This is a 12-day trek to Everest Base Camp...",
+    "what_to_expect": "Scenic flights, Sherpa villages, mountain views.",
+    "itinerary": [
+      {
+        "title": "Day 1: Arrival in Kathmandu",
+        "description": "Arrive in Kathmandu and transfer to the hotel. Rest and prepare for the trek."
+      },
+      {
+        "title": "Day 2: Fly to Lukla and trek to Phakding",
+        "description": "Take an early morning flight to Lukla and trek to Phakding, a small Sherpa village."
+      },
+      {
+        "title": "Day 3: Trek to Namche Bazaar",
+        "description": "Continue trekking through the Sagarmatha National Park to Namche Bazaar."
+      }
+    ],
+    "duration": "12 Days",
+    "languages": ["English", "Nepali"],
+    "difficulty": "Hard",
+    "max_elevation": "5545m",
+    "best_season": "March-May, Sept-Nov",
+    "top_deal": true,
+    "favourite_destination": true,
+    "start_point": "Lukla",
+    "end_point": "Lukla",
+    "status": 1,
+    "max_people": 15,
+    "available_seat": 8,
+    "is_featured": true
+  }
+]
