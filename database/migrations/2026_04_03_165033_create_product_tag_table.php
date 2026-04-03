@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tour_packages', function (Blueprint $table) {
-            $table->boolean('is_featured')->default(false)->after('status');
+        Schema::create('product_tag', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tour_packages', function (Blueprint $table) {
-            $table->dropColumn('is_featured');
-        });
+        Schema::dropIfExists('product_tag');
     }
 };

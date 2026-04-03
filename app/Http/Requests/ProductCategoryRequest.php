@@ -27,6 +27,7 @@ class ProductCategoryRequest extends FormRequest
                 'string',
                 'max:255',
                 Rule::unique('product_categories', 'slug')
+                    ->where(fn($q) => $q->where('parent_id', $this->parent_id))
                     ->ignore($this->route('id')),
             ],
 
@@ -39,6 +40,16 @@ class ProductCategoryRequest extends FormRequest
             'status' => [
                 'required',
                 Rule::in(StatusEnum::values()),
+            ],
+
+            'sort_order' => [
+                'nullable',
+                'integer',
+            ],
+
+            'is_featured' => [
+                'nullable',
+                'boolean',
             ],
         ];
     }

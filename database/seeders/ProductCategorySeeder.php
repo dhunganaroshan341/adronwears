@@ -11,60 +11,81 @@ class ProductCategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Apparel / Clothing' => [
-                'Men' => [
-                    'Innerwear' => ['Briefs', 'Boxers', 'Undershirts'],
-                    'Outerwear' => ['Jackets', 'Coats', 'Hoodies / Sweatshirts'],
-                    'Tops' => ['T-Shirts', 'Shirts', 'Polos'],
-                    'Bottoms' => ['Jeans', 'Trousers', 'Shorts'],
-                    'Seasonal' => ['Winter', 'Summer'],
-                ],
-                'Women' => [
-                    'Innerwear' => ['Bras', 'Panties', 'Lingerie Sets'],
-                    'Outerwear' => ['Jackets', 'Coats', 'Sweaters'],
-                    'Tops' => ['Blouses', 'T-Shirts', 'Tunics'],
-                    'Bottoms' => ['Skirts', 'Jeans', 'Trousers'],
-                    'Dresses' => ['Casual', 'Formal', 'Party'],
-                    'Seasonal' => ['Winter', 'Summer'],
-                ],
-                'Neutral / Unisex' => [
-                    'Hoodies',
+            'Clothing' => [
+                'Tops' => [
                     'T-Shirts',
+                    'Shirts',
+                    'Polos',
+                    'Hoodies',
+                    'Sweaters',
+                ],
+                'Bottoms' => [
+                    'Jeans',
+                    'Trousers',
+                    'Shorts',
+                    'Joggers',
+                ],
+                'Outerwear' => [
                     'Jackets',
-                    'Activewear',
+                    'Coats',
+                    'Blazers',
+                ],
+                'Activewear' => [
+                    'Gym Wear',
+                    'Sportswear',
+                    'Compression Wear',
+                ],
+                'Innerwear' => [
+                    'Underwear',
+                    'Socks',
+                    'Thermals',
                 ],
             ],
 
             'Footwear' => [
-                'Men' => ['Casual', 'Formal', 'Sports / Sneakers', 'Sandals / Slippers'],
-                'Women' => ['Heels', 'Flats', 'Sports / Sneakers', 'Sandals / Slippers'],
-                'Unisex' => ['Sneakers', 'Flip-flops', 'Slides'],
-            ],
-
-            'Bags & Luggage' => [
-                'Suitcases' => ['Carry-on', 'Large luggage'],
-                'Backpacks' => ['School / College', 'Hiking / Outdoor', 'Laptop bags'],
-                'Handbags / Purses' => ['Small', 'Medium', 'Large'],
+                'Casual Shoes',
+                'Sneakers',
+                'Formal Shoes',
+                'Boots',
+                'Sandals',
+                'Slippers',
             ],
 
             'Accessories' => [
-                'Watches' => ['Men', 'Women', 'Smartwatches'],
-                'Belts' => ['Leather', 'Casual / Fabric'],
-                'Sunglasses' => ['Men', 'Women'],
-                'Hats / Caps' => ['Beanies', 'Baseball caps', 'Sun hats'],
-                'Scarves / Gloves' => ['Men', 'Women'],
+                'Belts',
+                'Wallets',
+                'Sunglasses',
+                'Watches',
+                'Hats & Caps',
+                'Scarves',
             ],
 
-            'Sports / Active Gear' => [
-                'Men' => ['T-Shirts', 'Shorts', 'Shoes'],
-                'Women' => ['Tops', 'Leggings', 'Shoes'],
-                'Unisex' => ['Yoga mats', 'Water bottles', 'Sports accessories'],
+            'Bags' => [
+                'Backpacks',
+                'Laptop Bags',
+                'Travel Bags',
+                'Handbags',
+                'Suitcases',
             ],
 
-            'Seasonal / Special Collections' => [
-                'Winter Collection' => ['Jackets', 'Coats', 'Sweaters', 'Gloves'],
-                'Summer Collection' => ['T-Shirts', 'Shorts', 'Sandals'],
-                'Festive / Event Collection' => ['Partywear', 'Formalwear'],
+            'Sports & Outdoors' => [
+                'Fitness Equipment',
+                'Yoga Accessories',
+                'Outdoor Gear',
+                'Water Bottles',
+            ],
+
+            'Seasonal Collections' => [
+                'Summer Collection',
+                'Winter Collection',
+                'Sale Items',
+                'New Arrivals',
+            ],
+
+            'Lifestyle' => [
+                'Gift Items',
+                'Travel Essentials',
+                'Daily Use Products',
             ],
         ];
 
@@ -73,19 +94,24 @@ class ProductCategorySeeder extends Seeder
 
     private function createCategories(array $categories, $parentId = null): void
     {
-        foreach ($categories as $name => $children) {
+        foreach ($categories as $key => $value) {
 
-            // Handle numeric keys (leaf nodes)
-            if (is_int($name)) {
-                $name = $children;
+            // leaf node
+            if (is_int($key)) {
+                $name = $value;
                 $children = [];
+            } else {
+                $name = $key;
+                $children = $value;
             }
 
             $category = ProductCategory::firstOrCreate(
-                ['slug' => Str::slug($name)],
+                [
+                    'slug' => Str::slug($name),
+                    'parent_id' => $parentId,
+                ],
                 [
                     'name' => $name,
-                    'parent_id' => $parentId,
                     'status' => 'active',
                 ]
             );

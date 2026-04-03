@@ -33,8 +33,6 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             HomeSlideSeeder::class,
             TestimonialSeeder::class,
-            ServiceQuerySeeder::class,
-            CountrySeeder::class,
             // TourPackageSeeder::class,
             AchievementSeeder::class,
             PageSeeder::class,

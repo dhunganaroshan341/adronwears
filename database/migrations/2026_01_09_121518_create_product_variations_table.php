@@ -14,10 +14,35 @@ return new class extends Migration
     {
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+
+            $table->foreignId('product_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            // Flexible attributes
             $table->json('attributes');
-            $table->string('status')->default(StatusEnum::ACTIVE->value);
+
+            // Common extracted attributes (IMPORTANT FOR PERFORMANCE)
+            $table->string('size')->nullable()->index();
+            $table->string('color')->nullable()->index();
+
+            // Core fields
+            $table->string('sku')->unique();
+            $table->integer('stock')->default(0)->index();
+
+            $table->decimal('price', 10, 2)->nullable()->index();
+            $table->decimal('sale_price', 10, 2)->nullable();
+
+            $table->string('image')->nullable();
+
+            $table->string('status')
+                ->default(StatusEnum::ACTIVE->value)
+                ->index();
+
             $table->timestamps();
+
+            // Indexes
+            $table->index('product_id');
         });
     }
     // things are going to be  like 

@@ -17,17 +17,26 @@ return new class extends Migration
             $table->foreignId('parent_id')
                 ->nullable()
                 ->constrained('product_categories')
-                ->nullOnDelete();
+                ->nullOnDelete()
+                ->index();
 
-            $table->string('slug'); // just define the column
+            $table->string('slug');
 
             $table->string('status')
-                ->default(StatusEnum::ACTIVE->value);
+                ->default(StatusEnum::ACTIVE->value)
+                ->index();
+
+            $table->integer('sort_order')->default(0);
+
+            $table->boolean('is_featured')->default(false)->index();
 
             $table->timestamps();
 
-            // THIS is how you make a composite unique key
+            // Unique slug per category level
             $table->unique(['parent_id', 'slug'], 'parent_slug_unique');
+
+            // Optional safety (recommended if you want global uniqueness instead)
+            // $table->unique('slug');
         });
     }
 

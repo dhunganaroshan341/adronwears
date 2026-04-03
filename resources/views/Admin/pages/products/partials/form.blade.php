@@ -69,6 +69,19 @@
             </div>
 
             <div class="col-md-3">
+                <label class="form-label fw-semibold">Gender</label>
+                <select name="gender" class="form-control">
+
+                    <option value="male" @selected(old('target_group', $product->gender ?? '') == 'male')>
+                        Male
+                    </option>
+                    <option value="female" @selected(old('target_group', $product->gender ?? '') == 'female')>
+                        Female
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
                 <label class="form-label fw-semibold">Status</label>
                 <select name="status" class="form-control">
                     <option value="active" @selected(old('status', $product->status ?? '') == 'active')>
