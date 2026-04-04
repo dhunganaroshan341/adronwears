@@ -67,4 +67,10 @@ class ProductCategory extends BaseModel
     {
         return $query->where('status', StatusEnum::ACTIVE->value);
     }
+    // App/Models/ProductCategory.php
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

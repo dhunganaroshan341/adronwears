@@ -37,6 +37,9 @@ class DatabaseSeeder extends Seeder
             AchievementSeeder::class,
             PageSeeder::class,
             TagSeeder::class,
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
+            ProductTagSeeder::class,
         ]);
     }
 }

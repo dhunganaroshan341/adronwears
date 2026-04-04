@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class TagSeeder extends Seeder
 {
@@ -20,28 +21,24 @@ class TagSeeder extends Seeder
             'Formal Wear',
             'Streetwear',
             'Luxury',
-
             // 💰 Pricing / Offers
             'Discount',
             'Sale',
             'Clearance',
             'Budget Friendly',
             'Premium',
-
             // 🧍 Target Style
             'Trendy',
             'Minimal',
             'Classic',
             'Sporty',
             'Vintage',
-
             // 🧵 Material / Quality
             'Cotton',
             'Polyester',
             'Organic',
             'Handmade',
             'Eco Friendly',
-
             // 👕 Product Type
             'T-Shirts',
             'Hoodies',
@@ -49,14 +46,12 @@ class TagSeeder extends Seeder
             'Jeans',
             'Shoes',
             'Accessories',
-
             // 🎯 Use Case
             'Gym Wear',
             'Outdoor',
             'Everyday Use',
             'Work Wear',
             'Travel Friendly',
-
             // 🌍 General Ecommerce SEO Tags
             'Unisex',
             'Men',
@@ -66,9 +61,10 @@ class TagSeeder extends Seeder
         ];
 
         foreach ($tags as $tag) {
-            Tag::firstOrCreate([
-                'name' => $tag
-            ]);
+            Tag::firstOrCreate(
+                ['slug' => Str::slug($tag)],   // search by slug (unique key)
+                ['name' => $tag]               // set name if creating
+            );
         }
     }
 }

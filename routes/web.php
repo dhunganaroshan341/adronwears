@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainFrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -26,8 +27,14 @@ Route::get('/', function () {
 
 Route::get('/', [MainFrontendController::class, 'index'])->name('index');
 Route::get('/about', [MainFrontendController::class, 'about'])->name('about');
-Route::get('/contact-us', [MainFrontendController::class, 'contact'])->name('contact');
-Route::get('/shop', [MainFrontendController::class, 'shop'])->name('shop');
-Route::get('/shop-single', [MainFrontendController::class, 'productDetail'])->name('shop.single');
+Route::get('/shop', [MainFrontendController::class, 'shop'])->name('shop.index');
+Route::get('/shop/categories', [MainFrontendController::class, 'shopByCategory'])->name('shop.categories');
+Route::get('/shop/categories/{category:slug}', [MainFrontendController::class, 'shopByCategory'])->name('shop.category');
+
+Route::get('/shop/product/{product:slug}', [MainFrontendController::class, 'ProductDetail'])->name('shop.product');
 
 // require __DIR__ . '/auth.php';
+// Contact routes
+Route::get('/contact-us', [ContactController::class, 'index'])->name('contact');
+
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');

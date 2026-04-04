@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Services\HomeService;
+use App\Services\ProductService;
 
 class MainFrontendController extends Controller
 {
     public function index(HomeService $homeService)
     {
-        dd(collect($homeService->getHomeData())->toArray());
+        // dd(collect($homeService->getHomeData())->toArray());
         return view('Frontend.Pages.index', $homeService->getHomeData());
     }
     public function about()
@@ -31,12 +32,39 @@ class MainFrontendController extends Controller
         // dd($categories->toArray());
         return view('Frontend.Pages.shop', compact('products', 'categories'));
     }
-    public function productDetail()
+
+    public function shopByCategory(ProductCategory $category)
     {
-        return view('Frontend.Pages.shop-single');
+        $products = Product::whereHas('category', function ($q) use ($category) {
+            $q->where('id', $category->id)
+                ->orWhere('parent_id', $category->id); // include subcategory products too
+        })
+            ->latest()
+            ->paginate(12);
+
+        $categories = ProductCategory::whereNull('parent_id')
+            ->with([
+                'children' => function ($q) {
+                    $q->withCount('products');
+                }
+            ])
+            ->withCount('products')
+            ->get();
+
+        return view('Frontend.Pages.shop', compact('products', 'categories', 'category'));
     }
-    public function contact()
+    // public function productDetail()
+    // {
+    //     return view('Frontend.Pages.shop-single');
+    // }
+
+    public function ProductDetail($slug, ProductService $productService)
     {
-        return view('Frontend.Pages.contact');
+        $product = $productService->getProductDetails($slug);
+
+        $related = $productService->getRelatedProducts($product);
+        // dd($product->toArray());
+        // dd($related->toArray());
+        return view('Frontend.Pages.shop-single', compact('product'));
     }
 }

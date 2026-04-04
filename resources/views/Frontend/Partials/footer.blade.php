@@ -49,7 +49,7 @@
                         <a class="text-light text-decoration-none" href="{{ route('about') }}">About Us</a>
                     </li>
                     <li class="mb-2">
-                        <a class="text-light text-decoration-none" href="{{ route('shop') }}">Shop</a>
+                        <a class="text-light text-decoration-none" href="{{ route('shop.index') }}">Shop</a>
                     </li>
                     <li class="mb-2">
                         <a class="text-light text-decoration-none" href="{{ route('contact') }}">Contact</a>

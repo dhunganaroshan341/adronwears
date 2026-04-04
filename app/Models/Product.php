@@ -149,4 +149,9 @@ class Product extends Model
     protected $with = [
         'category'
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }
