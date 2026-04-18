@@ -47,8 +47,8 @@
 
                         <div class="col-12">
                             <label for="content" class="form-label">Content</label>
-                            <textarea placeholder="Hero content of the page" class="form-control summernote" name="content" id="content"
-                                rows="5"></textarea>
+                            <textarea placeholder="Hero content of the page" class="form-control summernote"
+                                name="content" id="content" rows="5"></textarea>
                         </div>
 
                         <!-- 🟧 SECTION 2: SEO Fields -->
@@ -68,7 +68,8 @@
 
                         <div class="col-12">
                             <label for="meta_description" class="form-label">Meta Description</label>
-                            <textarea class="form-control" id="meta_description" name="meta_description" rows="3"></textarea>
+                            <textarea class="form-control" id="meta_description" name="meta_description"
+                                rows="3"></textarea>
                         </div>
 
                         <!-- 🟩 SECTION 3: Page Content Sections -->
@@ -94,8 +95,8 @@
 
                         <div class="col-md-6">
                             <label for="short_desc2" class="form-label">Short Description 2</label>
-                            <input type="text" class="form-control summernote" name="short_desc2"
-                                id="short_desc2" placeholder="Short summary or subtitle for section 2">
+                            <input type="text" class="form-control summernote" name="short_desc2" id="short_desc2"
+                                placeholder="Short summary or subtitle for section 2">
                         </div>
 
                         <div class="col-12">
@@ -119,36 +120,32 @@
 
                         <div class="col-md-6">
                             <label for="image1" class="form-label">Image 1</label>
-                            <input class="form-control" type="file" id="image1" name="image1"
-                                accept="image/*">
+                            <input class="form-control" type="file" id="image1" name="image1" accept="image/*">
                             <div class="mt-2" id="preview_image1"></div>
                         </div>
 
                         <div class="col-md-6">
                             <label for="image2" class="form-label">Image 2</label>
-                            <input class="form-control" type="file" id="image2" name="image2"
-                                accept="image/*">
+                            <input class="form-control" type="file" id="image2" name="image2" accept="image/*">
                             <div class="mt-2" id="preview_image2"></div>
                         </div>
 
                         <div class="col-md-6">
                             <label for="video1" class="form-label">Video 1</label>
-                            <input class="form-control" type="file" id="video1" name="video1"
-                                accept="video/*">
+                            <input class="form-control" type="file" id="video1" name="video1" accept="video/*">
                             <div class="mt-2" id="preview_video1"></div>
                         </div>
 
                         <div class="col-md-6">
                             <label for="video2" class="form-label">Video 2</label>
-                            <input class="form-control" type="file" id="video2" name="video2"
-                                accept="video/*">
+                            <input class="form-control" type="file" id="video2" name="video2" accept="video/*">
                             <div class="mt-2" id="preview_video2"></div>
                         </div>
 
                         <div class="col-12">
                             <label for="gallery_images" class="form-label">Gallery Images</label>
-                            <input type="file" class="form-control" id="gallery_images" name="gallery_images[]"
-                                multiple accept="image/*">
+                            <input type="file" class="form-control" id="gallery_images" name="gallery_images[]" multiple
+                                accept="image/*">
                             <div class="form-text">You can upload multiple images.</div>
                             <ul class="list-unstyled mt-2 gallery-preview"></ul>
                         </div>
@@ -157,9 +154,9 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary submitBtn">Save</button>
-                    <button type="submit" class="btn btn-success updateBtn ">Update</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-dark submitBtn">Save</button>
+                    <button type="submit" class="btn btn-outline-success updateBtn ">Update</button>
                 </div>
             </form>
         </div>

@@ -32,8 +32,8 @@ $(document).ready(function () {
 
 
     $("div.toolbar").html(`
-        <span id="btnPrint" class="btn btn-primary mdi mdi-printer mdi-icon"></span>
-        <span id="btnExport" class="btn btn-success mdi mdi-file-export mdi-icon"></span>
+        <span id="btnPrint" class="btn btn-outline-dark mdi mdi-printer mdi-icon"></span>
+        <span id="btnExport" class="btn btn-outline-success mdi mdi-file-export mdi-icon"></span>
     `);
 
     $('#btnPrint').on('click', function () {
@@ -72,13 +72,13 @@ $(document).ready(function () {
         var id = $(this).attr("data-id");
         $.ajax({
             type: "get",
-            url: "/admin/call-to-action/"+id,
+            url: "/admin/call-to-action/" + id,
             success: function (response) {
                 console.log(response);
                 $("#title").val(response.message.title);
                 $("#sub_heading").val(response.message.sub_heading);
                 $("#title").val(response.message.iframe);
-                $("#formModalLabel").val(response.message.page+' CTA');
+                $("#formModalLabel").val(response.message.page + ' CTA');
 
                 $("#description").summernote('code', response.message
                     .description);
@@ -167,7 +167,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "post",
-                    url: "/admin/call-to-action/"+ id+"/status" ,
+                    url: "/admin/call-to-action/" + id + "/status",
                     headers: { 'X-HTTP-Method-Override': 'PUT' },
                     success: function () {
                         // console.log(response);

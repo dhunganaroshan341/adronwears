@@ -39,9 +39,11 @@
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success submitBtn" data-action="">Submit</button>
-                            <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success submitBtn"
+                                data-action="">Submit</button>
+                            <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update
                                 Category</button>
                         </div>
             </form>

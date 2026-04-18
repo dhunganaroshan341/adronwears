@@ -4,7 +4,7 @@
 <div class="container-fluid ml-2">
 
 
-    <button class="btn btn-primary addCategoryBtn">Add Category</button>
+    <button class="btn btn-outline-dark addCategoryBtn">Add Category</button>
     <!-- @include('Admin.pages.Category.categoryModal') -->
 
     <div class="table-responsive mt-3">

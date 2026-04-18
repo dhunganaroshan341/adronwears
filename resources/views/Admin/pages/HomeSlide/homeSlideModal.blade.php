@@ -27,7 +27,8 @@
                         </div>
                         <div class="col-md-12 mt-4 mb-2">
                             <label for="" class="form-label">Short Description</label>
-                            <textarea class="form-control summernote" id="homeSliderDescription" name="shortdesc" rows="4"></textarea>
+                            <textarea class="form-control summernote" id="homeSliderDescription" name="shortdesc"
+                                rows="4"></textarea>
                         </div>
 
                         <div class="col-md-6">
@@ -46,9 +47,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitBtn" data-action="">Submit</button>
-                    <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success submitBtn" data-action="">Submit</button>
+                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update
                         HomeSlide</button>
                 </div>
             </form>

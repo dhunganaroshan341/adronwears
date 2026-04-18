@@ -35,8 +35,8 @@ $(document).ready(function () {
     });
 
     $("div.toolbar").html(`
-        <span id="btnPrint" class="btn btn-primary mdi mdi-printer mdi-icon"></span>
-        <span id="btnExport" class="btn btn-success mdi mdi-file-export mdi-icon"></span>
+        <span id="btnPrint" class="btn btn-outline-dark mdi mdi-printer mdi-icon"></span>
+        <span id="btnExport" class="btn btn-outline-success mdi mdi-file-export mdi-icon"></span>
     `);
 
     $('#btnPrint').on('click', function () { table.button(0).trigger(); });
@@ -121,55 +121,55 @@ $(document).ready(function () {
         });
 
         $("#updateForm").off("submit").on("submit", function (event) {
-    event.preventDefault();
+            event.preventDefault();
 
-    let id = $("#team_id").val(); // hidden input in your form with team id
-    let formdata = new FormData(this);
+            let id = $("#team_id").val(); // hidden input in your form with team id
+            let formdata = new FormData(this);
 
-    $(".updateBtn").prop("disabled", true);
+            $(".updateBtn").prop("disabled", true);
 
-    $.ajax({
-        type: "POST",
-        url: "/admin/team/" + id,  // matches resource route
-        data: formdata,
-        contentType: false,
-        processData: false,
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            "X-HTTP-Method-Override": "PUT" // Laravel expects PUT/PATCH
-        },
-        success: function (response) {
-            if (response.success) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Success",
-                    text: "Team Member Updated Successfully",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-                table.draw();
-                $("#formModal").modal("hide");
-            } else {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Something went wrong!",
-                    text: "Please try again!"
-                });
-            }
-        },
-        error: function () {
-            Swal.fire({
-                icon: "warning",
-                title: "Something went wrong!",
-                showConfirmButton: false,
-                timer: 1500
+            $.ajax({
+                type: "POST",
+                url: "/admin/team/" + id,  // matches resource route
+                data: formdata,
+                contentType: false,
+                processData: false,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    "X-HTTP-Method-Override": "PUT" // Laravel expects PUT/PATCH
+                },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Team Member Updated Successfully",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        table.draw();
+                        $("#formModal").modal("hide");
+                    } else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Something went wrong!",
+                            text: "Please try again!"
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Something went wrong!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                },
+                complete: function () {
+                    $(".updateBtn").prop("disabled", false);
+                }
             });
-        },
-        complete: function () {
-            $(".updateBtn").prop("disabled", false);
-        }
-    });
-});
+        });
 
     });
 

@@ -66,7 +66,7 @@
             </a>
             <h5 class="text-center mt-3 mb-3">{{ $category['name'] }}</h5>
             <p class="text-center">
-                <a href="{{ route('shop.category', $category['slug']) }}" class="btn btn-success">Go Shop</a>
+                <a href="{{ route('shop.category', $category['slug']) }}" class="btn btn-outline-success">Go Shop</a>
             </p>
         </div>
         @endforeach
@@ -142,7 +142,7 @@
         </div>
         <div class="row text-center mt-4">
             <div class="col-12">
-                <a href="{{ route('shop.index') }}" class="btn btn-success btn-lg px-5">
+                <a href="{{ route('shop.index') }}" class="btn btn-outline-success btn-lg px-5">
                     View All Products <i class="fas fa-arrow-right"></i>
                 </a>
             </div>

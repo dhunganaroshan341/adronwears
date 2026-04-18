@@ -47,7 +47,7 @@
                             <select name="our_country_id" id="our_country_id" class="form-select" required>
                                 <option value="">-- Select Country --</option>
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -77,7 +77,7 @@
                             <select name="parent_id" id="parent_id" class="form-select">
                                 <option value="">-- No Parent --</option>
                                 @foreach ($packages as $package)
-                                    <option value="{{ $package->id }}">{{ $package->title }}</option>
+                                <option value="{{ $package->id }}">{{ $package->title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -140,14 +140,14 @@
                         </div>
                         <div class="col-md-6">
                             <label for="pickup">Pickup Location</label>
-                            <input type="text" class="form-control" name="pickup" id="pickup"
-                                aria-describedby="helpId" placeholder="" value="TIA,Kathmandu">
+                            <input type="text" class="form-control" name="pickup" id="pickup" aria-describedby="helpId"
+                                placeholder="" value="TIA,Kathmandu">
 
                         </div>
                         <div class="col-md-6">
                             <label for="drop">Drop Location</label>
-                            <input type="text" class="form-control" name="drop" id="drop"
-                                aria-describedby="helpId" placeholder="" value="TIA,Kathmandu">
+                            <input type="text" class="form-control" name="drop" id="drop" aria-describedby="helpId"
+                                placeholder="" value="TIA,Kathmandu">
 
                         </div>
 
@@ -191,7 +191,8 @@
                         <!-- Accomodation -->
                         <div class="col-12">
                             <label for="accomodation">Accomodation</label>
-                            <textarea name="accomodation" id="accomodation" rows="3" class="form-control" style="height: 20px;"></textarea>
+                            <textarea name="accomodation" id="accomodation" rows="3" class="form-control"
+                                style="height: 20px;"></textarea>
                         </div>
 
                         <!-- Short Description -->
@@ -211,8 +212,8 @@
                         <!-- Long Description -->
                         <div class="col-12">
                             <label for="long_description" class="form-label">Description</label>
-                            <textarea class="form-control summernote" id="long_description" name="long_description" rows="5"
-                                style="min-height: 250px;"></textarea>
+                            <textarea class="form-control summernote" id="long_description" name="long_description"
+                                rows="5" style="min-height: 250px;"></textarea>
                         </div>
                         <div class="col-12">
                             <label for="price_includes" class="form-label">Package Includes</label>
@@ -231,9 +232,9 @@
 
                 <!-- Modal Footer -->
                 <div class="modal-footer px-4 py-3">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitBtn" data-action="">Submit</button>
-                    <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success submitBtn" data-action="">Submit</button>
+                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update
                         Package</button>
                 </div>
             </form>

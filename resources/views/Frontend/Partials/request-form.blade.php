@@ -78,10 +78,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-outline-success">
                         Submit Request
                     </button>
                 </div>

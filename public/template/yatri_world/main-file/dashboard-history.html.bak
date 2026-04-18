@@ -308,7 +308,7 @@
                                                 <td><span class="text-success">Pending</span></td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -328,7 +328,7 @@
                                                 <td>Pending</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -348,7 +348,7 @@
                                                 <td>Pending</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -368,7 +368,7 @@
                                                 <td>Pending</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -388,7 +388,7 @@
                                                 <td>Pending</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -408,7 +408,7 @@
                                                 <td>Pending</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -428,7 +428,7 @@
                                                 <td>Pending</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">
@@ -448,7 +448,7 @@
                                                 <td>Pending</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="fa fa-plus"></span>
                                                         </button>
                                                         <div class="dropdown-menu">

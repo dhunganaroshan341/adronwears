@@ -8,7 +8,7 @@
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('product-categories.create') }}" class="btn btn-primary mb-3">Add Category</a>
+    <a href="{{ route('product-categories.create') }}" class="btn btn-outline-dark mb-3">Add Category</a>
 
     <table class="table table-bordered">
         <thead>
@@ -33,7 +33,7 @@
                         class="d-inline delete-form">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                     </form>
                 </td>
             </tr>

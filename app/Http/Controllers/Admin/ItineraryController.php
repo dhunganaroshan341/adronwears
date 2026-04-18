@@ -14,45 +14,45 @@ class ItineraryController extends Controller
     /**
      * Display a listing of the resource.
      */
-   // App\Http\Controllers\Admin\ItineraryController.php
+    // App\Http\Controllers\Admin\ItineraryController.php
 
 
 
-public function index($id, Request $request)
-{
-    if ($request->ajax()) {
-        $query = Itinerary::where('tour_package_id', $id)
-       ->orderBy('day_number', 'asc'); // Order by day_number ascending
+    public function index($id, Request $request)
+    {
+        if ($request->ajax()) {
+            $query = Itinerary::where('tour_package_id', $id)
+                ->orderBy('day_number', 'asc'); // Order by day_number ascending
 
-        return DataTables::of($query)
-            ->addIndexColumn()
-            ->addColumn('action', function ($item) {
-    return '
+            return DataTables::of($query)
+                ->addIndexColumn()
+                ->addColumn('action', function ($item) {
+                    return '
         <div class="d-flex gap-1">
-            <button class="btn btn-sm btn-warning editItineraryBtn" data-id="' . $item->id . '">
+            <button class="btn btn-sm btn-outline-warning editItineraryBtn" data-id="' . $item->id . '">
                 <i class="fas fa-edit"></i>
             </button>
-            <button class="btn btn-sm btn-danger deleteItineraryBtn" data-id="' . $item->id . '">
+            <button class="btn btn-sm btn-outline-danger deleteItineraryBtn" data-id="' . $item->id . '">
                 <i class="fas fa-trash-alt"></i>
             </button>
         </div>
     ';
-})
+                })
 
-           ->addColumn('day_number', function ($item) {
-    return $item->day_number . ' ' . ($item->day_number > 1 ? 'days' : 'day');
-})
+                ->addColumn('day_number', function ($item) {
+                    return $item->day_number . ' ' . ($item->day_number > 1 ? 'days' : 'day');
+                })
 
-            ->rawColumns(['action'])
-            ->make(true);
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        // Optional: For full-page view
+        $tourPackage = TourPackage::findOrFail($id);
+        return view('Admin.pages.Itinerary.index', [
+            'tourPackage' => $tourPackage
+        ]);
     }
-
-    // Optional: For full-page view
-    $tourPackage = TourPackage::findOrFail($id);
-    return view('Admin.pages.Itinerary.index', [
-        'tourPackage' => $tourPackage
-    ]);
-}
 
 
 
@@ -85,21 +85,19 @@ public function index($id, Request $request)
 
         // success message with json response
         return response()->json($itinerary);
-
-
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(ItineraryRequest $request, $id)
-{
-    $validated = $request->validated();
-    $itinerary = Itinerary::findOrFail($id);
-    $itinerary->update($validated);
+    {
+        $validated = $request->validated();
+        $itinerary = Itinerary::findOrFail($id);
+        $itinerary->update($validated);
 
-    return response()->json([ 'success'=>true,'message' => 'Itinerary updated successfully']);
-}
+        return response()->json(['success' => true, 'message' => 'Itinerary updated successfully']);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -119,7 +117,7 @@ public function index($id, Request $request)
         return response()->json(['latest_order' => $latestOrder]);
     }
 
-     public function statusToggle($id)
+    public function statusToggle($id)
     {
         try {
             $data = Itinerary::find($id);
@@ -135,5 +133,4 @@ public function index($id, Request $request)
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
-
 }

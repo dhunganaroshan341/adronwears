@@ -31,8 +31,7 @@
                         <!-- Title -->
                         <div class="col-md-6">
                             <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
-                            <input type="text" name="title" id="title" class="form-control"
-                                placeholder="Enter title">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Enter title">
                         </div>
 
                         <!-- Sub Heading -->
@@ -53,14 +52,15 @@
                         <div class="col-md-12">
                             <label for="description" class="form-label">Description <span
                                     class="text-danger">*</span></label>
-                            <textarea name="description" id="description" class="form-control summernote" rows="4"></textarea>
+                            <textarea name="description" id="description" class="form-control summernote"
+                                rows="4"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer border-top-0 mt-3">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update Page
+                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update Page
                         Banner</button>
                 </div>
             </form>

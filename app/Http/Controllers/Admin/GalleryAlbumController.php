@@ -31,30 +31,30 @@ class GalleryAlbumController extends Controller
         );
         $albums = GalleryAlbum::all();
 
-        return view('Admin.pages.Gallery.galleryAlbum',compact('clients','albums','extraJs','extraCs'));
+        return view('Admin.pages.Gallery.galleryAlbum', compact('clients', 'albums', 'extraJs', 'extraCs'));
     }
-        public function getData(Request $request)
-        {
-            if ($request->ajax()) {
+    public function getData(Request $request)
+    {
+        if ($request->ajax()) {
             $records = GalleryAlbum::with(['galleryMedia', 'client'])->withCount('galleryMedia') // <- this adds `gallery_media_count`->get();
-            ->get();
-                return DataTables::of($records)
-                    ->addIndexColumn()
-                    ->addColumn('title',function($data){
-                        return $data->title;
-                    })
-                    ->addColumn('gallery', function ($item) {
-                        return "<a type='button' data-id='" . $item->id . "' class='imageListPopup'>
+                ->get();
+            return DataTables::of($records)
+                ->addIndexColumn()
+                ->addColumn('title', function ($data) {
+                    return $data->title;
+                })
+                ->addColumn('gallery', function ($item) {
+                    return "<a type='button' data-id='" . $item->id . "' class='imageListPopup'>
                                     <span class='badge badge-primary'>" . $item->gallery_media_count . "</span>
                                 </a>";
-                    })
+                })
 
 
                 // ->addColumn('title', fn($tit) => Str::limit($tit->title, 20) ?? '')
                 ->addColumn('client', fn($client) => $client->client->name ?? '')
                 ->addColumn('type', fn($type) => $type->type ?? '')
-                ->addColumn('action', fn($data) => '<button class="btn btn-secondary editAlbumButton" data-id="' . $data->id . '" type="button">Edit</button>
-                                                     <button class="btn btn-danger deleteData" data-id="' . $data->id . '" type="button">Delete</button>')
+                ->addColumn('action', fn($data) => '<button class="btn btn-outline-secondary editAlbumButton" data-id="' . $data->id . '" type="button">Edit</button>
+                                                     <button class="btn btn-outline-danger deleteData" data-id="' . $data->id . '" type="button">Delete</button>')
                 ->addColumn('comment', fn($data) => '<button class="btn btn-info commentinfoBtn" data-id="' . $data->id . '" type="button">View Comments</button>')
                 ->addColumn('status', fn($status) => '<div class="form-check form-switch">
                                                         <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . ($status->status == 'Active' ? 'checked' : '') . '>
@@ -64,23 +64,23 @@ class GalleryAlbumController extends Controller
         }
     }
 
-  public function store(GalleryAlbumRequest $request)
-{
-    DB::beginTransaction();
-    try {
-        $gallery = GalleryAlbum::create($request->validated());
+    public function store(GalleryAlbumRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $gallery = GalleryAlbum::create($request->validated());
 
-        if ($request->hasFile('media_path')) {
-            $this->handleMediaUploads($request->file('media_path'), $gallery->id);
+            if ($request->hasFile('media_path')) {
+                $this->handleMediaUploads($request->file('media_path'), $gallery->id);
+            }
+
+            DB::commit();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
-
-        DB::commit();
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
     }
-}
 
 
 
@@ -124,7 +124,8 @@ class GalleryAlbumController extends Controller
             if (File::exists($filePath)) {
                 File::delete($filePath);
             }
-        }}
+        }
+    }
 
     public function show($id)
     {
@@ -149,9 +150,10 @@ class GalleryAlbumController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
-    public function detailGalleryAlbum($id){
+    public function detailGalleryAlbum($id)
+    {
         try {
-            $album = GalleryAlbum::with(['client','galleryMedia'])->findOrFail($id);
+            $album = GalleryAlbum::with(['client', 'galleryMedia'])->findOrFail($id);
             // dd($album);
             return response()->json(['success' => true, 'message' => $album]);
         } catch (\Exception $e) {
@@ -171,33 +173,33 @@ class GalleryAlbumController extends Controller
     }
 
     public function getGalleryAlbumData($id, Request $request)
-{
-    if ($request->ajax()) {
-        // Fetch the specific album by ID
-        $album = GalleryAlbum::find($id);
+    {
+        if ($request->ajax()) {
+            // Fetch the specific album by ID
+            $album = GalleryAlbum::find($id);
 
-        // Fetch all albums without the thumbnail
-        $albums = GalleryAlbum::all();
+            // Fetch all albums without the thumbnail
+            $albums = GalleryAlbum::all();
 
-        // Fetch all clients
-        $clients = Client::all();
+            // Fetch all clients
+            $clients = Client::all();
 
-        // Prepare the response data
-        $data = [
-            'album' => $album,
-            'albums' => $albums,  // All albums without thumbnails
-            'clients' => $clients,
-        ];
+            // Prepare the response data
+            $data = [
+                'album' => $album,
+                'albums' => $albums,  // All albums without thumbnails
+                'clients' => $clients,
+            ];
 
-        return response()->json([
-            'success' => true,
-            'message' => $data
-        ]);
+            return response()->json([
+                'success' => true,
+                'message' => $data
+            ]);
+        }
     }
-}
 
 
-public function destroyGalleryImage(Request $request)
+    public function destroyGalleryImage(Request $request)
     {
         try {
             // dd($request->all());
@@ -213,48 +215,45 @@ public function destroyGalleryImage(Request $request)
             return response()->json(['success' => false, 'message' => $e->getMessage(), 'line' => $e->getTrace()]);
         }
     }
-public function update(GalleryAlbumRequest $request, $id)
-{
-    DB::beginTransaction();
-    try {
-        $album = GalleryAlbum::findOrFail($id);
-        $album->update($request->validated());
+    public function update(GalleryAlbumRequest $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $album = GalleryAlbum::findOrFail($id);
+            $album->update($request->validated());
 
-        if ($request->hasFile('media_path')) {
-            $this->handleMediaUploads($request->file('media_path'), $album->id);
+            if ($request->hasFile('media_path')) {
+                $this->handleMediaUploads($request->file('media_path'), $album->id);
+            }
+
+            DB::commit();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
+    }
 
-        DB::commit();
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+    private function handleMediaUploads($files, $galleryId)
+    {
+        if (!$files) return;
+
+        foreach ($files as $key => $file) {
+            // Define the folder inside your 'public' disk where files will be stored
+            $folder = '/images/gallery-media';
+
+            // Create a unique filename with timestamp and key to avoid conflicts
+            $filename = time() . '_' . $key . '.' . $file->getClientOriginalExtension();
+
+            // Store the file in the 'public' disk under the specified folder
+            $path = $file->storeAs($folder, $filename, 'public');
+
+            // Save the relative path (inside storage/app/public) in the DB
+            GalleryMedia::create([
+                'gallery_album_id' => $galleryId,
+                'media_path' => $path,  // This is relative to storage/app/public
+                'status' => 'Active',
+            ]);
+        }
     }
 }
-
-private function handleMediaUploads($files, $galleryId)
-{
-    if (!$files) return;
-
-    foreach ($files as $key => $file) {
-        // Define the folder inside your 'public' disk where files will be stored
-        $folder = '/images/gallery-media';
-
-        // Create a unique filename with timestamp and key to avoid conflicts
-        $filename = time() . '_' . $key . '.' . $file->getClientOriginalExtension();
-
-        // Store the file in the 'public' disk under the specified folder
-        $path = $file->storeAs($folder, $filename, 'public');
-
-        // Save the relative path (inside storage/app/public) in the DB
-        GalleryMedia::create([
-            'gallery_album_id' => $galleryId,
-            'media_path' => $path,  // This is relative to storage/app/public
-            'status' => 'Active',
-        ]);
-    }
-}
-
-
-    }
-

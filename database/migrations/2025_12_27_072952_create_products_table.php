@@ -52,7 +52,7 @@ return new class extends Migration
 
             $table->integer('total_stock')->default(0);
 
-            $table->string('brand')->nullable();
+            $table->string('brand_name')->nullable();
 
             // Media
             $table->string('thumbnail')->nullable();

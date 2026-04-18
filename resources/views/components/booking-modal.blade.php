@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">
+<button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bookingModal">
     <i class="flaticon-building"></i> Book Now<i class="flaticon-arrow">
 </button>
 
@@ -58,16 +58,14 @@
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label>Adults</label>
-                                <input name="adults" type="number" min="1" value="2" class="form-control"
-                                    required />
+                                <input name="adults" type="number" min="1" value="2" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label>Children</label>
-                                <input name="children" type="number" min="0" value="0"
-                                    class="form-control" />
+                                <input name="children" type="number" min="0" value="0" class="form-control" />
                             </div>
                         </div>
 
@@ -90,7 +88,8 @@
                         <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <label>Additional Message (Optional)</label>
-                                <textarea name="message" rows="4" class="form-control" placeholder="Any message or request..."></textarea>
+                                <textarea name="message" rows="4" class="form-control"
+                                    placeholder="Any message or request..."></textarea>
                             </div>
                         </div>
 
@@ -103,7 +102,7 @@
                         </div>
 
                         <div class="col-md-12 text-end">
-                            <button type="submit" class="btn btn-primary">Submit Booking</button>
+                            <button type="submit" class="btn btn-outline-dark">Submit Booking</button>
                         </div>
                     </div>
                 </form>

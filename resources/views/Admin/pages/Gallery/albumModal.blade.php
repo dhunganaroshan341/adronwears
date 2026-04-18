@@ -22,13 +22,12 @@
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
-                        <input type="text" name="title" id="title" class="form-control"
-                            placeholder="Enter title" required>
+                        <input type="text" name="title" id="title" class="form-control" placeholder="Enter title"
+                            required>
                     </div>
 
                     <div class="col-md-12 mb-4">
-                        <label for="" class="form-label">Gallery Images<span
-                                class="text-danger">*</span></label>
+                        <label for="" class="form-label">Gallery Images<span class="text-danger">*</span></label>
                         <input type="file" name="media_path[]" id="galleryMedia" class="form-control" multiple
                             placeholder="" aria-describedby="helpId" />
                         <span class="text-danger infoPostImageText"></span>
@@ -45,7 +44,7 @@
                         <img id="thumbnailImage" src="" alt="thumbnail">
                     </div>
 
-                    <input type="hidden" name="type" id = "type" value = "image">
+                    <input type="hidden" name="type" id="type" value="image">
 
 
 
@@ -54,9 +53,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitBtn" data-action="create">Submit</button>
-                    <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success submitBtn" data-action="create">Submit</button>
+                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update</button>
                 </div>
             </form>
         </div>
@@ -78,20 +77,20 @@
                         <div class="carousel-inner fetch-post-image-data">
                             <!-- Carousel images will be added here -->
                         </div>
-                        <button class="carousel-control-prev" type="button"
-                            data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button"
-                            data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
@@ -99,34 +98,34 @@
 </div>
 
 @push('styles')
-    <style>
-        .galleryMediaWrapper {
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #fafafa;
-        }
+<style>
+    .galleryMediaWrapper {
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background-color: #fafafa;
+    }
 
-        .galleryMediaData {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .galleryMediaData {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-        .galleryMediaData .gallery-item {
-            width: 100px;
-            height: 100px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-        }
+    .galleryMediaData .gallery-item {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .galleryMediaData .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+    .galleryMediaData .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
 @endpush

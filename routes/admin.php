@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\AchievementController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BannerSliderVideoController;
+use App\Http\Controllers\Admin\ShippingRequestController;
 use App\Http\Controllers\Admin\CallToActionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
@@ -187,7 +188,7 @@ Route::get('products-export', [ProductController::class, 'export'])
 
 Route::post('products-import', [ProductController::class, 'import'])
     ->name('products.import');
-
+Route::get('shipping-requests', [ShippingRequestController::class, 'index'])->name('shipping-requests.index');
 // Logout route for normal users
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Frontend pages

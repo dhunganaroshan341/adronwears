@@ -1,4 +1,5 @@
-<button type="button" class="btn btn-primary mb-2" id="openFormBtn"><i class="fas fa-phone"></i> Query Now</button>
+<button type="button" class="btn btn-outline-dark mb-2" id="openFormBtn"><i class="fas fa-phone"></i>
+    Query Now</button>
 
 <!-- Modal -->
 <div class="modal fade" id="contactFormModal" tabindex="-1" aria-labelledby="contactFormLabel" aria-hidden="true">
@@ -30,48 +31,48 @@
                     <input type="hidden" name="service_id" value="{{ $serviceDetail->id ?? '' }}">
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-outline-dark">Send Message</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 @push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#openFormBtn').click(function() {
-                $('#contactFormModal').modal('show');
-            });
+<script>
+    $(document).ready(function () {
+        $('#openFormBtn').click(function () {
+            $('#contactFormModal').modal('show');
+        });
 
-            $('#popupForm').on('submit', function(e) {
-                e.preventDefault();
+        $('#popupForm').on('submit', function (e) {
+            e.preventDefault();
 
-                $.ajax({
-                    url: '/service-query',
-                    method: 'POST',
-                    data: {
-                        name: $('#name').val(),
-                        email: $('#email').val(),
-                        phone: $('#phone').val(),
-                        message: $('#message').val(),
-                        service_id: $('input[name="service_id"]').val(),
-                        _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert('Message sent successfully!');
-                            $('#popupForm')[0].reset();
-                            $('#contactFormModal').modal('hide');
-                        } else {
-                            alert('Something went wrong. Please try again.');
-                        }
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText);
-                        alert('Failed to send message. Check console for errors.');
+            $.ajax({
+                url: '/service-query',
+                method: 'POST',
+                data: {
+                    name: $('#name').val(),
+                    email: $('#email').val(),
+                    phone: $('#phone').val(),
+                    message: $('#message').val(),
+                    service_id: $('input[name="service_id"]').val(),
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Message sent successfully!');
+                        $('#popupForm')[0].reset();
+                        $('#contactFormModal').modal('hide');
+                    } else {
+                        alert('Something went wrong. Please try again.');
                     }
-                });
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText);
+                    alert('Failed to send message. Check console for errors.');
+                }
             });
         });
-    </script>
+    });
+</script>
 @endpush

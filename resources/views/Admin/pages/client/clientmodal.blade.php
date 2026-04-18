@@ -1,4 +1,5 @@
-<div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="formId" class="form">
@@ -39,8 +40,7 @@
                         </div>
 
                         <div class="col-md-6 mt-2 mb-2">
-                            <label for="" class="form-label">Phone Number<span
-                                    class="text-danger">*</span></label>
+                            <label for="" class="form-label">Phone Number<span class="text-danger">*</span></label>
                             <input type="number" name="contact" id="contact" class="form-control" placeholder=""
                                 aria-describedby="helpId" />
                         </div> --}}
@@ -54,15 +54,16 @@
 
                         {{-- <div class="col-md-12 mt-4 mb-2">
                             <label for="" class="form-label">Description</label>
-                            <textarea class="form-control summernote" id="description" name="description" rows="4"></textarea>
+                            <textarea class="form-control summernote" id="description" name="description"
+                                rows="4"></textarea>
                         </div> --}}
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitBtn" data-action="">Submit</button>
-                    <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success submitBtn" data-action="">Submit</button>
+                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update
                         Client</button>
                 </div>
             </form>

@@ -7,25 +7,35 @@ use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Imports\ProductsImport;
+use App\Models\Client;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Services\ProductExcelService;
-use Illuminate\Http\Request as HttpRequest;
+use App\Services\ProductFilterService;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 
 class ProductController extends Controller
 {
-    public function index()
+    protected $filterService;
+
+    public function __construct(ProductFilterService $service)
     {
-        $products = Product::with('category')->latest()->paginate(15);
+        $this->filterService = $service;
+    }
+
+    public function index(Request $request)
+    {
+        $products = $this->filterService->getFilteredProducts($request);
+
         return view('Admin.pages.products.index', compact('products'));
     }
 
     public function create()
     {
         $categories = ProductCategory::where('status', StatusEnum::ACTIVE)->get();
-
-        return view('Admin.pages.products.create', compact('categories'));
+        $brands = Client::where('status', 'active')->get();
+        return view('Admin.pages.products.create', compact('categories', 'brands'));
     }
 
     public function store(ProductRequest $request)
@@ -117,7 +127,7 @@ class ProductController extends Controller
         return Excel::download(new ProductsExport, 'products.xlsx');
     }
 
-    public function import(HttpRequest $request, ProductExcelService $service)
+    public function import(Request $request, ProductExcelService $service)
     {
         $request->validate([
             'file' => 'required|mimes:xlsx,csv',

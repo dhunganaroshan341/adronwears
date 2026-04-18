@@ -15,7 +15,7 @@
 
                         @csrf
                         @if (isset($team))
-                            <input type="hidden" id="team_id" name="id" value="{{ $team->id }}">
+                        <input type="hidden" id="team_id" name="id" value="{{ $team->id }}">
                         @endif
 
 
@@ -67,9 +67,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitBtn">Submit</button>
-                    <button type="submit" class="btn btn-success updateBtn">Update</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success submitBtn">Submit</button>
+                    <button type="submit" class="btn btn-outline-success updateBtn">Update</button>
                 </div>
             </form>
         </div>

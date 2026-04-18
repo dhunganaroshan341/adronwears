@@ -24,10 +24,10 @@ class PriceIncludesController extends Controller
                 ->addColumn('action', function ($item) {
                     return '
                         <div class="d-flex gap-1">
-                            <button class="btn btn-sm btn-warning editPriceIncludeBtn" data-id="' . $item->id . '">
+                            <button class="btn btn-sm btn-outline-warning editPriceIncludeBtn" data-id="' . $item->id . '">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-sm btn-danger deletePriceIncludeBtn" data-id="' . $item->id . '">
+                            <button class="btn btn-sm btn-outline-danger deletePriceIncludeBtn" data-id="' . $item->id . '">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>

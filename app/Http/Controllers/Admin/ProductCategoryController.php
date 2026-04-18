@@ -5,19 +5,27 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductCategoryRequest;
 use App\Models\ProductCategory;
+use App\Services\ProductCategoryFilterService;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
 {
-    public function index()
+    protected $service;
+
+    public function __construct(ProductCategoryFilterService $service)
     {
-        // Get paginated categories
-        $categories = ProductCategory::with('parent')->latest()->paginate(10);
+        $this->service = $service;
+    }
 
-        // Get parent categories for modal dropdown
-        $parentCategories = ProductCategory::whereNull('parent_id')->get();
+    public function index(Request $request)
+    {
+        $categories = $this->service->getFilteredCategories($request);
+        $parentCategories = $this->service->getParentCategories();
 
-        return view('Admin.pages.ProductCategory.index', compact('categories', 'parentCategories'));
+        return view('Admin.pages.ProductCategory.index', compact(
+            'categories',
+            'parentCategories'
+        ));
     }
 
     public function store(ProductCategoryRequest $request)

@@ -184,18 +184,18 @@
                                             Quantity
                                             <input type="hidden" name="product-quanity" id="product-quanity" value="1">
                                         </li>
-                                        <li class="list-inline-item"><span class="btn btn-success"
+                                        <li class="list-inline-item"><span class="btn btn-outline-success"
                                                 id="btn-minus">-</span></li>
                                         <li class="list-inline-item"><span class="badge bg-secondary"
                                                 id="var-value">1</span></li>
-                                        <li class="list-inline-item"><span class="btn btn-success"
+                                        <li class="list-inline-item"><span class="btn btn-outline-success"
                                                 id="btn-plus">+</span></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="row pb-3">
                                 <div class="col d-grid">
-                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                    <button class="btn btn-outline-success" data-bs-toggle="modal"
                                         data-bs-target="#productRequestModal">
                                         Request This Product
                                     </button>
@@ -229,11 +229,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -271,11 +271,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -313,11 +313,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -355,11 +355,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -397,11 +397,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -439,11 +439,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -481,11 +481,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -523,11 +523,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -565,11 +565,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -607,11 +607,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -649,11 +649,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
@@ -691,11 +691,11 @@
                         <div
                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                             <ul class="list-unstyled">
-                                <li><a class="btn btn-success text-white" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white" href="shop-single.html"><i
                                             class="far fa-heart"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i
+                                <li><a class="btn btn-outline-success text-white mt-2" href="shop-single.html"><i
                                             class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>

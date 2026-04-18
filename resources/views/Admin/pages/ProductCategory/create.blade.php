@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="container">
-    <h2>Add Category</h2>
+    <x-admin.breadcrumb>
+        <a href="route('admin.product-categories.index')" class="btn btn-outline-dark mb-3" data-bs-toggle="modal"><i
+                class="fas-fa-arrow-left"></i> Back</a>
+
+    </x-admin.breadcrumb>
 
     <form action="{{ route('product-categories.store') }}" method="POST">
         @csrf
@@ -26,7 +30,7 @@
                 <option value="Inactive">Inactive</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-outline-dark">Save</button>
     </form>
 </div>
 @endsection

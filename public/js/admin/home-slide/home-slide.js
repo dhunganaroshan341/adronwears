@@ -69,8 +69,8 @@ $(document).ready(function () {
     })
 
     $("div.toolbar").html(
-        `<button id="btnPrint" class=" btn btn-primary mdi mdi-printer mdi-icon"></button>
-        <button id="btnExport" class=" btn btn-secondary mdi mdi-file-export mdi-icon"></button>`
+        `<button id="btnPrint" class=" btn btn-outline-dark mdi mdi-printer mdi-icon"></button>
+        <button id="btnExport" class=" btn btn-outline-secondary mdi mdi-file-export mdi-icon"></button>`
     );
 
     $("#btnPrint").on('click', function () {

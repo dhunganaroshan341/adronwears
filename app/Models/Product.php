@@ -14,6 +14,7 @@ class Product extends Model
         'product_category_id',
         'name',
         'slug',
+        'brand_id',
         'description',
         'price',
         'sale_price',
@@ -22,7 +23,7 @@ class Product extends Model
         'bundle_items',
         'status',
         'target_group',
-        'brand',
+        'brand_name',
         'is_featured',
         'is_new',
         'is_on_sale',
@@ -77,6 +78,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'brand_id', 'id');
     }
 
     /**

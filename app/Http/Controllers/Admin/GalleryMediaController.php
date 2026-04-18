@@ -26,7 +26,7 @@ class GalleryMediaController extends Controller
             config('js-map.admin.summernote.style'),
         );
         $albums = GalleryAlbum::all();
-        return view('admin.pages.Gallery.galleryMedia',compact('albums','extraJs','extraCs'));
+        return view('admin.pages.Gallery.galleryMedia', compact('albums', 'extraJs', 'extraCs'));
     }
 
     public function getGalleryData(Request $request)
@@ -37,8 +37,8 @@ class GalleryMediaController extends Controller
 
             // Group and extract one representative from each group
             $grouped = $records->groupBy(fn($item) => $item->galleryAlbum->title . '-' . $item->type)
-                               ->map(fn($group) => $group->first())
-                               ->values(); // reindex the collection
+                ->map(fn($group) => $group->first())
+                ->values(); // reindex the collection
 
             return DataTables::of($grouped)
                 ->addIndexColumn()
@@ -48,8 +48,8 @@ class GalleryMediaController extends Controller
                 })
                 ->addColumn('type', fn($row) => $row->galleryAlbum->type ?? 'N/A')
                 ->addColumn('action', fn($data) => '
-                    <button class="btn btn-secondary editUserButton" data-id="' . $data->id . '" type="button">Edit</button>
-                    <button class="btn btn-danger deleteData" data-id="' . $data->id . '" type="button">Delete</button>
+                    <button class="btn btn-outline-secondary editUserButton" data-id="' . $data->id . '" type="button">Edit</button>
+                    <button class="btn btn-outline-danger deleteData" data-id="' . $data->id . '" type="button">Delete</button>
                 ')
                 ->addColumn('status', fn($status) => '
                     <div class="form-check form-switch">
@@ -75,7 +75,7 @@ class GalleryMediaController extends Controller
                 $value->move(public_path('images/gallery-media'), $imageName);
                 GalleryMedia::create([
                     'gallery_album_id' => $request->gallery_album_id,
-                    'media_path' => 'images/gallery-media/'.$imageName,
+                    'media_path' => 'images/gallery-media/' . $imageName,
                 ]);
             }
         }
@@ -125,7 +125,8 @@ class GalleryMediaController extends Controller
         return response()->json(['success' => true, 'message' => 'Status updated.']);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $media = GalleryMedia::findOrFail($id);
         return response()->json([
             'success' => true,

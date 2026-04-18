@@ -45,8 +45,7 @@
                         <!-- Price (optional) -->
                         <div class="col-md-6">
                             <label for="price" class="form-label">Price (optional)</label>
-                            <input type="number" class="form-control" id="price" name="price"
-                                placeholder="e.g. 15000">
+                            <input type="number" class="form-control" id="price" name="price" placeholder="e.g. 15000">
                         </div>
 
                         <!-- Status -->
@@ -65,10 +64,10 @@
                 </div>
 
                 <div class="modal-footer px-4 pb-3">
-                    <button id="submitBatchBtn" type="submit" class="btn btn-success w-100">
+                    <button id="submitBatchBtn" type="submit" class="btn btn-outline-success w-100">
                         <i class="fas fa-save me-1"></i> Save Tour Batch
                     </button>
-                    <button id="updateBatchBtn" type="submit" class="btn btn-primary w-100" style="display: none;">
+                    <button id="updateBatchBtn" type="submit" class="btn btn-outline-dark w-100" style="display: none;">
                         <i class="fas fa-save me-1"></i> Update Tour Batch
                     </button>
                 </div>

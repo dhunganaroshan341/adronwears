@@ -16,46 +16,46 @@ class NoticeController extends Controller
     /**
      * Display a listing of the resource.
      */
-public function index(Request $request)
-{
-    if ($request->ajax()) {
-        $notice = Notice::query();
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $notice = Notice::query();
 
-        return DataTables::of($notice)
-            ->addIndexColumn()
-            ->addColumn('action', function ($action) {
-                $btn = '<button class="btn btn-primary editNoticeBtn mr-4" data-id="' . $action->id . '" type="button">Edit</button>';
-                $btn .= '<button class="btn btn-danger deleteNoticeBtn" data-id="' . $action->id . '" type="button">Delete</button>';
-                return $btn;
-            })
-            ->addColumn('status', function ($status) {
-                $checked = $status->status == 'Active' ? 'checked' : '';
-                return '<div class="form-check form-switch">
+            return DataTables::of($notice)
+                ->addIndexColumn()
+                ->addColumn('action', function ($action) {
+                    $btn = '<button class="btn btn-outline-dark editNoticeBtn mr-4" data-id="' . $action->id . '" type="button">Edit</button>';
+                    $btn .= '<button class="btn btn-outline-danger deleteNoticeBtn" data-id="' . $action->id . '" type="button">Delete</button>';
+                    return $btn;
+                })
+                ->addColumn('status', function ($status) {
+                    $checked = $status->status == 'Active' ? 'checked' : '';
+                    return '<div class="form-check form-switch">
                     <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" ' . $checked . '>
                     </div>';
-            })
-            ->addColumn('image', function ($img) {
-                $image = $img->image ? asset('uploads/' . $img->image) : '';
-                return '<img src="' . $image . '" class="img-fluid" alt="image" />';
-            })
-            ->addColumn('description', function ($desc) {
-                return strip_tags(Str::limit($desc->description, 50));
-            })
-            ->rawColumns(['action', 'status', 'image'])
-            ->make(true);
+                })
+                ->addColumn('image', function ($img) {
+                    $image = $img->image ? asset('uploads/' . $img->image) : '';
+                    return '<img src="' . $image . '" class="img-fluid" alt="image" />';
+                })
+                ->addColumn('description', function ($desc) {
+                    return strip_tags(Str::limit($desc->description, 50));
+                })
+                ->rawColumns(['action', 'status', 'image'])
+                ->make(true);
+        }
+
+        $extraJs = array_merge(
+            config('js-map.admin.summernote.script'),
+            config('js-map.admin.datatable.script')
+        );
+        $extraCs = array_merge(
+            config('js-map.admin.summernote.style'),
+            config('js-map.admin.datatable.style')
+        );
+
+        return view('Admin.pages.Notice.notice', compact('extraJs', 'extraCs'));
     }
-
-    $extraJs = array_merge(
-        config('js-map.admin.summernote.script'),
-        config('js-map.admin.datatable.script')
-    );
-    $extraCs = array_merge(
-        config('js-map.admin.summernote.style'),
-        config('js-map.admin.datatable.style')
-    );
-
-    return view('Admin.pages.Notice.notice', compact('extraJs', 'extraCs'));
-}
 
 
     public function toggleStatus($id)
@@ -78,7 +78,6 @@ public function index(Request $request)
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
-
     }
 
     /**

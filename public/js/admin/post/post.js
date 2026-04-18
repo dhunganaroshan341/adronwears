@@ -3,11 +3,11 @@ $(document).ready(function () {
         height: 300
     });
     $('.category_ids').select2({
-    placeholder: "Select categories",
-    allowClear: true,
-      dropdownParent: $("#formModal"),
-    width: '100%'
-});
+        placeholder: "Select categories",
+        allowClear: true,
+        dropdownParent: $("#formModal"),
+        width: '100%'
+    });
 
 
 
@@ -24,19 +24,19 @@ $(document).ready(function () {
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
         order: [[2, 'asc']],
         columns: [{
-            target:0,
+            target: 0,
             data: "DT_RowIndex",
             name: "DT_RowIndex",
-            searchable:false,
-            orderable:false
+            searchable: false,
+            orderable: false
 
 
         },
         {
             data: "image",
             name: "image",
-            orderable:false,
-            searchable:false
+            orderable: false,
+            searchable: false
         },
         {
             data: "title",
@@ -53,14 +53,14 @@ $(document).ready(function () {
         {
             data: "created_by",
             name: "created_by",
-            orderable:false,
-            searchable:false
+            orderable: false,
+            searchable: false
         },
         {
             data: "status",
             name: "status",
-            orderable:false,
-            searchable:false,
+            orderable: false,
+            searchable: false,
         }, {
             data: "comment",
             name: "comment",
@@ -75,24 +75,24 @@ $(document).ready(function () {
         ],
 
     })
-function getCategories() {
-    return $.ajax({
-        url: '/admin/categories', // return array of categories with {id, title}
-        type: 'GET'
-    });
-}
+    function getCategories() {
+        return $.ajax({
+            url: '/admin/categories', // return array of categories with {id, title}
+            type: 'GET'
+        });
+    }
 
-function populateCategorySelect(selectedCategoryIds = []) {
-    // getCategories().then(function (categories) {
-    //     let $select = $('#category_id');
-    //     $select.empty(); // clear old
-    //     categories.forEach(function (category) {
-    //         let isSelected = selectedCategoryIds.includes(category.id) ? 'selected' : '';
-    //         $select.append(`<option value="${category.id}" ${isSelected}>${category.title}</option>`);
-    //     });
-    //     $select.trigger('change'); // refresh select2
-    // });
-}
+    function populateCategorySelect(selectedCategoryIds = []) {
+        // getCategories().then(function (categories) {
+        //     let $select = $('#category_id');
+        //     $select.empty(); // clear old
+        //     categories.forEach(function (category) {
+        //         let isSelected = selectedCategoryIds.includes(category.id) ? 'selected' : '';
+        //         $select.append(`<option value="${category.id}" ${isSelected}>${category.title}</option>`);
+        //     });
+        //     $select.trigger('change'); // refresh select2
+        // });
+    }
 
 
 
@@ -140,8 +140,8 @@ function populateCategorySelect(selectedCategoryIds = []) {
         $(".infoPostImageText").text("Multiple Image Can be Uploaded");
         $(".form").attr("id", 'addForm');
         // $("#addForm")[0].reset();
-// populateCategorySelect(); // load categories
-$("#tags").val('');
+        // populateCategorySelect(); // load categories
+        $("#tags").val('');
 
         $("#addForm").trigger("reset");
     });
@@ -157,7 +157,7 @@ $("#tags").val('');
             processData: false,
             contentType: false,
             success: function (response) {
-                if(response.success ==true){
+                if (response.success == true) {
 
                     Swal.fire({
                         icon: "success",
@@ -170,7 +170,7 @@ $("#tags").val('');
                     $("#formModal").modal("hide");
                     $("#addForm")[0].reset();
                     $("#post_description").summernote("code", "");
-                }else{
+                } else {
                     Swal.fire({
                         icon: "warning",
                         title: "Something went wrong !",
@@ -199,94 +199,94 @@ $("#tags").val('');
 
     // Edit Post
 
-$(document).on("click", ".editUserButton", function () {
-    clearModal();
-    let id = $(this).attr("data-id");
-    $("#formModal").modal("show");
-    $("#postTitle").text("Edit Post");
-    $(".submitBtn").hide();
-    $(".updateBtn").show();
-    $(".form").attr('id', 'updateForm');
-    $("#updateForm")[0].reset();
+    $(document).on("click", ".editUserButton", function () {
+        clearModal();
+        let id = $(this).attr("data-id");
+        $("#formModal").modal("show");
+        $("#postTitle").text("Edit Post");
+        $(".submitBtn").hide();
+        $(".updateBtn").show();
+        $(".form").attr('id', 'updateForm');
+        $("#updateForm")[0].reset();
 
-    $.ajax({
-        url: "/admin/post/detail/" + id,
-        type: "get",
-        success: function (response) {
-            let data = response.data;
+        $.ajax({
+            url: "/admin/post/detail/" + id,
+            type: "get",
+            success: function (response) {
+                let data = response.data;
 
-            $("#posttitleData").val(data.title);
-            $("#tags").val(data.tags);
+                $("#posttitleData").val(data.title);
+                $("#tags").val(data.tags);
 
-            // ✅ Set selected categories directly
-            let selectedCategoryIds = data.categories.map(cat => String(cat.id));
-            setTimeout(() => {
-                $('#category_id').val(selectedCategoryIds).trigger('change');
-            }, 100); // allow DOM to fully load options first
+                // ✅ Set selected categories directly
+                let selectedCategoryIds = data.categories.map(cat => String(cat.id));
+                setTimeout(() => {
+                    $('#category_id').val(selectedCategoryIds).trigger('change');
+                }, 100); // allow DOM to fully load options first
 
-            // ✅ Handle post images
-            if (data.images && data.images.length > 0) {
-                $(".postImageData").html("");
-                data.images.forEach((image) => {
-                    let imagePath = image.path.replace(/^\/?uploads\/?/, '/uploads/');
-                    $(".postImageData").append(`
+                // ✅ Handle post images
+                if (data.images && data.images.length > 0) {
+                    $(".postImageData").html("");
+                    data.images.forEach((image) => {
+                        let imagePath = image.path.replace(/^\/?uploads\/?/, '/uploads/');
+                        $(".postImageData").append(`
                         <li class="image-item">
                             <img src="${imagePath}" alt="Image" class="img-thumbnail" width="100">
-                            <button type="button" class="btn btn-danger btn-sm remove-image" data-image-id="${image.id}">
+                            <button type="button" class="btn btn-outline-danger btn-sm remove-image" data-image-id="${image.id}">
                                 Remove
                             </button>
                         </li>
                     `);
-                });
-            } else {
-                $(".postImageData").html("");
-            }
-
-            // ✅ Set summernote content
-            $("#post_description").summernote('code', data.description || '');
-        }
-    });
-
-    // ✅ Form submit handler
-    $(document).off("submit", "#updateForm").on("submit", "#updateForm", function (event) {
-        event.preventDefault();
-        $(".updateBtn").prop("disabled", true);
-        let formdata = new FormData(this);
-
-        $.ajax({
-            type: "post",
-            url: "/admin/post/edit/" + id,
-            data: formdata,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Updated",
-                    text: "Post Updated Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                $("#formModal").modal("hide");
-                table.draw();
-            },
-            error: function (response) {
-                if (response.status === 422) {
-                    let errors = response.responseJSON.errors;
-                    let errorMessages = '<ul>';
-                    $.each(errors, function (key, value) {
-                        errorMessages += '<li>' + value[0] + '</li>';
                     });
-                    errorMessages += '</ul>';
-                    $('#validationErrors').removeClass('d-none').html(errorMessages);
+                } else {
+                    $(".postImageData").html("");
                 }
-            },
-            complete: function () {
-                $(".updateBtn").prop("disabled", false);
+
+                // ✅ Set summernote content
+                $("#post_description").summernote('code', data.description || '');
             }
         });
+
+        // ✅ Form submit handler
+        $(document).off("submit", "#updateForm").on("submit", "#updateForm", function (event) {
+            event.preventDefault();
+            $(".updateBtn").prop("disabled", true);
+            let formdata = new FormData(this);
+
+            $.ajax({
+                type: "post",
+                url: "/admin/post/edit/" + id,
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Updated",
+                        text: "Post Updated Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $("#formModal").modal("hide");
+                    table.draw();
+                },
+                error: function (response) {
+                    if (response.status === 422) {
+                        let errors = response.responseJSON.errors;
+                        let errorMessages = '<ul>';
+                        $.each(errors, function (key, value) {
+                            errorMessages += '<li>' + value[0] + '</li>';
+                        });
+                        errorMessages += '</ul>';
+                        $('#validationErrors').removeClass('d-none').html(errorMessages);
+                    }
+                },
+                complete: function () {
+                    $(".updateBtn").prop("disabled", false);
+                }
+            });
+        });
     });
-});
 
 
 

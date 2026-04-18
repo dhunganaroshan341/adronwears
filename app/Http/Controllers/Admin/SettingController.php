@@ -27,7 +27,7 @@ class SettingController extends Controller
                 })
                 ->addColumn('action', function ($item) {
                     // $btn = '<button type="button" class="btn btn-info editWorkingBtn" data-id=' . $item->id . '>Edit</button>';
-                    $btn= '<button type="button" class="btn btn-danger deleteWorkingBtn" data-id=' . $item->id . '>Delete</button>';
+                    $btn = '<button type="button" class="btn btn-outline-danger deleteWorkingBtn" data-id=' . $item->id . '>Delete</button>';
                     return $btn;
                 })
                 ->make(true);
@@ -127,9 +127,9 @@ class SettingController extends Controller
                 'starting_time' => $starting,
                 'ending_time' => $ending
             ]);
-            return response()->json(['success'=>true]);
+            return response()->json(['success' => true]);
         } catch (\Exception $e) {
-          return response()->json(['success'=>false,'message'=>$e->getMessage()]);
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 

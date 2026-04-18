@@ -61,8 +61,8 @@ $(document).ready(function () {
     });
 
     $("div.toolbar").html(`
-        <span id="btnPrint" class="btn btn-primary mdi mdi-printer mdi-icon"></span>
-        <span id="btnExport" class="btn btn-success mdi mdi-file-export mdi-icon"></span>
+        <span id="btnPrint" class="btn btn-outline-dark mdi mdi-printer mdi-icon"></span>
+        <span id="btnExport" class="btn btn-outline-success mdi mdi-file-export mdi-icon"></span>
     `);
 
     $('#btnPrint').on('click', function () {

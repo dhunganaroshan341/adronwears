@@ -58,8 +58,8 @@ $(document).ready(function () {
     });
 
     $("div.toolbar").html(`
-        <span id="btnPrint" class="btn btn-primary mdi mdi-printer mdi-icon"></span>
-        <span id="btnExport" class="btn btn-success mdi mdi-file-export mdi-icon"></span>
+        <span id="btnPrint" class="btn btn-outline-dark mdi mdi-printer mdi-icon"></span>
+        <span id="btnExport" class="btn btn-outline-success mdi mdi-file-export mdi-icon"></span>
     `);
 
     $('#btnPrint').on('click', function () {
@@ -135,7 +135,7 @@ $(document).ready(function () {
     })
 
     // Edit and Update
-    $(document).off("click",".editUserButton").on("click", ".editUserButton", function () {
+    $(document).off("click", ".editUserButton").on("click", ".editUserButton", function () {
         clearModal();
         $("#formModal").modal("show");
         $(".submitBtn").hide();
@@ -153,7 +153,7 @@ $(document).ready(function () {
                 $("#short_desc").val(response.message.short_desc);
                 $("#description").summernote('code', response.message
                     .description);
-                    $("#id").val(response.message.id);
+                $("#id").val(response.message.id);
                 if (response.message.image != null) {
                     $("#testimonialImage").html(
                         `<img src="/uploads/${response.message.image}"
@@ -177,12 +177,12 @@ $(document).ready(function () {
 
     })
 
-    $(document).off("submit","#updateForm").on("submit","#updateForm", function (event) {
+    $(document).off("submit", "#updateForm").on("submit", "#updateForm", function (event) {
         event.preventDefault();
         $(".updateBtn").prop("disabled", true);
         let id = $("#id").val();
         let formdata = new FormData(this);
-        formdata.append("_method","PUT");
+        formdata.append("_method", "PUT");
         $.ajax({
             type: "post",
             url: "/admin/service/" + id,
@@ -275,7 +275,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "delete",
                     headers:
-                    { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                        { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     url: "/admin/service/" + id,
                     success: function (response) {
                         if (response.success == true) {

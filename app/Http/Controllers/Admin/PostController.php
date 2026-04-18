@@ -17,7 +17,7 @@ use Yajra\DataTables\Facades\DataTables;
 class PostController extends Controller
 {
 
- public function index()
+    public function index()
     {
         // External JS & CSS configs
         $extraJs = array_merge(
@@ -60,7 +60,7 @@ class PostController extends Controller
                 ->leftJoin('post_images', 'post_images.post_id', '=', 'posts.id')
                 ->leftJoin('comments', function ($join) {
                     $join->on('comments.commentable_id', '=', 'posts.id')
-                         ->where('comments.commentable_type', Post::class);
+                        ->where('comments.commentable_type', Post::class);
                 })
                 ->select([
                     'posts.id as post_id',
@@ -114,8 +114,8 @@ class PostController extends Controller
                 ->addColumn('description', fn($desc) => Str::limit(strip_tags($desc->description), 20))
                 ->addColumn('created_by', fn($creator) => $creator->full_name ?? '')
                 ->addColumn('action', fn($data) => '
-                    <button class="btn btn-secondary editUserButton" data-id="' . $data->post_id . '" type="button">Edit</button>
-                    <button class="btn btn-danger deleteData" data-id="' . $data->post_id . '" type="button">Delete</button>')
+                    <button class="btn btn-outline-secondary editUserButton" data-id="' . $data->post_id . '" type="button">Edit</button>
+                    <button class="btn btn-outline-danger deleteData" data-id="' . $data->post_id . '" type="button">Delete</button>')
                 ->addColumn('comment', fn($data) => '
                     <button class="btn btn-info commentinfoBtn" data-id="' . $data->post_id . '" type="button">View Comment</button>')
                 ->addColumn('status', fn($status) => '
@@ -133,20 +133,18 @@ class PostController extends Controller
 
 
 
-private function processTags(string $rawTags=null): array
-{
-   if($rawTags!=null){
-     return collect(explode(',', $rawTags))
-        ->map(fn($tag) => trim($tag))
-        ->filter()
-        ->unique()
-        ->values()
-        ->all();
-
-   }
-   return [];
-
-}
+    private function processTags(string $rawTags = null): array
+    {
+        if ($rawTags != null) {
+            return collect(explode(',', $rawTags))
+                ->map(fn($tag) => trim($tag))
+                ->filter()
+                ->unique()
+                ->values()
+                ->all();
+        }
+        return [];
+    }
 
 
 
@@ -163,10 +161,10 @@ private function processTags(string $rawTags=null): array
             $post->created_by = Auth::id();
             // $post->tags = $this->processTags($postRequest->input('tags')); // assuming post_tags input
             $post->save();
-            foreach($postRequest->input('category_ids') as $data){
+            foreach ($postRequest->input('category_ids') as $data) {
                 DB::table('category_posts')->insert([
-                    'category_id'=>$data,
-                    'post_id'=>$post->id
+                    'category_id' => $data,
+                    'post_id' => $post->id
                 ]);
             }
 
@@ -192,58 +190,58 @@ private function processTags(string $rawTags=null): array
     }
 
 
-public function getDetail($id)
-{
-    try {
-        $data = Post::with(['categories', 'postImages'])->findOrFail($id);
+    public function getDetail($id)
+    {
+        try {
+            $data = Post::with(['categories', 'postImages'])->findOrFail($id);
 
-        // Handle tags safely: decode if JSON, otherwise wrap string into array
-        $tags = $data->tags;
+            // Handle tags safely: decode if JSON, otherwise wrap string into array
+            $tags = $data->tags;
 
-        if (is_string($tags)) {
-            $decoded = json_decode($tags, true);
-            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-                $tags = $decoded;
-            } else {
-                // Not valid JSON, convert string to array for implode
-                $tags = [$tags];
+            if (is_string($tags)) {
+                $decoded = json_decode($tags, true);
+                if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                    $tags = $decoded;
+                } else {
+                    // Not valid JSON, convert string to array for implode
+                    $tags = [$tags];
+                }
+            } elseif (!is_array($tags)) {
+                $tags = [];
             }
-        } elseif (!is_array($tags)) {
-            $tags = [];
+
+            $tagsString = implode(', ', $tags);
+
+            $images = $data->postImages->map(function ($image) {
+                return [
+                    'id' => $image->id,
+                    'path' => $image->image,
+                ];
+            });
+
+            $categories = $data->categories->map(function ($cat) {
+                return [
+                    'id' => $cat->id,
+                    'title' => $cat->title,
+                ];
+            });
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Post details fetched successfully.',
+                'data' => [
+                    'id' => $data->id,
+                    'title' => $data->title,
+                    'description' => $data->description,
+                    'categories' => $categories,
+                    'tags' => $tagsString,
+                    'images' => $images,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
-
-        $tagsString = implode(', ', $tags);
-
-        $images = $data->postImages->map(function ($image) {
-            return [
-                'id' => $image->id,
-                'path' => $image->image,
-            ];
-        });
-
-        $categories = $data->categories->map(function ($cat) {
-            return [
-                'id' => $cat->id,
-                'title' => $cat->title,
-            ];
-        });
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Post details fetched successfully.',
-            'data' => [
-                'id' => $data->id,
-                'title' => $data->title,
-                'description' => $data->description,
-                'categories' => $categories,
-                'tags' => $tagsString,
-                'images' => $images,
-            ],
-        ]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
     }
-}
 
 
 
@@ -266,45 +264,45 @@ public function getDetail($id)
         }
     }
 
-  public function update(PostRequest $postRequest, $id)
-{
-    DB::beginTransaction();
-    try {
-        $data = Post::findOrFail($id);
-        $data->title = $postRequest->input('post_title');
-        $data->description = $postRequest->input('post_description');
-        $data->tags = $this->processTags($postRequest->input('tags'));
+    public function update(PostRequest $postRequest, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $data = Post::findOrFail($id);
+            $data->title = $postRequest->input('post_title');
+            $data->description = $postRequest->input('post_description');
+            $data->tags = $this->processTags($postRequest->input('tags'));
 
-        $data->save();
+            $data->save();
 
-        // Sync categories properly
-        $data->categories()->sync($postRequest->input('category_ids', []));
+            // Sync categories properly
+            $data->categories()->sync($postRequest->input('category_ids', []));
 
-        if ($postRequest->hasFile('post_images')) {
-            $existingImages = PostImage::where('post_id', $id)->get();
-            foreach ($existingImages as $image) {
-                Storage::disk('public')->delete($image->image);
-                $image->delete();
+            if ($postRequest->hasFile('post_images')) {
+                $existingImages = PostImage::where('post_id', $id)->get();
+                foreach ($existingImages as $image) {
+                    Storage::disk('public')->delete($image->image);
+                    $image->delete();
+                }
+
+                foreach ($postRequest->file('post_images') as $image) {
+                    $imagename = time() . '_' . $image->getClientOriginalName();
+                    $imagePath = $image->storeAs('images/post', $imagename, 'public');
+
+                    PostImage::create([
+                        'post_id' => $data->id,
+                        'image' => $imagePath,
+                    ]);
+                }
             }
 
-            foreach ($postRequest->file('post_images') as $image) {
-                $imagename = time() . '_' . $image->getClientOriginalName();
-                $imagePath = $image->storeAs('images/post', $imagename, 'public');
-
-                PostImage::create([
-                    'post_id' => $data->id,
-                    'image' => $imagePath,
-                ]);
-            }
+            DB::commit();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
-
-        DB::commit();
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
     }
-}
 
 
     // Toggle Status
@@ -360,8 +358,5 @@ public function getDetail($id)
             return response()->json(['success' => false, 'message' => $e->getMessage(), 'line' => $e->getLine(), 'which' => $e->getTrace()]);
         }
     }
-    public function storePostCategories(){
-
-
-    }
+    public function storePostCategories() {}
 }

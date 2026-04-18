@@ -20,15 +20,15 @@
                         <!-- Day Number -->
                         <div class="col-md-4">
                             <label for="day_number" class="form-label">Days</label>
-                            <input type="number" class="form-control" id="day_number" name="day_number" min="1"
-                                max="30" placeholder="e.g. 1" required>
+                            <input type="number" class="form-control" id="day_number" name="day_number" min="1" max="30"
+                                placeholder="e.g. 1" required>
                         </div>
 
                         <!-- Order -->
                         <div class="col-md-4">
                             <label for="order" class="form-label">Order</label>
-                            <input type="number" class="form-control" id="order" name="order" min="1"
-                                max="100" placeholder="e.g. 1" required>
+                            <input type="number" class="form-control" id="order" name="order" min="1" max="100"
+                                placeholder="e.g. 1" required>
                         </div>
 
                         <!-- Title -->
@@ -41,8 +41,9 @@
                         <!-- Description with Summernote -->
                         <div class="col-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control summernote" id="description" name="description" style="min-height: 250px;"
-                                placeholder="Write a short description for the day..." required></textarea>
+                            <textarea class="form-control summernote" id="description" name="description"
+                                style="min-height: 250px;" placeholder="Write a short description for the day..."
+                                required></textarea>
                         </div>
 
                         <!-- Hidden -->
@@ -51,10 +52,10 @@
                 </div>
 
                 <div class="modal-footer px-4 pb-3">
-                    <button id="submitItineraryBtn" type="submit" class="btn btn-primary w-100">
+                    <button id="submitItineraryBtn" type="submit" class="btn btn-outline-dark w-100">
                         <i class="fas fa-save me-1"></i> Save Itinerary
                     </button>
-                    <button id="updateItineraryBtn" hidden type="submit" class="btn btn-success w-100">
+                    <button id="updateItineraryBtn" hidden type="submit" class="btn btn-outline-success w-100">
                         <i class="fas fa-save me-1"></i> Update Itinerary
                     </button>
                 </div>

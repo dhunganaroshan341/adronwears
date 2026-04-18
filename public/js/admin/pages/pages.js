@@ -1,58 +1,58 @@
 $(document).ready(function () {
     $(".summernote").summernote({ height: 300 });
     $(document).ready(function () {
-    $('#short_desc1').summernote({
-        placeholder: 'Generally used in subheading'
+        $('#short_desc1').summernote({
+            placeholder: 'Generally used in subheading'
+        });
+
+        $('#short_desc2').summernote({
+            placeholder: 'Generally used in subheading'
+        });
+
+        $('#desc1').summernote({
+            placeholder: 'Generally section contents'
+        });
+
+        $('#desc2').summernote({
+            placeholder: 'Generally section contents'
+        });
+
+        $('#content').summernote({
+            placeholder: 'Hero content of the page'
+        });
     });
+    // End of summernote , filling datatable
 
-    $('#short_desc2').summernote({
-        placeholder: 'Generally used in subheading'
+
+    const table = $("#show-page-data").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/admin/pages",
+        order: [1, 'asc'],
+        columns: [
+            { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false, searchable: false },
+            { data: "title", name: "title" },
+            { data: "slug", name: "slug" },
+            { data: "status", name: "status", orderable: false, searchable: false },
+            { data: "action", name: "action", orderable: false, searchable: false }
+        ],
+        buttons: [
+            {
+                extend: 'print',
+                exportOptions: { columns: [0, 1, 2, 3] },
+            },
+            {
+                extend: 'excel',
+                exportOptions: { columns: [0, 1, 2, 3] }
+            }
+        ],
+        dom: '<"toolbar">Blfrtip',
     });
-
-    $('#desc1').summernote({
-        placeholder: 'Generally section contents'
-    });
-
-    $('#desc2').summernote({
-        placeholder: 'Generally section contents'
-    });
-
-    $('#content').summernote({
-        placeholder: 'Hero content of the page'
-    });
-});
-// End of summernote , filling datatable
-
-
- const table = $("#show-page-data").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: "/admin/pages",
-    order: [1, 'asc'],
-    columns: [
-        { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false, searchable: false },
-        { data: "title", name: "title" },
-        { data: "slug", name: "slug" },
-        { data: "status", name: "status", orderable: false, searchable: false },
-        { data: "action", name: "action", orderable: false, searchable: false }
-    ],
-    buttons: [
-        {
-            extend: 'print',
-            exportOptions: { columns: [0, 1, 2, 3] },
-        },
-        {
-            extend: 'excel',
-            exportOptions: { columns: [0, 1, 2, 3] }
-        }
-    ],
-    dom: '<"toolbar">Blfrtip',
-});
 
 
     $("div.toolbar").html(`
-        <span id="btnPrint" class="btn btn-primary mdi mdi-printer mdi-icon"></span>
-        <span id="btnExport" class="btn btn-success mdi mdi-file-export mdi-icon"></span>
+        <span id="btnPrint" class="btn btn-outline-dark mdi mdi-printer mdi-icon"></span>
+        <span id="btnExport" class="btn btn-outline-success mdi mdi-file-export mdi-icon"></span>
     `);
 
     $('#btnPrint').on('click', () => table.button(0).trigger());
@@ -67,60 +67,60 @@ $(document).ready(function () {
         $(".submitBtn").show();
         $(".updateBtn").addClass("d-none");
     }
-function loadPreview(data) {
-    const baseUrl = window.location.origin; // Automatically gets https://bivekp23.sg-host.com or http://localhost
+    function loadPreview(data) {
+        const baseUrl = window.location.origin; // Automatically gets https://bivekp23.sg-host.com or http://localhost
 
-    // Clear existing previews
-    $('#preview_image1, #preview_image2, #preview_video1, #preview_video2').html('');
+        // Clear existing previews
+        $('#preview_image1, #preview_image2, #preview_video1, #preview_video2').html('');
 
-    // Image 1
-    if (data.image1) {
-        $('#preview_image1').html(`<img src="${baseUrl}/${data.image1}" class="img-thumbnail" width="150">`);
-    } else {
-        $('#preview_image1').html(`<span class="text-danger">No image found for Image 1.</span>`);
-    }
+        // Image 1
+        if (data.image1) {
+            $('#preview_image1').html(`<img src="${baseUrl}/${data.image1}" class="img-thumbnail" width="150">`);
+        } else {
+            $('#preview_image1').html(`<span class="text-danger">No image found for Image 1.</span>`);
+        }
 
-    // Image 2
-    if (data.image2) {
-        $('#preview_image2').html(`<img src="${baseUrl}/${data.image2}" class="img-thumbnail" width="150">`);
-    } else {
-        $('#preview_image2').html(`<span class="text-danger">No image found for Image 2.</span>`);
-    }
+        // Image 2
+        if (data.image2) {
+            $('#preview_image2').html(`<img src="${baseUrl}/${data.image2}" class="img-thumbnail" width="150">`);
+        } else {
+            $('#preview_image2').html(`<span class="text-danger">No image found for Image 2.</span>`);
+        }
 
-    // Video 1
-    if (data.video1) {
-        $('#preview_video1').html(`
+        // Video 1
+        if (data.video1) {
+            $('#preview_video1').html(`
             <video width="150" controls>
                 <source src="${baseUrl}/${data.video1}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         `);
-    } else {
-        $('#preview_video1').html(`<span class="text-danger">No video found for Video 1.</span>`);
-    }
+        } else {
+            $('#preview_video1').html(`<span class="text-danger">No video found for Video 1.</span>`);
+        }
 
-    // Video 2
-    if (data.video2) {
-        $('#preview_video2').html(`
+        // Video 2
+        if (data.video2) {
+            $('#preview_video2').html(`
             <video width="150" controls>
                 <source src="${baseUrl}/${data.video2}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         `);
-    } else {
-        $('#preview_video2').html(`<span class="text-danger">No video found for Video 2.</span>`);
+        } else {
+            $('#preview_video2').html(`<span class="text-danger">No video found for Video 2.</span>`);
+        }
     }
-}
 
 
 
     // Show create modal
-$(".addNewPageBtn").on("click", function () {
-    clearModal();
-    $("#formModal").modal("show");
-    $(".submitBtn").show(); // Show the submit button
-    $(".updateBtn").hide(); // Hide the update button
-});
+    $(".addNewPageBtn").on("click", function () {
+        clearModal();
+        $("#formModal").modal("show");
+        $(".submitBtn").show(); // Show the submit button
+        $(".updateBtn").hide(); // Hide the update button
+    });
 
 
     // Edit page
@@ -128,8 +128,8 @@ $(".addNewPageBtn").on("click", function () {
     $(document).on("click", ".editUserButton", function () {
         clearModal();
         let id = $(this).data("id");
-          $(".submitBtn").hide(); // Show the submit button
-    $(".updateBtn").show(); // Hide the update button
+        $(".submitBtn").hide(); // Show the submit button
+        $(".updateBtn").show(); // Hide the update button
 
         $.ajax({
             url: `/admin/pages/${id}`,
@@ -206,7 +206,7 @@ $(".addNewPageBtn").on("click", function () {
     });
 
     // Toggle Status
-     // Status Update Toggle Button
+    // Status Update Toggle Button
     $(document).on("change", ".statusIdData", function () {
         let id = $(this).data("id");
         console.log(id);
@@ -249,33 +249,33 @@ $(".addNewPageBtn").on("click", function () {
     })
 })
 
-    // Delete Page
-    $(document).on("click", ".deletePageBtn", function () {
-        const id = $(this).data("id");
+// Delete Page
+$(document).on("click", ".deletePageBtn", function () {
+    const id = $(this).data("id");
 
-        Swal.fire({
-            icon: "warning",
-            title: "Are you sure?",
-            text: "This action cannot be undone!",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonColor: "#d33",
-            confirmButtonColor: "#3085d6"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: `/admin/pages/${id}`,
-                    type: "DELETE",
-                    data: { _token: $('meta[name="csrf-token"]').attr("content") },
-                    success: function (res) {
-                        if (res.success) {
-                            Swal.fire({ icon: "success", title: "Deleted", timer: 1000, showConfirmButton: false });
-                            table.draw();
-                        } else {
-                            Swal.fire({ icon: "error", title: "Failed", text: res.message || "Something went wrong." });
-                        }
+    Swal.fire({
+        icon: "warning",
+        title: "Are you sure?",
+        text: "This action cannot be undone!",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonColor: "#d33",
+        confirmButtonColor: "#3085d6"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/admin/pages/${id}`,
+                type: "DELETE",
+                data: { _token: $('meta[name="csrf-token"]').attr("content") },
+                success: function (res) {
+                    if (res.success) {
+                        Swal.fire({ icon: "success", title: "Deleted", timer: 1000, showConfirmButton: false });
+                        table.draw();
+                    } else {
+                        Swal.fire({ icon: "error", title: "Failed", text: res.message || "Something went wrong." });
                     }
-                });
-            }
-        });
+                }
+            });
+        }
     });
+});

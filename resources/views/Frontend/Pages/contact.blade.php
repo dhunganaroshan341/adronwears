@@ -160,7 +160,7 @@
                                 <button type="reset" class="btn btn-outline-secondary btn-lg px-4 me-2">
                                     <i class="fas fa-undo"></i> Reset
                                 </button>
-                                <button type="submit" class="btn btn-success btn-lg px-5" id="submitBtn">
+                                <button type="submit" class="btn btn-outline-success btn-lg px-5" id="submitBtn">
                                     <i class="fas fa-paper-plane"></i> Send Message
                                 </button>
                             </div>

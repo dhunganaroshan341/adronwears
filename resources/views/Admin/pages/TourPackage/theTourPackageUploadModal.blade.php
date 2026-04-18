@@ -36,8 +36,9 @@
             </div>
 
             <div class="modal-footer">
-                <button id="uploadSubmitBtn" type="button" class="btn btn-success">Upload</button>
-                <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="uploadSubmitBtn" type="button" class="btn btn-outline-success">Upload</button>
+                <button id="closeBtn" type="button" class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal">Close</button>
             </div>
 
         </div>

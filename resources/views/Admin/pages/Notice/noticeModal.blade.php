@@ -31,22 +31,23 @@
                         <!-- New URL field added here -->
                         <div class="col-md-12 mt-3">
                             <label for="url" class="form-label">URL</label>
-                            <input type="url" name="url" id="url" class="form-control"
-                                placeholder="https://example.com" aria-describedby="urlHelp" />
+                            <input type="url" name="url" id="url" class="form-control" placeholder="https://example.com"
+                                aria-describedby="urlHelp" />
                             <small id="url-error" class="text-danger errorMessage"></small>
                         </div>
 
                         <div class="col-md-12 mt-4 mb-2">
                             <label for="description" class="form-label">Short Description</label>
-                            <textarea class="form-control description" id="description" name="description" rows="4"></textarea>
+                            <textarea class="form-control description" id="description" name="description"
+                                rows="4"></textarea>
                         </div>
 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitNoticeBtn" data-action="">Submit</button>
-                    <button type="submit" class="btn btn-success updateNoticeBtn" data-action="edit">Update
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success submitNoticeBtn" data-action="">Submit</button>
+                    <button type="submit" class="btn btn-outline-success updateNoticeBtn" data-action="edit">Update
                         HomeSlide</button>
                 </div>
             </form>

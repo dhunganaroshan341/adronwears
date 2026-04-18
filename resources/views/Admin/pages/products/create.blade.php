@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h3>Create Product</h3>
+    <x-admin.breadcrumb />
 
     <form action="{{ route('admin.products.store') }}" method="POST">
         @csrf
 
         @include('Admin.pages.products.partials.form')
 
-        <button class="btn btn-primary">Save</button>
-        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Back</a>
+        <button class="btn btn-outline-dark">Save</button>
+        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">Back</a>
     </form>
 </div>
 @endsection

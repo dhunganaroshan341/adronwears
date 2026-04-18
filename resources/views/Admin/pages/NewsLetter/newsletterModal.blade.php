@@ -20,10 +20,9 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="" class="form-label">Designation<span
-                                    class="text-danger">*</span></label>
-                            <input type="text" name="designation" id="designation" class="form-control"
-                                placeholder="" aria-describedby="helpId" />
+                            <label for="" class="form-label">Designation<span class="text-danger">*</span></label>
+                            <input type="text" name="designation" id="designation" class="form-control" placeholder=""
+                                aria-describedby="helpId" />
                             <div id="homeSlideImage"> </div>
                         </div>
                         <div class="col-md-6">
@@ -39,17 +38,17 @@
                         </div>
 
                         <div class="col-md-12 mt-4 mb-2">
-                            <label for="" class="form-label">Description<span
-                                    class="text-danger">*</span></label>
-                            <textarea class="form-control summernote" id="testimonialDescription" name="description" rows="4"></textarea>
+                            <label for="" class="form-label">Description<span class="text-danger">*</span></label>
+                            <textarea class="form-control summernote" id="testimonialDescription" name="description"
+                                rows="4"></textarea>
                         </div>
 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success submitBtn" data-action="">Submit</button>
-                    <button type="submit" class="btn btn-success updateBtn" data-action="edit">Update
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success submitBtn" data-action="">Submit</button>
+                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update
                         Testimonial</button>
                 </div>
             </form>

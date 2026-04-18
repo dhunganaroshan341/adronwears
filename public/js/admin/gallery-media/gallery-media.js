@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 })
 
-function getDataTable(){
+function getDataTable() {
 
 
     var table = $("#data-media-show").DataTable({
@@ -45,7 +45,7 @@ function getDataTable(){
                 data: "type",
                 name: "type"
             },
-             {
+            {
                 data: "status",
                 name: "status",
                 orderable: false,
@@ -97,7 +97,7 @@ $(document).on("click", ".imageListPopup", function () {
 
 })
 
-$(document).off("click",".addBtn").on("click",".addBtn",function(){
+$(document).off("click", ".addBtn").on("click", ".addBtn", function () {
     $("#formModal").modal("show");
     $("#updateBtn").hide();
     $("#submitBtn").show();
@@ -117,7 +117,7 @@ $(document).off("submit", "#addForm").on("submit", "#addForm", function (e) {
         processData: false,
         contentType: false,
         success: function (response) {
-            if(response.success ==true){
+            if (response.success == true) {
 
                 Swal.fire({
                     icon: "success",
@@ -131,7 +131,7 @@ $(document).off("submit", "#addForm").on("submit", "#addForm", function (e) {
                 $("#formModal").modal("hide");
                 $("#addForm")[0].reset();
                 $("#post_description").summernote("code", "");
-            }else{
+            } else {
                 Swal.fire({
                     icon: "warning",
                     title: "Something went wrong !",
@@ -183,7 +183,7 @@ $(document).on("click", ".editUserButton", function () {
                     let imagePath = image.path;
                     $(".mediaImageData").append(`
                         <li class="image-item"><img src="${imagePath}" alt="Image" class="img-thumbnail" width="100">
-                            <button type="button" class="btn btn-danger btn-sm remove-image" data-image-id="${image.id}">
+                            <button type="button" class="btn btn-outline-danger btn-sm remove-image" data-image-id="${image.id}">
                             Remove
                             </button>
                         </li>
@@ -193,8 +193,8 @@ $(document).on("click", ".editUserButton", function () {
             // $("#post_description").summernote('code', response.message.description);
         }
     });
-      // Image Delete
-      $(document).on("click", ".remove-image", function () {
+    // Image Delete
+    $(document).on("click", ".remove-image", function () {
         let imageId = $(this).data("image-id");
         // console.log(id);
 
