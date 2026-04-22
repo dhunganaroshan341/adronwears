@@ -165,6 +165,14 @@
                                 </div>
 
                                 @if($product['total_stock'] > 0)
+                                <a class="btn btn-sm btn-outline-success request-product"
+                                    data-product-id="{{ $product['id'] }}" data-product-name="{{ $product['name'] }}"
+                                    data-product-price="{{ $product['sale_price'] ?? $product['price'] }}"
+                                    data-product-image="{{ asset('storage/products/' . ($product['thumbnail'] ?? 'default-product.jpg')) }}">
+                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                                </a>
+
+
                                 <button class="btn btn-sm btn-outline-success request-product"
                                     data-product-id="{{ $product['id'] }}">
                                     <i class="fas fa-cart-plus"></i>
@@ -200,7 +208,7 @@
         </div>
     </div>
 </div>
-
+<x-customer-detail-popup />
 <!-- Brands Section -->
 <section class="bg-light py-5 mt-5">
     <div class="container my-4">

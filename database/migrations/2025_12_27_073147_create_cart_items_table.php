@@ -11,35 +11,35 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('cart_items', function (Blueprint $table) {
-        //     $table->engine = 'InnoDB';
+        Schema::create('cart_items', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
 
-        //     $table->id();
+            $table->id();
 
-        //     $table->foreignId('cart_id')
-        //         ->constrained()
-        //         ->cascadeOnDelete();
+            $table->foreignId('cart_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
-        //     $table->foreignId('product_id')
-        //         ->constrained()
-        //         ->cascadeOnDelete();
+            $table->foreignId('product_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
-        //     $table->foreignId('product_variation_id')
-        //         ->nullable()
-        //         ->constrained('product_variations') // explicit
-        //         ->cascadeOnDelete();
+            $table->foreignId('product_variation_id')
+                ->nullable()
+                ->constrained('product_variations') // explicit
+                ->cascadeOnDelete();
 
-        //     $table->decimal('price', 10, 2);
-        //     $table->integer('quantity')->default(1);
+            $table->decimal('price', 10, 2);
+            $table->integer('quantity')->default(1);
 
-        //     $table->timestamps();
+            $table->timestamps();
 
-        //     $table->unique([
-        //         'cart_id',
-        //         'product_id',
-        //         'product_variation_id'
-        //     ]);
-        // });
+            $table->unique([
+                'cart_id',
+                'product_id',
+                'product_variation_id'
+            ]);
+        });
     }
 
     /**

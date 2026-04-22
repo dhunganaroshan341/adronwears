@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainFrontendController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShippingRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,4 @@ Route::get('/shop/product/{product:slug}', [MainFrontendController::class, 'Prod
 Route::get('/contact-us', [ContactController::class, 'index'])->name('contact');
 
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('whatsapp-order', [ShippingRequestController::class, 'store'])->name('order.whatsapp');
