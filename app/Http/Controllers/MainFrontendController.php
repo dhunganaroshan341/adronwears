@@ -29,7 +29,6 @@ class MainFrontendController extends Controller
             ])
             ->withCount('products')
             ->get();
-        // dd($categories->toArray());
         return view('Frontend.Pages.shop', compact('products', 'categories'));
     }
 

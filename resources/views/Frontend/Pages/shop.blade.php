@@ -165,7 +165,7 @@
                                 </div>
 
                                 @if($product['total_stock'] > 0)
-                                <a class="btn btn-sm btn-outline-success request-product"
+                                <a class="btn btn-sm btn-outline-success request-whatsapp"
                                     data-product-id="{{ $product['id'] }}" data-product-name="{{ $product['name'] }}"
                                     data-product-price="{{ $product['sale_price'] ?? $product['price'] }}"
                                     data-product-image="{{ asset('storage/products/' . ($product['thumbnail'] ?? 'default-product.jpg')) }}">
@@ -173,7 +173,7 @@
                                 </a>
 
 
-                                <button class="btn btn-sm btn-outline-success request-product"
+                                <button class="btn btn-sm btn-outline-success add-to-cart"
                                     data-product-id="{{ $product['id'] }}">
                                     <i class="fas fa-cart-plus"></i>
                                 </button>
@@ -285,11 +285,11 @@
         color: #28a745;
     }
 
-    .request-product {
+    .add-to-cart {
         transition: all 0.3s ease;
     }
 
-    .request-product:hover {
+    .add-to-cart:hover {
         transform: scale(1.1);
     }
 
@@ -464,7 +464,7 @@
     });
 
     // Quick add to cart
-    document.querySelectorAll('.request-product').forEach(button => {
+    document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function (e) {
             e.preventDefault();
             const productId = this.dataset.productId;
