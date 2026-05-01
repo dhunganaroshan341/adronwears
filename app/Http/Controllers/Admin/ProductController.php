@@ -26,6 +26,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
+
         $products = $this->filterService->getFilteredProducts($request);
 
         return view('Admin.pages.products.index', compact('products'));
@@ -40,8 +41,8 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
+
         $data = $request->validated();
-        dd($data);
         // Thumbnail
         $data['thumbnail'] = $this->handleSingleMedia(
             $request,

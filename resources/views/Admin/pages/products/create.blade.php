@@ -5,8 +5,8 @@
     <x-admin.breadcrumb />
 
     <form action="{{ route('admin.products.store') }}" method="POST">
+        <x-session-message />
         @csrf
-
         @include('Admin.pages.products.partials.form')
 
         <button class="btn btn-outline-dark">Save</button>
