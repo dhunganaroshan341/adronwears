@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             // frontendseeder::class,
             UserSeeder::class,
             SettingSeeder::class,
-            ClientSeeder::class,
+            BrandSeeder::class,
             PageBannerSeeder::class,
             // GallerySeeder::class,
             CallToActionSeeder::class,

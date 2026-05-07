@@ -4,7 +4,7 @@
 <div class="container">
     <x-admin.breadcrumb />
 
-    <form action="{{ route('admin.products.store') }}" method="POST">
+    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         <x-session-message />
         @csrf
         @include('Admin.pages.products.partials.form')
@@ -17,23 +17,28 @@
 
 @push('scripts')
 <script>
-    function previewImages(event) {
-        const preview = document.getElementById('imagePreview');
+    function previewImages(event, previewId) {
+        const preview = document.getElementById(previewId);
         preview.innerHTML = '';
 
         Array.from(event.target.files).forEach(file => {
             const reader = new FileReader();
+
             reader.onload = e => {
                 const col = document.createElement('div');
                 col.className = 'col-md-3 mb-3';
 
                 col.innerHTML = `
                 <div class="border rounded p-2 text-center">
-                    <img src="${e.target.result}" class="img-fluid rounded" style="height:150px;object-fit:cover;">
+                    <img src="${e.target.result}"
+                         class="img-fluid rounded"
+                         style="height:150px;object-fit:cover;">
                 </div>
             `;
+
                 preview.appendChild(col);
             };
+
             reader.readAsDataURL(file);
         });
     }

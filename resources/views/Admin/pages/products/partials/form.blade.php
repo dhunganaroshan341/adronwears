@@ -97,16 +97,26 @@
         </div>
     </div>
 
-    {{-- IMAGES --}}
+    {{-- THUMBNAIL --}}
     <div class="col-lg-4">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
+                <h6 class="fw-semibold mb-3">Thumbnail</h6>
+                <input type="file" name="thumbnail" class="form-control" accept="image/*"
+                    onchange="previewImages(event, 'imagePreview')">
+
+                <div class="row mt-3" id="imagePreview"></div>
+
+                <!-- images -->
                 <h6 class="fw-semibold mb-3">Product Images</h6>
                 <input type="file" name="images[]" class="form-control" multiple accept="image/*"
-                    onchange="previewImages(event)">
-                <div class="row mt-3" id="imagePreview"></div>
+                    onchange="previewImages(event, 'imagePreview2')">
+
+                <div class="row mt-3" id="imagePreview2"></div>
             </div>
         </div>
     </div>
+
+
 
 </div>

@@ -102,7 +102,7 @@
     </li> -->
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.client.index') }}">
+        <a class="nav-link" href="{{ route('admin.brand.index') }}">
             <i class="mdi mdi-account-group-outline menu-icon"></i>
             <span class="menu-title">Brands</span>
         </a>

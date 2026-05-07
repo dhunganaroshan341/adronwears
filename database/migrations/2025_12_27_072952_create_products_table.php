@@ -53,6 +53,7 @@ return new class extends Migration
             $table->integer('total_stock')->default(0);
 
             $table->string('brand_name')->nullable();
+            $table->foreignId('brand_id')->nullable()->constrained('brands')->cascadeOnUpdate()->cascadeOnDelete();
 
             // Media
             $table->string('thumbnail')->nullable();

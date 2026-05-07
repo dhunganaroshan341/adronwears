@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\BannerSliderVideoController;
 use App\Http\Controllers\Admin\ShippingRequestController;
 use App\Http\Controllers\Admin\CallToActionController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FrontendController as AdminFrontendController;
 use App\Http\Controllers\Admin\GalleryAlbumController;
@@ -156,9 +156,9 @@ Route::prefix('gallery-media')->name('gallery-media.')->group(function () {
     Route::delete('/delete/{id}', [GalleryMediaController::class, 'destroy'])->name('delete');
 });
 
-// Client
-Route::resource('client', ClientController::class);
-Route::put('/client/status/{id}', [ClientController::class, 'toggleStatus'])->name('client.status');
+// Brand
+Route::resource('brand', BrandController::class);
+Route::put('/brand/status/{id}', [BrandController::class, 'toggleStatus'])->name('brand.status');
 Route::resource('page-banner', PageBannerController::class);
 Route::put('/page-banner/{id}/status', [PageBannerController::class, 'statusToggle'])->name('page-banner.status');
 // Admin Logout

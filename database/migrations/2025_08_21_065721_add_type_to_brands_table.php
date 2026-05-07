@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-     public function up(): void
+    public function up(): void
     {
-        Schema::table('clients', function (Blueprint $table) {
+        Schema::table('brands', function (Blueprint $table) {
             $table->enum('type', ['associate', 'affiliated'])->default('associate')->after('status');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('clients', function (Blueprint $table) {
+        Schema::table('brands', function (Blueprint $table) {
             $table->dropColumn('type');
         });
     }

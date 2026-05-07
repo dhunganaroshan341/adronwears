@@ -18,7 +18,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Gallery</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Client</th>
+                    <th scope="col">Brand</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>

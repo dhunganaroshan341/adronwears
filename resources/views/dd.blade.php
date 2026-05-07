@@ -1,8 +1,8 @@
 @php
 $album = getGalleryAlbum();
 $i = 0;
-    foreach($album->client as $a){
-        $client[$i]=($album->client);
-        $i++;
-    }
+foreach($album->Brand as $a){
+$Brand[$i]=($album->Brand);
+$i++;
+}
 @endphp

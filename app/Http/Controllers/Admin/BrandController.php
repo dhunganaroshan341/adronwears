@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Client;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ClientRequest;
+use App\Http\Requests\BrandRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
-class ClientController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +17,14 @@ class ClientController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Client::orderBy('id', 'desc')->get();
+            $data = Brand::orderBy('id', 'desc')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('image', function ($item) {
                     if ($item->image != null) {
                         $url = $item->image; // Get image URL
                         $defaultImage = asset('defaultImage/defaultimage.webp');
-                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50" onerror="this.src=\''.$defaultImage.'\"/></td>';
+                        return ' <td class="py-1"><img src="' . $url . '" width="50" height="50" onerror="this.src=\'' . $defaultImage . '\"/></td>';
                     } else {
                         $url = asset('defaultImage/defaultimage.webp');
                         return ' <td class="py-1"><img src="' . $url . '" width="50" height="50"/></td>';
@@ -39,7 +39,7 @@ class ClientController extends Controller
                 ->addColumn('action', function ($data) {
                     return view('Admin.Button.button', compact('data'));
                 })
-                ->rawColumns(['action', 'image','status'])
+                ->rawColumns(['action', 'image', 'status'])
                 ->make(true);
         }
         $extraJs = array_merge(
@@ -52,8 +52,7 @@ class ClientController extends Controller
             config('js-map.admin.summernote.style'),
         );
 
-        return view('Admin.pages.client.client', ['extraJs' => $extraJs, 'extraCs' => $extraCs]);
-
+        return view('Admin.pages.Brand.brand', ['extraJs' => $extraJs, 'extraCs' => $extraCs]);
     }
 
     /**
@@ -67,12 +66,12 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ClientRequest $request)
+    public function store(BrandRequest $request)
     {
         try {
 
-            $folder = 'images/client/';
-            $user = new Client();
+            $folder = 'images/brand/';
+            $user = new Brand();
             if ($request->hasFile('image')) {
 
                 $imagename = time() . '.' . $request->image->extension();
@@ -98,35 +97,34 @@ class ClientController extends Controller
     public function show(string $id)
     {
         try {
-            $data = Client::find($id);
+            $data = Brand::find($id);
             return response()->json(data: ['success' => true, 'message' => $data]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
-   public function toggleStatus($id)
-{
-    try {
-        $data = Client::findOrFail($id);
+    public function toggleStatus($id)
+    {
+        try {
+            $data = Brand::findOrFail($id);
 
-        if ($data->status === 'active') {
-            $data->status = 'inactive';
-        } else {
-            $data->status = 'active';
+            if ($data->status === 'active') {
+                $data->status = 'inactive';
+            } else {
+                $data->status = 'active';
+            }
+
+            $data->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Status changed to ' . $data->status
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
-
-        $data->save();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Status changed to '. $data->status
-        ], 200);
-
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
     }
-}
 
 
 
@@ -145,11 +143,11 @@ class ClientController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $user = Client::find($id);
+            $user = Brand::find($id);
             // dd($user);
             $data = $request->all();
 
-            $folder = 'images/client/';
+            $folder = 'images/brand/';
             if ($request->hasFile('image')) {
                 if ($user->image != null) {
                     Storage::disk('public')->delete($user->image);
@@ -173,7 +171,7 @@ class ClientController extends Controller
     public function destroy(string $id)
     {
         try {
-            $user = Client::find($id);
+            $user = Brand::find($id);
             if ($user->image) {
                 Storage::disk('public')->delete($user->image);
             }

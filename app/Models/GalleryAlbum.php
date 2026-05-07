@@ -29,7 +29,7 @@ class GalleryAlbum extends BaseModel
     }
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Brand::class);
     }
 
 
@@ -41,26 +41,24 @@ class GalleryAlbum extends BaseModel
     //     'status' => AlbumStatusEnum::class,
     // ];
     public function getThumbnailAttribute()
-{
-    $media = $this->galleryMedia()->first();
+    {
+        $media = $this->galleryMedia()->first();
 
-    if ($media && $media->media_path) {
-       return $media->media_path;
+        if ($media && $media->media_path) {
+            return $media->media_path;
+        }
+
+        return asset('template/yatri_world/main-file/images/everest.jpg'); // fallback image
     }
 
-    return asset('template/yatri_world/main-file/images/everest.jpg'); // fallback image
-}
+    protected static function booted()
+    {
+        static::creating(function ($album) {
+            $album->slug = Str::slug($album->title);
+        });
 
-protected static function booted()
-{
-    static::creating(function ($album) {
-        $album->slug = Str::slug($album->title);
-    });
-
-    static::updating(function ($album) {
-        $album->slug = Str::slug($album->title);
-    });
-}
-
-
+        static::updating(function ($album) {
+            $album->slug = Str::slug($album->title);
+        });
+    }
 }

@@ -15,7 +15,6 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
 
-
         return [
             /*
             |--------------------------------------------------------------------------
@@ -69,8 +68,9 @@ class ProductRequest extends FormRequest
             */
             'thumbnail' => [
                 'nullable',
-                'string',
-                'max:255',
+                'image',
+                'mimes:jpg,jpeg,png,webp,pdf,JPG,JPEG,PNG,WEBP,PDF',
+                'max:2048',
             ],
 
             'images' => [
@@ -81,7 +81,7 @@ class ProductRequest extends FormRequest
             'images.*' => [
                 'nullable',
                 'image',
-                'mimes:jpg,jpeg,png,webp',
+                'mimes:jpg,jpeg,png,webp,pdf,JPG,JPEG,PNG,WEBP,PDF',
                 'max:2048',
             ],
 

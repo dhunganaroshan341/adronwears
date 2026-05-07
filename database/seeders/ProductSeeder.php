@@ -61,7 +61,7 @@ class ProductSeeder extends Seeder
                 'is_new' => rand(0, 1),
                 'is_on_sale' => rand(0, 1),
                 'total_stock' => rand(10, 100),
-                'brand' => 'TestBrand',
+                'brand_name' => 'TestBrand',
                 'thumbnail' => null,
                 'status' => 'active',
             ]);

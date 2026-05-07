@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\ProductCategory;
@@ -112,7 +113,7 @@ class ProductCategorySeeder extends Seeder
                 ],
                 [
                     'name' => $name,
-                    'status' => 'active',
+                    'status' => StatusEnum::ACTIVE,
                 ]
             );
 

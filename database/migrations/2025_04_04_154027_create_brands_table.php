@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email');
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
-            $table->enum('status',['active','inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

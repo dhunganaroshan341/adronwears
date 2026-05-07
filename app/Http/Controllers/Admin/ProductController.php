@@ -7,17 +7,19 @@ use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Imports\ProductsImport;
-use App\Models\Client;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Services\ProductExcelService;
 use App\Services\ProductFilterService;
+use App\Traits\HandlesMediaUploads;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
 
 class ProductController extends Controller
 {
     protected $filterService;
+    use HandlesMediaUploads;
 
     public function __construct(ProductFilterService $service)
     {
@@ -35,7 +37,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = ProductCategory::where('status', StatusEnum::ACTIVE)->get();
-        $brands = Client::where('status', 'active')->get();
+        $brands = Brand::where('status', 'active')->get();
         return view('Admin.pages.products.create', compact('categories', 'brands'));
     }
 

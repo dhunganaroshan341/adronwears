@@ -7,32 +7,32 @@
         </div>
 
         <div class="attract-slider owl-carousel">
-            @foreach ($clients as $client)
-                <div class="client-logo item">
-                    <img src="{{ $client->image_url ?? asset('template/yatri_world/main-file/images/clients/logo-01.png') }}"
-                        alt="{{ $client->name ?? 'client' }}">
-                </div>
+            @foreach ($Brands as $Brand)
+            <div class="Brand-logo item">
+                <img src="{{ $Brand->image_url ?? asset('template/yatri_world/main-file/images/Brands/logo-01.png') }}"
+                    alt="{{ $Brand->name ?? 'Brand' }}">
+            </div>
             @endforeach
         </div>
     </div>
 </div>
 @push('styles')
-    <style>
-        /* Partners Carousel Logos */
-        .attract-slider .client-logo img {
-            display: block;
-            width: 100%;
-            height: 130px;
-            object-fit: contain;
-            position: relative;
-        }
+<style>
+    /* Partners Carousel Logos */
+    .attract-slider .Brand-logo img {
+        display: block;
+        width: 100%;
+        height: 130px;
+        object-fit: contain;
+        position: relative;
+    }
 
-        /* Each client logo container */
-        .attract-slider .client-logo.item {
-            background: white;
-            margin: 0 10px 20px;
-            position: relative;
-            /* no pointer cursor */
-        }
-    </style>
+    /* Each Brand logo container */
+    .attract-slider .Brand-logo.item {
+        background: white;
+        margin: 0 10px 20px;
+        position: relative;
+        /* no pointer cursor */
+    }
+</style>
 @endpush

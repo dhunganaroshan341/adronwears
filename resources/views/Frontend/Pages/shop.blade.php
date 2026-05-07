@@ -311,7 +311,7 @@
     let currentSort = 'default';
     let currentSearch = '';
 
-    // Filter products (client-side filtering)
+    // Filter products (Brand-side filtering)
     function filterProducts() {
         const products = document.querySelectorAll('.product-item');
         let visibleCount = 0;
