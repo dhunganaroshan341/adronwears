@@ -19,4 +19,12 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function getImagePathAttribute($value)
+    {
+        if (!$value) {
+            return null;
+        }
+
+        return asset('uploads/' . ltrim($value, '/'));
+    }
 }

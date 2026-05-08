@@ -139,11 +139,10 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item"
-                                            href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
+                                            href="{{ route('admin.products.edit', $product) }}">Edit</a>
                                     </li>
                                     <li>
-                                        <form action="{{ route('admin.products.destroy', $product->id) }}"
-                                            method="POST">
+                                        <form action="{{ route('admin.products.destroy', $product) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="dropdown-item text-danger"

@@ -102,15 +102,51 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <h6 class="fw-semibold mb-3">Thumbnail</h6>
+
                 <input type="file" name="thumbnail" class="form-control" accept="image/*"
                     onchange="previewImages(event, 'imagePreview')">
 
+                {{-- Existing Thumbnail --}}
+                @if(isset($product) && $product->thumbnail)
+                <div class="mt-3">
+                    <img src="{{ $product->thumbnail_url }}" class="img-fluid rounded border"
+                        style="height:120px; object-fit:cover;">
+                </div>
+                @endif
+
                 <div class="row mt-3" id="imagePreview"></div>
 
-                <!-- images -->
-                <h6 class="fw-semibold mb-3">Product Images</h6>
+                <!-- Product Images -->
+                <h6 class="fw-semibold mb-3 mt-4">Product Images</h6>
+
                 <input type="file" name="images[]" class="form-control" multiple accept="image/*"
                     onchange="previewImages(event, 'imagePreview2')">
+
+                {{-- Existing Product Images --}}
+                @if(isset($product) && $product->images->count())
+                <div class="row mt-3">
+                    @foreach($product->images as $image)
+                    <div class="col-4 mb-3">
+                        <div class="position-relative">
+
+                            <img src="{{$image->image_path }}" class="img-fluid rounded border"
+                                style="height:100px; width:100%; object-fit:cover;">
+
+                            {{-- Optional delete checkbox --}}
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="checkbox" name="delete_images[]"
+                                    value="{{ $image->id }}" id="delete_image_{{ $image->id }}">
+
+                                <label class="form-check-label small" for="delete_image_{{ $image->id }}">
+                                    Remove
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                @endif
 
                 <div class="row mt-3" id="imagePreview2"></div>
             </div>

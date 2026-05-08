@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h3>Create Product</h3>
+    <h3>Edit Product</h3>
 
-    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+        @method('PUT')
         @include('Admin.pages.products.partials.form')
 
-        <button class="btn btn-outline-dark">Save</button>
+        <button class="btn btn-outline-dark">Update Product</button>
         <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">Back</a>
     </form>
 </div>

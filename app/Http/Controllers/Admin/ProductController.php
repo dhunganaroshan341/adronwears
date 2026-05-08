@@ -102,16 +102,16 @@ class ProductController extends Controller
 
         return redirect()
             ->route('admin.products.index')
-            ->with('success', 'Product updated successfully');
+            ->with('success', 'Product ' . $product->name . ' updated successfully');
     }
 
 
     public function edit(Product $product)
     {
-        $product->load('images');
-        // dd($product);
+        $product->load('images', 'brand');
+        $brands = Brand::where('status', 'active')->get();
         $categories = ProductCategory::where('status', StatusEnum::ACTIVE)->get();
-        return view('Admin.pages.products.edit', compact('product', 'categories'));
+        return view('Admin.pages.products.edit', compact('product', 'categories', 'brands'));
     }
 
 

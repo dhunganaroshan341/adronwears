@@ -126,6 +126,7 @@ class ProductRequest extends FormRequest
                 'max:255',
             ],
 
+
             /*
             |--------------------------------------------------------------------------
             | 🏷️ TAGS (NEW)
@@ -143,6 +144,10 @@ class ProductRequest extends FormRequest
             'tags.*' => [
                 'integer',
                 'exists:tags,id',
+            ],
+            'brand_id' => [
+                'integer',
+                'exists:brands,id',
             ],
 
             /*

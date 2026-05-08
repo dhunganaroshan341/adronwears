@@ -3,7 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainFrontendController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ShippingRequestController;
+use App\Http\Controllers\Order\ShippingRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*

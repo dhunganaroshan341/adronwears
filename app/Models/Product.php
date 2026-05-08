@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\InteractsWithUploadPaths;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -9,6 +10,13 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     use HasFactory;
+    // use InteractsWithUploadPaths;
+
+    // protected array $uploadable = [
+    //     'thumbnail',
+    // ];
+
+
 
     protected $fillable = [
         'product_category_id',
@@ -142,6 +150,14 @@ class Product extends Model
     public function getFinalPriceAttribute()
     {
         return $this->sale_price ?? $this->price;
+    }
+    public function getThumbnailAttribute($value)
+    {
+        if (!$value) {
+            return null;
+        }
+
+        return asset('uploads/' . ltrim($value, '/'));
     }
 
     /**

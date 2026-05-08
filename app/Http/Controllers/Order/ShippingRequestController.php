@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Order;
 
 use Illuminate\Http\Request;
 use App\Domain\Order\Services\ShippingRequestService;
 use App\Domain\Order\Resolvers\OrderItemResolver as ResolversOrderItemResolver;
 use App\Domain\Order\Support\WhatsappMessageBuilder;
+use App\Http\Controllers\Controller;
 
 class ShippingRequestController extends Controller
 {
