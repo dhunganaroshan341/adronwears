@@ -9,7 +9,7 @@ class ProductFilterService
 {
     public function getFilteredProducts(Request $request)
     {
-        $query = Product::query(); // already eager loads category
+        $query = Product::with(['category', 'brand']);
 
         // 🔍 Search (name / brand)
         if ($request->filled('search')) {

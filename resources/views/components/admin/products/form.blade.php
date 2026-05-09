@@ -24,9 +24,17 @@
 
     {{-- RIGHT: META --}}
     <div class="col-lg-4">
+        <div class="card border-primary mb-2">
+
+            <div class="card-body">
+                {{ $formSubmitRightTop ?? '' }}
+            </div>
+        </div>
+
         <div class="card border-0 shadow-sm mb-3">
             <div class="card-body">
                 <h6 class="fw-semibold mb-3">Product Meta</h6>
+
 
                 <div class="mb-3">
                     <label class="form-label text-muted small">Category</label>
@@ -152,5 +160,12 @@
             </div>
         </div>
     </div>
+    <div class="card border-primary mb-2">
+
+        <div class="card-body">
+            {{ $formSubmitEnd??'' }}
+        </div>
+    </div>
+
 
 </div>

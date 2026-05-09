@@ -7,10 +7,22 @@
     <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        @include('Admin.pages.products.partials.form')
+        <x-admin.products.form :product="$product" :categories="$categories" :brands="$brands">
 
-        <button class="btn btn-outline-dark">Update Product</button>
-        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">Back</a>
+            <x-slot:formSubmitRightTop>
+
+                <button class="btn btn-outline-dark">
+                    Update Product
+                </button>
+
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
+                    Back
+                </a>
+
+            </x-slot:formSubmitRightTop>
+
+        </x-admin.products.form>
+
     </form>
 </div>
 @endsection
@@ -38,7 +50,7 @@
 
                 preview.appendChild(col);
             };
-
+            console.log(reader.readAsDataURL(file));
             reader.readAsDataURL(file);
         });
     }

@@ -6,11 +6,12 @@
 
     <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         <x-session-message />
+        <button class="btn btn-outline-dark">Save</button>
+        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">Back</a>
         @csrf
         @include('Admin.pages.products.partials.form')
 
-        <button class="btn btn-outline-dark">Save</button>
-        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">Back</a>
+
     </form>
 </div>
 @endsection

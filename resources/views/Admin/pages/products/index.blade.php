@@ -112,7 +112,7 @@
                         <td>
                             <span class="fw-medium">{{ $product->name }}</span>
                             <br>
-                            <small class="text-muted">{{ $product->brand }}</small>
+                            <small class="text-muted">{{ $product->brand->name??'N/a' }}</small>
                         </td>
 
                         <td class="text-muted small">{{ $product->category?->name }}</td>
@@ -126,7 +126,7 @@
 
                         <td>
                             <span
-                                class="badge rounded-pill bg-{{ $product->status == 'active' ? 'success' : 'secondary' }} bg-opacity-10 text-{{ $product->status == 'active' ? 'success' : 'secondary' }}">
+                                class="p-2 text-large badge rounded-pill bg-{{ $product->status == 'active' ? 'light' : 'light' }} bg-opacity-10 text-{{ $product->status == 'active' ? 'success' : 'danger' }}">
                                 {{ ucfirst($product->status) }}
                             </span>
                         </td>
