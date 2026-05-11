@@ -87,23 +87,43 @@
                 <tr>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->parent?->name ?? '-' }}</td>
+
                     <td>
-                        @if($category->status === \App\Enums\StatusEnum::ACTIVE)
-                        <span class="badge bg-success">Active</span>
-                        @else
-                        <span class="badge bg-secondary">Inactive</span>
-                        @endif
+                        <span
+                            class="p-2 text-large badge rounded-pill bg-{{ $category->status == \App\Enums\StatusEnum::ACTIVE ? 'light' : 'light' }} bg-opacity-10 text-{{ $category->status == \App\Enums\StatusEnum::ACTIVE ? 'success' : 'danger' }}">
+                            {{ ucfirst($category->status) }}
+                        </span>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#categoryModal"
-                            onclick="openEditForm({{ $category }})">Edit</button>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-light" data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
 
-                        <form action="{{ route('admin.product-categories.destroy', $category->id) }}" method="POST"
-                            class="d-inline delete-form">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-outline-danger">Delete</button>
-                        </form>
+                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                <li>
+                                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categoryModal"
+                                        onclick="openEditForm({{ $category }})">
+                                        Edit
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <form action="{{ route('admin.product-categories.destroy', $category->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button class="dropdown-item text-danger"
+                                            onclick="return confirm('Delete this category?')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </li>
+
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 @empty
