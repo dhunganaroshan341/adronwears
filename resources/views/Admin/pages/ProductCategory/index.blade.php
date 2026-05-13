@@ -104,7 +104,7 @@
 
                                 <li>
                                     <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#categoryModal"
-                                        onclick="openEditForm({{ $category }})">
+                                        onclick="openEditForm({{$category->id}})">
                                         Edit
                                     </button>
                                 </li>

@@ -6,7 +6,7 @@ use App\Models\ShippingRequest;
 
 class WhatsappMessageBuilder
 {
-    protected string $phone = '97798XXXXXXXX'; // change this
+    protected string $phone = '+977 9851065064'; // change this
 
     public function buildMessage(ShippingRequest $shipping, array $items): string
     {
