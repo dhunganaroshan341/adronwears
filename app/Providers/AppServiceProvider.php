@@ -11,20 +11,16 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
 
+        // FRONTEND COMPOSER (your existing system kept)
         $this->composeFrontendViews([
             'frontend.layout.main',
             'frontend.layout.footer',
@@ -37,14 +33,23 @@ class AppServiceProvider extends ServiceProvider
             'frontend-tailwind.contact',
         ]);
 
-        Paginator::useBootstrapFive();
+        // BACKEND COMPOSER (FIXED - now added properly)
+        $this->composeBackendViews([
+            'Admin.layout.master',
+            'Auth.login',
+        ]);
     }
 
     protected function composeFrontendViews(array $views): void
     {
         View::composer($views, function ($view) {
+
             $setting = Setting::first();
-            $services = Service::where('status', 1)->latest()->take(4)->get();
+
+            $services = Service::where('status', 1)
+                ->latest()
+                ->take(4)
+                ->get();
 
             $view->with([
                 'id' => $setting->id ?? null,
@@ -68,11 +73,27 @@ class AppServiceProvider extends ServiceProvider
                 'about_image' => $setting->about_image ?? '',
                 'office_hours' => $setting->office_hours ?? '',
                 'facebook' => $setting->facebook_url ?? '',
+                'tiktok' => $setting->tiktok_url ?? '',
                 'twitter' => $setting->twitter_url ?? '',
                 'instagram' => $setting->instagram_url ?? '',
                 'github' => $setting->github_url ?? '',
                 'workdays' => WorkingDay::all(),
                 'services' => $services,
+            ]);
+        });
+    }
+
+    // ✅ THIS WAS MISSING BEFORE (THIS FIXES YOUR BACKEND)
+    protected function composeBackendViews(array $views): void
+    {
+        View::composer($views, function ($view) {
+
+            $setting = Setting::first();
+
+            $view->with([
+                'id' => $setting->id ?? null,
+                'logo' => $setting->logo ?? '',
+                'title' => $setting->title ?? '',
             ]);
         });
     }

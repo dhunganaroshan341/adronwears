@@ -6,12 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ $logo??"" }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ $logo?? ""}}">
 
     <link rel="stylesheet" href="{{ asset('fashion-shop-template/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fashion-shop-template/assets/css/templatemo.css') }}">
     <link rel="stylesheet" href="{{ asset('fashion-shop-template/assets/css/custom.css') }}">
+    <!-- <link rel="shortcut icon" href="{{$logo?? ''}}" /> -->
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet"

@@ -61,9 +61,9 @@ class MainFrontendController extends Controller
     {
         $product = $productService->getProductDetails($slug);
 
-        $related = $productService->getRelatedProducts($product);
+        $relatedProducts = $productService->getRelatedProducts($product);
         // dd($product->toArray());
-        // dd($related->toArray());
-        return view('Frontend.Pages.shop-single', compact('product'));
+        // dd($relatedProducts->toArray());
+        return view('Frontend.Pages.shop-single', compact('product', 'relatedProducts'));
     }
 }

@@ -125,9 +125,8 @@
                             @if($product['is_on_sale'] && $product['sale_price'])
                             <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-3 py-2">SALE</span>
                             @endif
-
                             <a href="{{ route('shop.product', $product['slug']) }}">
-                                <img src="{{ asset('storage/products/' . ($product['thumbnail'] ?? 'default-product.jpg')) }}"
+                                <img src="{{ $product['thumbnail'] ?? asset('default-product.jpg') }}"
                                     class="card-img-top" alt="{{ $product['name'] }}"
                                     style="height: 250px; object-fit: cover;">
                             </a>
@@ -138,7 +137,7 @@
                                 <span class="badge bg-secondary">{{ $product['category']['name'] ?? 'Uncategorized'
                                     }}</span>
                                 @if($product['brand'])
-                                <span class="badge bg-light text-dark">{{ $product['brand'] }}</span>
+                                <span class="badge bg-light text-dark">{{ $product['brand']['name'] }}</span>
                                 @endif
                             </div>
 
@@ -148,7 +147,7 @@
                             </a>
 
                             <p class="card-text text-muted small mt-2">
-                                {{ Str::limit($product['description'] ?? 'No description available', 60) }}
+                                {!! Str::limit($product['description'] ?? 'No description available', 60) !!}
                             </p>
 
                             <div class="d-flex justify-content-between align-items-center mt-3">

@@ -84,13 +84,13 @@
             </div>
 
             <div class="col-md-6 text-center text-md-end">
-                <a class="text-light me-3" target="_blank" href="#">
+                <a class="text-light me-3" target="_blank" href="{{$facebook??'#' }}">
                     <i class="fab fa-facebook-f fa-lg"></i>
                 </a>
-                <a class="text-light me-3" target="_blank" href="#">
+                <a class="text-light me-3" target="_blank" href="{{ $instagram??" #" }}">
                     <i class="fab fa-instagram fa-lg"></i>
                 </a>
-                <a class="text-light me-3" target="_blank" href="#">
+                <a class="text-light me-3" target="_blank" href="{{ $tiktok??'#' }}">
                     <i class="fab fa-tiktok fa-lg"></i>
                 </a>
                 <a class="text-light" target="_blank" href="#">

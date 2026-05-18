@@ -121,13 +121,13 @@
                         value="{{ $setting->facebook_url ?? '' }}">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">GitHub URL</label>
-                    <input type="url" name="github_url" class="form-control" value="{{ $setting->github_url ?? '' }}">
+                    <label class="form-label">Tiktok URL</label>
+                    <input type="url" name="tiktok_url" class="form-control" value="{{ $setting->tiktok_url ?? '' }}">
                 </div>
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <label class="form-label">Twitter URL</label>
                     <input type="url" name="twitter_url" class="form-control" value="{{ $setting->twitter_url ?? '' }}">
-                </div>
+                </div> -->
                 <div class="col-md-3">
                     <label class="form-label">Instagram URL</label>
                     <input type="url" name="instagram_url" class="form-control"

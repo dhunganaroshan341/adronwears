@@ -117,7 +117,7 @@
                 {{-- Existing Thumbnail --}}
                 @if(isset($product) && $product->thumbnail)
                 <div class="mt-3">
-                    <img src="{{ $product->thumbnail_url }}" class="img-fluid rounded border"
+                    <img src="{{ $product->thumbnail }}" class="img-fluid rounded border"
                         style="height:120px; object-fit:cover;">
                 </div>
                 @endif

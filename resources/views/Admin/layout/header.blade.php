@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="{{ asset('admin/vendors/font-awesome/css/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
-<link rel="shortcut icon" href="{{ asset('front/images/logo.png') }}" />
+<link rel="shortcut icon" href="{{$logo?? asset('front/images/logo.png') }}" />
 
 
 

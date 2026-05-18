@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Setting extends BaseModel
 {
     use HasFactory;
-   protected $fillable = [
+    protected $fillable = [
         'logo',
         'title',
         'email',
@@ -27,18 +26,19 @@ class Setting extends BaseModel
         'work_description',
         'office_hours',
         'facebook_url',
+        'tiktok_url',
         'twitter_url',
         'github_url',
         'instagram_url',
         'welcome_image',
         'about_image'
     ];
-     public function getLogoUrlAttributes(){
-        return 'uploads/'.$this->logo;
+    public function getLogoUrlAttributes()
+    {
+        return 'uploads/' . $this->logo;
     }
     public function getLogoAttribute()
-{
-    return '/uploads/' . $this->attributes['logo'];
-}
-
+    {
+        return '/uploads/' . $this->attributes['logo'];
+    }
 }

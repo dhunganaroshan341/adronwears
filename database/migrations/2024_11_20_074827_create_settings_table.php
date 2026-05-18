@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('twitter_url')->nullable();
             $table->string('github_url')->nullable();
             $table->string('instagram_url')->nullable();
+            $table->string('tiktok_url')->nullable();
             $table->timestamps();
         });
     }

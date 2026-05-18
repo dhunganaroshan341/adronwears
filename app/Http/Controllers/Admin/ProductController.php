@@ -91,7 +91,7 @@ class ProductController extends Controller
         $images = $this->handleMultipleMedia(
             $request,
             'images',
-            '/  products/gallery'
+            '/products/gallery'
         );
 
         foreach ($images as $path) {

@@ -148,14 +148,14 @@ class Product extends Model
     {
         return $this->sale_price ?? $this->price;
     }
-    public function getThumbnailAttribute($value)
-    {
-        if (!$value) {
-            return null;
-        }
+    // public function getThumbnailAttribute($value)
+    // {
+    //     if (!$value) {
+    //         return null;
+    //     }
 
-        return asset('uploads/' . ltrim($value, '/'));
-    }
+    //     return asset('uploads/' . ltrim($value, '/'));
+    // }
 
     /**
      * Accessor: in stock check
