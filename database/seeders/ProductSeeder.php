@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
         $colors = ['Red', 'Black', 'Blue'];
 
         // 🔁 generate ~400 products
-        for ($i = 1; $i <= 400; $i++) {
+        for ($i = 1; $i <= 2000; $i++) {
 
             $name = $baseProducts[array_rand($baseProducts)] . " {$i}";
 

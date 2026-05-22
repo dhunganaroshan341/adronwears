@@ -6,7 +6,7 @@
     <div class="row">
         <!-- Sidebar with Categories -->
         <div class="col-lg-3">
-            <h1 class="h2 pb-4">Categories</h1>
+            <h1 class="pb-4 h2">Categories</h1>
 
             <!-- Search Filter -->
             <div class="mb-4">
@@ -23,7 +23,7 @@
                     <div class="col-6">
                         <input type="number" id="maxPrice" class="form-control" placeholder="Max">
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="mt-2 col-12">
                         <button id="applyPriceFilter" class="btn btn-sm btn-success w-100">Apply Filter</button>
                     </div>
                 </div>
@@ -48,17 +48,21 @@
                 <li class="pb-2">
                     @if(count($parent['children']) > 0)
                     <!-- Parent with accordion -->
-                    <a class="d-flex justify-content-between text-decoration-none" data-bs-toggle="collapse"
-                        href="#cat-{{ $parent['id'] }}" role="button" aria-expanded="false">
+                    <button class="btn btn-link p-0 d-flex justify-content-between w-100 text-start text-decoration-none collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#cat-{{ $parent['id'] }}"
+                        aria-expanded="false"
+                        aria-controls="cat-{{ $parent['id'] }}">
                         <span>
                             {{ $parent['name'] }}
                             <small class="text-muted">({{ $parent['products_count'] ?? 0 }})</small>
                         </span>
-                        <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                    </a>
+                        <i class="mt-1 fa fa-fw fa-chevron-circle-down"></i>
+                    </button>
 
                     <!-- Children -->
-                    <ul id="cat-{{ $parent['id'] }}" class="collapse list-unstyled ps-3 mt-2">
+                    <ul id="cat-{{ $parent['id'] }}" class="mt-2 collapse list-unstyled ps-3" data-bs-parent=".templatemo-accordion">
                         @foreach($parent['children'] as $child)
                         <li class="mb-2">
                             <a class="d-flex justify-content-between text-decoration-none category-filter" href="#"
@@ -82,7 +86,7 @@
             </ul>
 
             <!-- Clear Filters Button -->
-            <button id="clearFilters" class="btn btn-outline-secondary w-100 mt-4">
+            <button id="clearFilters" class="mt-4 btn btn-outline-secondary w-100">
                 <i class="fas fa-eraser"></i> Clear All Filters
             </button>
         </div>
@@ -90,9 +94,9 @@
         <!-- Products Grid -->
         <div class="col-lg-9">
             <!-- Page Header -->
-            <div class="row mb-4">
+            <div class="mb-4 row">
                 <div class="col-12">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="flex-wrap d-flex justify-content-between align-items-center">
                         <h1 class="h2">All Products</h1>
                         <div class="text-muted">
                             Showing <span id="productCount">{{ count($products) }}</span> products
@@ -103,7 +107,7 @@
             </div>
 
             <!-- Products Loading Spinner -->
-            <div id="loadingSpinner" class="text-center py-5" style="display: none;">
+            <div id="loadingSpinner" class="py-5 text-center" style="display: none;">
                 <div class="spinner-border text-success" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
@@ -112,18 +116,18 @@
             <!-- Products Grid -->
             <div class="row" id="productsGrid">
                 @forelse($products as $product)
-                <div class="col-12 col-md-6 col-lg-4 mb-4 product-item" data-product-id="{{ $product['id'] }}"
+                <div class="mb-4 col-12 col-md-6 col-lg-4 product-item" data-product-id="{{ $product['id'] }}"
                     data-product-name="{{ $product['name'] }}"
                     data-product-price="{{ $product['sale_price'] ?? $product['price'] }}"
                     data-product-category="{{ $product['category']['id'] ?? '' }}">
-                    <div class="card h-100 shadow-sm product-card">
+                    <div class="shadow-sm card h-100 product-card">
                         <!-- Product Badges -->
                         <div class="position-relative">
                             @if($product['is_new'])
-                            <span class="badge bg-info position-absolute top-0 start-0 m-2 px-3 py-2">NEW</span>
+                            <span class="top-0 px-3 py-2 m-2 badge bg-info position-absolute start-0">NEW</span>
                             @endif
                             @if($product['is_on_sale'] && $product['sale_price'])
-                            <span class="badge bg-danger position-absolute top-0 end-0 m-2 px-3 py-2">SALE</span>
+                            <span class="top-0 px-3 py-2 m-2 badge bg-danger position-absolute end-0">SALE</span>
                             @endif
                             <a href="{{ route('shop.product', $product['slug']) }}">
                                 <img src="{{ $product['thumbnail'] ?? asset('default-product.jpg') }}"
@@ -146,11 +150,11 @@
                                 {{ $product['name'] }}
                             </a>
 
-                            <p class="card-text text-muted small mt-2">
+                            <p class="mt-2 card-text text-muted small">
                                 {!! Str::limit($product['description'] ?? 'No description available', 60) !!}
                             </p>
 
-                            <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="mt-3 d-flex justify-content-between align-items-center">
                                 <div>
                                     @if($product['sale_price'] && $product['sale_price'] < $product['price']) <span
                                         class="text-danger fw-bold h5">${{ number_format($product['sale_price'], 2)
@@ -170,7 +174,7 @@
                 </div>
                 @empty
                 <div class="col-12">
-                    <div class="alert alert-info text-center">
+                    <div class="text-center alert alert-info">
                         <i class="fas fa-info-circle"></i> No products found.
                     </div>
                 </div>
@@ -179,7 +183,7 @@
 
             <!-- Pagination -->
             @if(isset($products) && method_exists($products, 'links'))
-            <div class="row mt-4">
+            <div class="mt-4 row">
                 <div class="col-12">
                     <div class="d-flex justify-content-center">
                         {{ $products->links() }}
@@ -192,21 +196,21 @@
 </div>
 <x-product.whatsapp-request-modal />
 <!-- Brands Section -->
-<section class="bg-light py-5 mt-5">
+<section class="py-5 mt-5 bg-light">
     <div class="container my-4">
-        <div class="row text-center py-3">
-            <div class="col-lg-6 m-auto">
+        <div class="py-3 text-center row">
+            <div class="m-auto col-lg-6">
                 <h1 class="h1">Top Brands</h1>
                 <p>Shop from the world's most trusted brands</p>
             </div>
         </div>
-        <div class="row d-flex flex-row align-items-center justify-content-center">
+        <div class="flex-row row d-flex align-items-center justify-content-center">
             @php
             $brandLogos = ['brand_01.png', 'brand_02.png', 'brand_03.png', 'brand_04.png', 'brand_05.png',
             'brand_06.png'];
             @endphp
             @foreach($brandLogos as $logo)
-            <div class="col-6 col-md-3 col-lg-2 p-3 text-center">
+            <div class="p-3 text-center col-6 col-md-3 col-lg-2">
                 <a href="#">
                     <img class="img-fluid" src="{{ asset('assets/img/' . $logo) }}" alt="Brand Logo"
                         style="max-height: 60px; opacity: 0.7; transition: opacity 0.3s;">
@@ -259,12 +263,20 @@
         background-color: #e8f5e9;
     }
 
-    .templatemo-accordion a {
+    .templatemo-accordion a,
+    .templatemo-accordion button {
         color: #212529;
     }
 
-    .templatemo-accordion a:hover {
+    .templatemo-accordion a:hover,
+    .templatemo-accordion button:hover {
         color: #28a745;
+    }
+
+    .templatemo-accordion button {
+        background: none;
+        border: none;
+        cursor: pointer;
     }
 
     .add-to-cart {
@@ -494,7 +506,7 @@
                     <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'} me-2"></i>
                     ${message}
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                <button type="button" class="m-auto btn-close btn-close-white me-2" data-bs-dismiss="toast"></button>
             </div>
         `;
 
