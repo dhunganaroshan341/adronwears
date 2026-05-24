@@ -21,6 +21,18 @@
 
             </x-slot:formSubmitRightTop>
 
+            <x-slot:formSubmitEnd>
+
+                <button class="btn btn-outline-dark">
+                    Update Product
+                </button>
+
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
+                    Back
+                </a>
+
+            </x-slot:formSubmitEnd>
+
         </x-admin.products.form>
 
     </form>

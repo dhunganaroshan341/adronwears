@@ -16,7 +16,33 @@
 <script src="{{ asset('js/admin/core/status.js') }}"></script>
 <script src="{{ asset('js/admin/core/dropzone.js') }}"></script>
 
+<script>
 
+    let sidebar = document.getElementById('sidebar');
+
+    let toggle = document.getElementById('sidebarToggle');
+
+    let overlay = document.getElementById('sidebarOverlay');
+
+
+    toggle.addEventListener('click', () => {
+
+        sidebar.classList.toggle('show');
+
+        overlay.classList.toggle('show');
+
+    });
+
+
+    overlay.addEventListener('click', () => {
+
+        sidebar.classList.remove('show');
+
+        overlay.classList.remove('show');
+
+    });
+
+</script>
 @isset($extraJs)
 @foreach ($extraJs as $js)
 <script src="{{ $js }}"></script>

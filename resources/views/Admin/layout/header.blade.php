@@ -54,6 +54,132 @@
         overflow-y: auto;
     }
 </style>
+<style>
+    .sidebar {
+        width: 260px;
+        min-height: 100vh;
+        background: #fff;
+        border-right: 1px solid #eee;
+        transition: .3s ease;
+        overflow-y: auto;
+    }
+
+    .sidebar .nav {
+        padding: 15px 10px;
+    }
+
+    .nav-category {
+        padding: 14px 15px;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #999;
+        font-weight: 700;
+    }
+
+    .nav-item {
+        margin-bottom: 4px;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        border-radius: 10px;
+        color: #444;
+        transition: .3s;
+    }
+
+    .nav-link:hover {
+        background: #f5f5f5;
+        color: #ca0008;
+    }
+
+    .menu-icon {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+
+    .menu-arrow {
+        margin-left: auto;
+    }
+
+    .sub-menu {
+        padding-left: 20px;
+    }
+
+    .sub-menu .nav-link {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+
+    .sidebar-toggle {
+        position: fixed;
+        left: 15px;
+        top: 15px;
+        width: 45px;
+        height: 45px;
+        border: none;
+        border-radius: 8px;
+        z-index: 1001;
+        display: none;
+
+        background: #ca0008;
+        color: white;
+    }
+
+
+    .sidebar-overlay {
+
+        position: fixed;
+        inset: 0;
+
+        background: rgba(0, 0, 0, .4);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: .3s;
+
+        z-index: 998;
+
+    }
+
+
+    @media(max-width:991px) {
+
+        .sidebar {
+
+            position: fixed;
+
+            top: 0;
+            left: -280px;
+
+            z-index: 999;
+
+            height: 100vh;
+
+            box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+        }
+
+
+        .sidebar.show {
+            left: 0;
+        }
+
+
+        .sidebar-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        .sidebar-toggle {
+            display: block;
+        }
+
+    }
+</style>
 
 @isset($extraCs)
 @foreach ($extraCs as $css)

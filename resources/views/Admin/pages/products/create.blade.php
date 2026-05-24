@@ -2,40 +2,75 @@
 
 @section('content')
 <div class="container">
+
     <x-admin.breadcrumb />
 
-    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
-        <x-session-message />
-        <button class="btn btn-outline-dark">Save</button>
-        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">Back</a>
-        @csrf
-        @include('Admin.pages.products.partials.form')
+    <x-session-message />
 
+    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+
+        @csrf
+
+        <x-admin.products.form :categories="$categories" :brands="$brands">
+
+            <x-slot:formSubmitRightTop>
+
+                <button class="btn btn-outline-dark">
+                    Create Product
+                </button>
+
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
+                    Back
+                </a>
+
+            </x-slot:formSubmitRightTop>
+
+            <x-slot:formSubmitEnd>
+
+                <button class="btn btn-outline-dark">
+                    Create Product
+                </button>
+
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
+                    Back
+                </a>
+
+            </x-slot:formSubmitEnd>
+
+        </x-admin.products.form>
 
     </form>
+
 </div>
 @endsection
 
+
 @push('scripts')
+
 <script>
     function previewImages(event, previewId) {
+
         const preview = document.getElementById(previewId);
+
         preview.innerHTML = '';
 
         Array.from(event.target.files).forEach(file => {
+
             const reader = new FileReader();
 
             reader.onload = e => {
+
                 const col = document.createElement('div');
+
                 col.className = 'col-md-3 mb-3';
 
                 col.innerHTML = `
-                <div class="border rounded p-2 text-center">
-                    <img src="${e.target.result}"
-                         class="img-fluid rounded"
-                         style="height:150px;object-fit:cover;">
-                </div>
-            `;
+                    <div class="border rounded p-2 text-center">
+                        <img src="${e.target.result}"
+                             class="img-fluid rounded"
+                             style="height:150px;object-fit:cover;">
+                    </div>
+                `;
 
                 preview.appendChild(col);
             };
@@ -44,6 +79,7 @@
         });
     }
 </script>
+
 
 <!-- CKEditor -->
 <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
@@ -71,4 +107,5 @@
             console.error(error);
         });
 </script>
+
 @endpush
