@@ -94,6 +94,10 @@ class ProductRequest extends FormRequest
                 'required',
                 Rule::in(['active', 'inactive']),
             ],
+            'type' => [
+                'nullable',
+                Rule::in(['simple', 'bundle']),
+            ],
 
             'target_group' => [
                 'nullable',

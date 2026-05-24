@@ -23,19 +23,26 @@
 
             <x-slot:formSubmitEnd>
 
-                <button class="btn btn-outline-dark">
-                    Update Product
-                </button>
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <button class="btn btn-outline-dark w-100">
+                            Update Product
+                        </button>
+                    </div>
 
-                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
-                    Back
-                </a>
+                    <div class="col-md-12 mb-2">
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary w-100">
+                            Back
+                        </a>
+                    </div>
+                </div>
+</div>
 
-            </x-slot:formSubmitEnd>
+</x-slot:formSubmitEnd>
 
-        </x-admin.products.form>
+</x-admin.products.form>
 
-    </form>
+</form>
 </div>
 @endsection
 
