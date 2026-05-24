@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="modal-footer px-4 pb-3">
-                    <button id="submitItineraryBtn" type="submit" class="btn btn-outline-success w-100">
+                    <button id="submitItineraryBtn" type="submit" class="btn btn-outline-dark w-100">
                         <i class="fas fa-save me-1"></i> Save
                     </button>
                     <button id="updateItineraryBtn" type="submit" class="btn btn-outline-dark w-100">

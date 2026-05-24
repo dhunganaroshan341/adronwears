@@ -60,7 +60,7 @@
 
                 <div class="modal-footer border-top-0 mt-3">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update Page
+                    <button type="submit" class="btn btn-outline-dark updateBtn" data-action="edit">Update Page
                         Banner</button>
                 </div>
             </form>

@@ -233,8 +233,8 @@
                 <!-- Modal Footer -->
                 <div class="modal-footer px-4 py-3">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success submitBtn" data-action="">Submit</button>
-                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update
+                    <button type="submit" class="btn btn-outline-dark submitBtn" data-action="">Submit</button>
+                    <button type="submit" class="btn btn-outline-dark updateBtn" data-action="edit">Update
                         Package</button>
                 </div>
             </form>

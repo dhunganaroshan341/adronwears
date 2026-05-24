@@ -1,31 +1,38 @@
-@if (Route::currentRouteName() == 'admin.user')
-    <button title="change password" type="button"
-        class="btn p-0 m-0 mx-1 bg-transparent border-0 text-info resetUserBtn {{ $data->role=='User' ? 'd-none':'' }}"
-        data-id="{{ $data->id }}">
-       <i class="fas fa-lock"></i>
+<div class="dropdown d-inline-block">
+
+    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
+
+        <i class="fas fa-ellipsis-v"></i>
+
     </button>
 
-    <button title="edit" type="button"
-        class="btn p-0 m-0 mx-1 bg-transparent border-0 text-warning editUserButton {{ $data->role=='User' ? 'd-none':'' }}"
-        data-action="edit" data-id="{{ $data->id }}">
-        <i class="fas fa-pencil"></i>
-    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
 
-    <button title="delete" type="button"
-        class="btn p-0 m-0 mx-1 bg-transparent border-0 text-danger deleteData {{ $data->role=='User' ? 'd-none':'' }}"
-        data-id="{{ $data->id }}">
-        <i class="fas fa-trash"></i>
-    </button>
-@else
-    <button title="edit" type="button"
-        class="btn p-0 m-0 mx-1 bg-transparent border-0 text-warning editUserButton"
-        data-id="{{ $data->id }}">
-        <i class="fas fa-pencil"></i>
-    </button>
+        @if(Route::currentRouteName() == 'admin.user' && $data->role=='User')
 
-    <button title="delete" type="button"
-        class="btn p-0 m-0 mx-1 bg-transparent border-0 text-danger deleteData"
-        data-id="{{ $data->id }}">
-        <i class="fas fa-trash"></i>
-    </button>
-@endif
+        <li>
+            <button title="change password" type="button" class="dropdown-item resetUserBtn" data-id="{{ $data->id }}">
+                <i class="fas fa-lock me-2"></i>
+                Change Password
+            </button>
+        </li>
+
+        @endif
+
+        <li>
+            <button title="edit" type="button" class="dropdown-item editUserButton" data-id="{{ $data->id }}">
+                <!-- <i class="fas fa-pencil me-2"></i> -->
+                Edit
+            </button>
+        </li>
+
+        <li>
+            <button title="delete" type="button" class="dropdown-item deleteData text-danger" data-id="{{ $data->id }}">
+                <!-- <i class="fas fa-trash me-2"></i> -->
+                Delete
+            </button>
+        </li>
+
+    </ul>
+
+</div>

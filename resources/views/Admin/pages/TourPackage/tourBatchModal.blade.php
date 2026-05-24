@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="modal-footer px-4 pb-3">
-                    <button id="submitBatchBtn" type="submit" class="btn btn-outline-success w-100">
+                    <button id="submitBatchBtn" type="submit" class="btn btn-outline-dark w-100">
                         <i class="fas fa-save me-1"></i> Save Tour Batch
                     </button>
                     <button id="updateBatchBtn" type="submit" class="btn btn-outline-dark w-100" style="display: none;">

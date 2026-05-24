@@ -36,7 +36,7 @@
             </div>
 
             <div class="modal-footer">
-                <button id="uploadSubmitBtn" type="button" class="btn btn-outline-success">Upload</button>
+                <button id="uploadSubmitBtn" type="button" class="btn btn-outline-dark">Upload</button>
                 <button id="closeBtn" type="button" class="btn btn-outline-secondary"
                     data-bs-dismiss="modal">Close</button>
             </div>

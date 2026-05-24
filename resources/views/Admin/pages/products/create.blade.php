@@ -19,7 +19,7 @@
                     Create Product
                 </button>
 
-                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark">
                     Back
                 </a>
 
@@ -31,7 +31,7 @@
                     Create Product
                 </button>
 
-                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark">
                     Back
                 </a>
 

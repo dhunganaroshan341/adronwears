@@ -93,7 +93,7 @@
                                 <label for="name" class="form-label fw-bold">Your Name <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                    name="name" placeholder="John Doe" value="{{ old('name') }}" required>
+                                    name="name" placeholder="Roshan Dhungana" value="{{ old('name') }}" required>
                                 @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -103,7 +103,7 @@
                                 <label for="email" class="form-label fw-bold">Email Address <span
                                         class="text-danger">*</span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                                    name="email" placeholder="john@example.com" value="{{ old('email') }}" required>
+                                    name="email" placeholder="roshan@example.com" value="{{ old('email') }}" required>
                                 @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -160,7 +160,7 @@
                                 <button type="reset" class="btn btn-outline-secondary btn-lg px-4 me-2">
                                     <i class="fas fa-undo"></i> Reset
                                 </button>
-                                <button type="submit" class="btn btn-outline-success btn-lg px-5" id="submitBtn">
+                                <button type="submit" class="btn btn-outline-dark btn-lg px-5" id="submitBtn">
                                     <i class="fas fa-paper-plane"></i> Send Message
                                 </button>
                             </div>
@@ -210,27 +210,44 @@
     <div class="row text-center">
         <div class="col-12">
             <h4 class="mb-3">Follow Us</h4>
+
             <div class="d-flex justify-content-center gap-3">
-                <a href="{{ $socialLinks['facebook'] ?? '#' }}" class="btn btn-outline-success btn-social">
+
+                @if(!empty($socialLinks['facebook']))
+                <a href="{{ $socialLinks['facebook'] }}" class="btn btn-outline-dark btn-social">
                     <i class="fab fa-facebook-f fa-lg"></i>
                 </a>
-                <a href="{{ $socialLinks['twitter'] ?? '#' }}" class="btn btn-outline-success btn-social">
+                @endif
+
+                @if(!empty($socialLinks['twitter']))
+                <a href="{{ $socialLinks['twitter'] }}" class="btn btn-outline-dark btn-social">
                     <i class="fab fa-twitter fa-lg"></i>
                 </a>
-                <a href="{{ $socialLinks['instagram'] ?? '#' }}" class="btn btn-outline-success btn-social">
+                @endif
+
+                @if(!empty($socialLinks['instagram']))
+                <a href="{{ $socialLinks['instagram'] }}" class="btn btn-outline-dark btn-social">
                     <i class="fab fa-instagram fa-lg"></i>
                 </a>
-                <a href="{{ $socialLinks['linkedin'] ?? '#' }}" class="btn btn-outline-success btn-social">
+                @endif
+
+                @if(!empty($socialLinks['linkedin']))
+                <a href="{{ $socialLinks['linkedin'] }}" class="btn btn-outline-dark btn-social">
                     <i class="fab fa-linkedin-in fa-lg"></i>
                 </a>
-                <a href="{{ $socialLinks['youtube'] ?? '#' }}" class="btn btn-outline-success btn-social">
+                @endif
+
+                @if(!empty($socialLinks['youtube']))
+                <a href="{{ $socialLinks['youtube'] }}" class="btn btn-outline-dark btn-social">
                     <i class="fab fa-youtube fa-lg"></i>
                 </a>
+                @endif
+
             </div>
+
         </div>
     </div>
 </div>
-
 @endsection
 
 @push('styles')

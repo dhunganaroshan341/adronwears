@@ -90,7 +90,7 @@
                 <div class="h1 text-success text-center">
                     <i class="fa fa-globe fa-lg"></i>
                 </div>
-                <h2 class="h5 mt-4 text-center">Bulk & International Shipping</h2>
+                <h2 class="h5 mt-4 text-center">International Shipping</h2>
                 <p class="text-center px-3">
                     We support wholesale orders and ship internationally with reliability.
                 </p>

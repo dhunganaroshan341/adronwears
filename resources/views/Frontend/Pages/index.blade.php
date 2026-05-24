@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="{{ asset('storage/' . $slider['image']) }}"
+                        <img class="img-fluid" src="{{ asset('/uploads/'.$slider['image'] )}}"
                             alt="{{ $slider['title'] }}">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
@@ -66,7 +66,7 @@
             </a>
             <h5 class="text-center mt-3 mb-3">{{ $category['name'] }}</h5>
             <p class="text-center">
-                <a href="{{ route('shop.category', $category['slug']) }}" class="btn btn-outline-success">Go Shop</a>
+                <a href="{{ route('shop.category', $category['slug']) }}" class="btn btn-outline-dark">Go Shop</a>
             </p>
         </div>
         @endforeach
@@ -74,7 +74,7 @@
     @if($categories->count() > 3)
     <div class="row text-center mt-3">
         <div class="col-12">
-            <a href="{{ route('shop.categories') }}" class="btn btn-outline-success btn-lg">
+            <a href="{{ route('shop.categories') }}" class="btn btn-outline-dark btn-lg">
                 View All Categories <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -130,7 +130,7 @@
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <span class="badge bg-secondary">{{ $product['category']['name'] ?? 'Uncategorized'
                                 }}</span>
-                            <button class="btn btn-sm btn-outline-success add-to-cart"
+                            <button class="btn btn-sm btn-outline-dark add-to-cart"
                                 data-product-id="{{ $product['id'] }}">
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
@@ -142,7 +142,7 @@
         </div>
         <div class="row text-center mt-4">
             <div class="col-12">
-                <a href="{{ route('shop.index') }}" class="btn btn-outline-success btn-lg px-5">
+                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg px-5">
                     View All Products <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -190,7 +190,7 @@
                         <span class="fw-bold h5">${{ number_format($bundle['price'], 2) }}</span>
                         @endif
                     </p>
-                    <a href="{{ route('shop.product', $bundle['slug']) }}" class="btn btn-outline-success w-100">
+                    <a href="{{ route('shop.product', $bundle['slug']) }}" class="btn btn-outline-dark w-100">
                         View Bundle <i class="fas fa-tags"></i>
                     </a>
                 </div>
@@ -201,7 +201,7 @@
     @if($bundles->count() > 4)
     <div class="row text-center mt-3">
         <div class="col-12">
-            <a href="#" class="btn btn-outline-success btn-lg">
+            <a href="#" class="btn btn-outline-dark btn-lg">
                 View All Bundles <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -264,7 +264,7 @@
         transform: translateY(-2px);
     }
 
-    .btn-outline-success:hover {
+    .btn-outline-dark:hover {
         transform: translateY(-2px);
     }
 
@@ -355,14 +355,14 @@
 
                 // Show success feedback
                 this.innerHTML = '<i class="fas fa-check"></i> Added!';
-                this.classList.remove('btn-outline-success');
+                this.classList.remove('btn-outline-dark');
                 this.classList.add('btn-success');
 
                 setTimeout(() => {
                     this.innerHTML = originalText;
                     this.disabled = false;
                     this.classList.remove('btn-success');
-                    this.classList.add('btn-outline-success');
+                    this.classList.add('btn-outline-dark');
                 }, 2000);
 
                 // You can trigger a toast notification here

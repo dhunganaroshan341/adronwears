@@ -6,6 +6,7 @@ use App\Models\GalleryAlbum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryAlbumRequest;
+use App\Models\Brand;
 use App\Models\Client;
 use App\Models\GalleryMedia;
 use Illuminate\Support\Str;
@@ -19,7 +20,7 @@ class GalleryAlbumController extends Controller
     public function index()
     {
         $albums = GalleryAlbum::all();
-        $clients = Client::all();
+        $clients = Brand::all();
         $extraJs = array_merge(
             config('js-map.admin.datatable.script'),
             config('js-map.admin.summernote.script'),
@@ -53,8 +54,9 @@ class GalleryAlbumController extends Controller
                 // ->addColumn('title', fn($tit) => Str::limit($tit->title, 20) ?? '')
                 ->addColumn('client', fn($client) => $client->client->name ?? '')
                 ->addColumn('type', fn($type) => $type->type ?? '')
-                ->addColumn('action', fn($data) => '<button class="btn btn-outline-secondary editAlbumButton" data-id="' . $data->id . '" type="button">Edit</button>
-                                                     <button class="btn btn-outline-danger deleteData" data-id="' . $data->id . '" type="button">Delete</button>')
+                ->addColumn('action', fn($row) => view('components.admin.dropdowns.action-v1', [
+                    'id' => $row->id,
+                ])->render())
                 ->addColumn('comment', fn($data) => '<button class="btn btn-info commentinfoBtn" data-id="' . $data->id . '" type="button">View Comments</button>')
                 ->addColumn('status', fn($status) => '<div class="form-check form-switch">
                                                         <input class="form-check-input statusIdData d-flex mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . ($status->status == 'Active' ? 'checked' : '') . '>
@@ -182,7 +184,7 @@ class GalleryAlbumController extends Controller
             $albums = GalleryAlbum::all();
 
             // Fetch all clients
-            $clients = Client::all();
+            $clients = Brand::all();
 
             // Prepare the response data
             $data = [

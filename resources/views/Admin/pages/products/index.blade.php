@@ -4,7 +4,8 @@
 <div class="container">
 
     <x-admin.breadcrumb>
-        <a href="{{ route('admin.products.create') }}" class="btn btn-sm btn-primary">+ Add Product</a>
+        <a href="{{ route('admin.products.create') }}" class="btn  btn-outline-dark
+"> add product</a>
     </x-admin.breadcrumb>
 
     {{-- Filters --}}
@@ -69,8 +70,9 @@
                 </div>
 
                 <div class="mt-3 d-flex gap-2">
-                    <button class="btn btn-sm btn-primary">Apply</button>
-                    <a href="{{ route('admin.products.index') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+                    <button class="btn btn-sm btn-outline-dark
+">Apply</button>
+                    <a href="{{ route('admin.products.index') }}" class="btn btn-sm btn-outline-dark">Reset</a>
                 </div>
             </form>
         </div>
@@ -78,22 +80,22 @@
 
     {{-- Actions --}}
     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-        <a href="{{ route('admin.products.export') }}" class="btn btn-sm btn-outline-secondary">Export</a>
+        <a href="{{ route('admin.products.export') }}" class="btn btn-sm btn-outline-dark">Export</a>
 
-        <form action="{{ route('admin.products.import') }}" method="POST" enctype="multipart/form-data"
+        <!-- <form action="{{ route('admin.products.import') }}" method="POST" enctype="multipart/form-data"
             class="d-flex gap-2">
             @csrf
             <input type="file" name="file" required class="form-control form-control-sm" style="max-width: 200px">
-            <button class="btn btn-sm btn-outline-secondary">Import</button>
-        </form>
+            <button class="btn btn-sm btn-outline-dark">Import</button>
+        </form> -->
     </div>
 
     {{-- Table --}}
     <div class="card border-0 shadow-sm">
         <div class="table-responsive">
-            <table class="table table-hover mb-0 align-middle">
+            <table class="table table-hover table-striped mb-0 align-middle">
 
-                <thead class="border-bottom">
+                <thead class="border-bottom bg-dark th-dark">
                     <tr class="text-muted small">
                         <th class="fw-medium">#</th>
                         <th class="fw-medium">Name</th>

@@ -15,7 +15,7 @@
                     Update Product
                 </button>
 
-                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary">
+                <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark">
                     Back
                 </a>
 
@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="col-md-12 mb-2">
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-secondary w-100">
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark w-100">
                             Back
                         </a>
                     </div>

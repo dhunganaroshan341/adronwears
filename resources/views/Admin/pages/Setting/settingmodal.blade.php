@@ -43,7 +43,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-success updateBtn" data-action="edit">Update
+                    <button type="submit" class="btn btn-outline-dark updateBtn" data-action="edit">Update
                         Working Hour</button>
                 </div>
             </form>

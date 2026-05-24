@@ -144,7 +144,7 @@
                         </div>
 
                         {{-- REQUEST BUTTON --}}
-                        <!-- <button class="btn btn-outline-success" data-bs-toggle="modal"
+                        <!-- <button class="btn btn-outline-dark" data-bs-toggle="modal"
                             data-bs-target="#productRequestModal">
                             Request This Product
                         </button> -->

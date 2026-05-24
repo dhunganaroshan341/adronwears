@@ -1,27 +1,54 @@
 <!-- Start Top Nav -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+
     <div class="container text-light">
+
         <div class="w-100 d-flex justify-content-between">
+
             <div>
+
+                @if(!empty($email))
                 <i class="fa fa-envelope mx-2"></i>
-                <a class="navbar-sm-brand text-light text-decoration-none"
-                    href="mailto:{{ $email??'info@company.com' }}">{{ $email??'info@company.com' }}</a>
+                <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:{{ $email }}">
+                    {{ $email }}
+                </a>
+                @endif
+
+                @if(!empty($phone))
                 <i class="fa fa-phone mx-2"></i>
-                <a class="navbar-sm-brand text-light text-decoration-none" href="tel:{{ $phone??'010-020-0340' }}">{{
-                    $phone??'010-020-0340' }}</a>
+                <a class="navbar-sm-brand text-light text-decoration-none" href="tel:{{ $phone }}">
+                    {{ $phone }}
+                </a>
+                @endif
+
             </div>
+
             <div>
-                <a class="text-light" href="{{ $facebook??'https://fb.com/templatemo' }}" target="_blank"
-                    rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
-                <a class="text-light" href="{{ $instagram??'https://www.instagram.com/' }}" target="_blank"><i
-                        class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
-                <a class="text-light" href="{{ $tiktok??'https://www.tiktok.com/' }}" target="_blank"><i
-                        class="fab fa-tiktok fa-sm fa-fw me-2"></i></a>
-                <!-- <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i
-                        class="fab fa-linkedin fa-sm fa-fw"></i></a> -->
+
+                @if(!empty($facebook))
+                <a class="text-light" href="{{ $facebook }}" target="_blank">
+                    <i class="fab fa-facebook-f fa-sm fa-fw me-2"></i>
+                </a>
+                @endif
+
+                @if(!empty($instagram))
+                <a class="text-light" href="{{ $instagram }}" target="_blank">
+                    <i class="fab fa-instagram fa-sm fa-fw me-2"></i>
+                </a>
+                @endif
+
+                @if(!empty($tiktok))
+                <a class="text-light" href="{{ $tiktok }}" target="_blank">
+                    <i class="fab fa-tiktok fa-sm fa-fw me-2"></i>
+                </a>
+                @endif
+
             </div>
+
         </div>
+
     </div>
+
 </nav>
 <!-- Close Top Nav -->
 

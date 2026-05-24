@@ -496,14 +496,14 @@
             // Simulate add to cart (replace with actual AJAX)
             setTimeout(() => {
                 this.innerHTML = '<i class="fas fa-check"></i>';
-                this.classList.remove('btn-outline-success');
+                this.classList.remove('btn-outline-dark');
                 this.classList.add('btn-success');
 
                 setTimeout(() => {
                     this.innerHTML = originalHTML;
                     this.disabled = false;
                     this.classList.remove('btn-success');
-                    this.classList.add('btn-outline-success');
+                    this.classList.add('btn-outline-dark');
                 }, 2000);
 
                 showToast('Product added to cart! 🛒');

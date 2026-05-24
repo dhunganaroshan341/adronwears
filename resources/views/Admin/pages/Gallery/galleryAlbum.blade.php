@@ -2,9 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
-    <button class="btn btn-outline-dark addGalleryAlbumBtn mb-4" data-bs-toggle="modal"
-        data-bs-target="#galleryAlbumModal">Add
-        Gallery</button>
+
+    <x-admin.breadcrumb>
+        <button class="btn btn-outline-dark addGalleryAlbumBtn mb-4" data-bs-toggle="modal"
+            data-bs-target="#galleryAlbumModal">Add
+            Gallery</button>
+    </x-admin.breadcrumb>
 
     {{-- Modal --}}
 

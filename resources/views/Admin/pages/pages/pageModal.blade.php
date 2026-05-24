@@ -156,7 +156,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-outline-dark submitBtn">Save</button>
-                    <button type="submit" class="btn btn-outline-success updateBtn ">Update</button>
+                    <button type="submit" class="btn btn-outline-dark updateBtn ">Update</button>
                 </div>
             </form>
         </div>

@@ -33,7 +33,7 @@
             <button class="btn btn-dark tn-status-filter" data-status="all">
                 <i class="mdi mdi-format-list-bulleted"></i> All
             </button>
-            <button class="btn btn-outline-success btn-status-filter" data-status="confirmed">
+            <button class="btn btn-outline-dark btn-status-filter" data-status="confirmed">
                 <i class="mdi mdi-check-circle-outline"></i> Confirmed
             </button>
             <button class="btn btn-outline-danger btn-status-filter" data-status="cancelled">

@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class HomeSlide extends BaseModel
 {
     use HasFactory;
-    protected $fillable=['image','title','shortdesc','status','link_text','link_url'];
+    protected $fillable = ['image', 'title', 'shortdesc', 'status', 'link_text', 'link_url'];
+    // public function getImageUrlAttribute()
+    // {
+    //     return $this->image ? asset('uploads/' . $this->image) : asset('defaultImage/defaultimage.webp');
+    // }
 }

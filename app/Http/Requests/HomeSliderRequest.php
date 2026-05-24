@@ -22,19 +22,23 @@ class HomeSliderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|min:3',
-            'image'=>$this->route('id') ? 'nullable|image' : 'required|image',
+            'title' => 'required|min:3',
+            'link_text' => 'nullable|string|min:3',
+            'link_url' => 'nullable|url|min:3',
+            'image' => $this->route('id') ? 'nullable|image' : 'required|image',
         ];
     }
 
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'title.required'=>'Please Enter the Title Name',
-            'title.min'=>'Title must be at least 3 character long',
-            'image.required'=>'Please Insert Image',
-            'image.image'=>'Image must be the type of png,jpeg,jpg',
-            'image.dimensions'=>'Image must be of min 1300 px and max 500 px'
+            'title.required' => 'Please Enter the Title Name',
+            'title.min' => 'Title must be at least 3 character long',
+            'image.required' => 'Please Insert Image',
+            'image.image' => 'Image must be the type of png,jpeg,jpg',
+            'image.dimensions' => 'Image must be of min 1300 px and max 500 px',
+            'link_url' => 'Please enter a valid URL',
         ];
     }
 }
