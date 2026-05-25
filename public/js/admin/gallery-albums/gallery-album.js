@@ -1,25 +1,25 @@
 $(document).ready(function () {
 
     function toggleMediaFields() {
-            var selectedType = $('#type').val();
+        var selectedType = $('#type').val();
 
-            if (selectedType === 'image') {
-                // Show image-related fields
-                $('#galleryMedia').closest('.col-md-12').show();
-                $('#thumbnailImage').parent().show();
-                $('#url-group').hide();
-            } else if (selectedType === 'video' || selectedType === 'url') {
-                // Show URL field, hide image-related
-                $('#url-group').show();
-                $('#galleryMedia').closest('.col-md-12').hide();
-                $('#thumbnailImage').parent().hide();
-            } else {
-                // Default state
-                $('#galleryMedia').closest('.col-md-12').hide();
-                $('#thumbnailImage').parent().hide();
-                $('#url-group').hide();
-            }
+        if (selectedType === 'image') {
+            // Show image-related fields
+            $('#galleryMedia').closest('.col-md-12').show();
+            $('#thumbnailImage').parent().show();
+            $('#url-group').hide();
+        } else if (selectedType === 'video' || selectedType === 'url') {
+            // Show URL field, hide image-related
+            $('#url-group').show();
+            $('#galleryMedia').closest('.col-md-12').hide();
+            $('#thumbnailImage').parent().hide();
+        } else {
+            // Default state
+            $('#galleryMedia').closest('.col-md-12').hide();
+            $('#thumbnailImage').parent().hide();
+            $('#url-group').hide();
         }
+    }
 
 
     function uploadThumbnail(albumId, formElement) {
@@ -63,7 +63,7 @@ $(document).ready(function () {
         columns: [
             { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false, searchable: false },
             { data: "title", name: "title" },
-             { data: "gallery", name: "gallery" },
+            { data: "gallery", name: "gallery" },
             { data: "type", name: "type" },
             { data: "client", name: "client" },
             { data: "status", name: "status" },
@@ -79,7 +79,7 @@ $(document).ready(function () {
         $(".submitBtn").show();
         $(".form").attr("id", 'addForm');
 
-         // Initialize on page load
+        // Initialize on page load
         toggleMediaFields();
 
         // Re-evaluate on dropdown change
@@ -89,7 +89,7 @@ $(document).ready(function () {
         $("#addForm")[0].reset();
     });
 
-    $(document).off('submit',"#addForm").on("submit", "#addForm", function (e) {
+    $(document).off('submit', "#addForm").on("submit", "#addForm", function (e) {
         e.preventDefault();
         $(".submitBtn").prop("disabled", true);
         let formData = new FormData(this);
@@ -137,14 +137,14 @@ $(document).ready(function () {
         $(".form").attr("id", "updateForm");
         $("#updateForm")[0].reset();
         $("#albumModalLabel").text("Edit Gallery Album");
-      $("#type").hide();
-               // Correctly hides the type <select>
-    $("#url-group").hide();    // Hides the whole URL input group (label + input)
-    $("#type-group").hide();    // Hides the whole URL input group (label + input)
+        $("#type").hide();
+        // Correctly hides the type <select>
+        $("#url-group").hide();    // Hides the whole URL input group (label + input)
+        $("#type-group").hide();    // Hides the whole URL input group (label + input)
 
         // loading show
-                 $("#loading-paragraph").val('...loading..');
-                 $("#title").val('...loading..');
+        $("#loading-paragraph").val('...loading..');
+        $("#title").val('...loading..');
         //end of loading show
 
         $.ajax({
@@ -164,7 +164,7 @@ $(document).ready(function () {
 
                         album.gallery_media.forEach((image) => {
                             let imagePath = image.media_path; // Full URL already
-                             imagePath = '/uploads/'.imagePath; // Full URL already
+                            imagePath = '/uploads/'.imagePath; // Full URL already
 
                             $(".galleryMediaData").append(`
                                 <div class="col-4 mb-3">
@@ -242,43 +242,43 @@ $(document).ready(function () {
         });
     });
 
-   // Toggle Status
-$(document).on("change", ".statusIdData", function () {
-    let id = $(this).data("id");
-    let checkbox = $(this);
-    checkbox.prop("disabled", true);
+    // Toggle Status
+    $(document).on("change", ".statusIdData", function () {
+        let id = $(this).data("id");
+        let checkbox = $(this);
+        checkbox.prop("disabled", true);
 
-    Swal.fire({
-        icon: "warning",
-        title: "Are you sure?",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, change it!"
-    }).then(result => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "/admin/gallery-albums/" + id + "/status",
-                type: "PUT", // Corrected: type instead of "method" and "put"
-                data: {
-                    status: checkbox.prop("checked") ? 1 : 0, // pass status value
-                    _token: $('meta[name="csrf-token"]').attr("content") // ensure CSRF token is sent
-                },
-                success: function () {
-                    table.draw();
-                    checkbox.prop("disabled", false);
-                },
-                error: function () {
-                    checkbox.prop("disabled", false);
-                    checkbox.prop("checked", !checkbox.prop("checked")); // revert change on error
-                }
-            });
-        } else {
-            checkbox.prop("disabled", false);
-            checkbox.prop("checked", !checkbox.prop("checked"));
-        }
+        Swal.fire({
+            icon: "warning",
+            title: "Are you sure?",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, change it!"
+        }).then(result => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/admin/gallery-albums/" + id + "/status",
+                    type: "PUT", // Corrected: type instead of "method" and "put"
+                    data: {
+                        status: checkbox.prop("checked") ? 1 : 0, // pass status value
+                        _token: $('meta[name="csrf-token"]').attr("content") // ensure CSRF token is sent
+                    },
+                    success: function () {
+                        table.draw();
+                        checkbox.prop("disabled", false);
+                    },
+                    error: function () {
+                        checkbox.prop("disabled", false);
+                        checkbox.prop("checked", !checkbox.prop("checked")); // revert change on error
+                    }
+                });
+            } else {
+                checkbox.prop("disabled", false);
+                checkbox.prop("checked", !checkbox.prop("checked"));
+            }
+        });
     });
-});
 
 
     // Delete Album
@@ -322,60 +322,60 @@ $(document).on("change", ".statusIdData", function () {
     });
 
 
- // Show Multiple Image Modal
- $(document).on("click", ".imageListPopup", function () {
-    $("#imageModal").modal("show");
-    $("#postImageTitle").text("Image List");
+    // Show Multiple Image Modal
+    $(document).on("click", ".imageListPopup", function () {
+        $("#imageModal").modal("show");
+        $("#postImageTitle").text("Image List");
 
-    let id = $(this).data('id');
+        let id = $(this).data('id');
 
-    $.ajax({
-        type: "get", // fixed typo
-        url: "/admin/gallery-albums/" + id + "/detail",
-        success: function (response) {
-            $(".fetch-post-image-data").html("");
+        $.ajax({
+            type: "get", // fixed typo
+            url: "/admin/gallery-albums/" + id + "/detail",
+            success: function (response) {
+                $(".fetch-post-image-data").html("");
 
-            // Access gallery_media from the response
-            if (response.message.gallery_media && response.message.gallery_media.length > 0) {
-                response.message.gallery_media.forEach((media, index) => {
-                    let imagePath = media.media_path; // it's already a full URL
-                     imagePath =  '/uploads/'. imagePath; // it's already a full URL
-                    $(".fetch-post-image-data").append(`
+                // Access gallery_media from the response
+                if (response.message.gallery_media && response.message.gallery_media.length > 0) {
+                    response.message.gallery_media.forEach((media, index) => {
+                        let imagePath = '/uploads/' + media.media_path;
+                        console.log(console.log(media.media_path));
+                        $(".fetch-post-image-data").append(`
                         <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                            <img src="/${imagePath}" class="d-block w-100" alt="...">
+                            <img src="${imagePath}" class="d-block w-100" alt="...">
                         </div>
                     `);
-                });
+                    });
+                }
             }
-        }
+        });
     });
-});
 
-// delete media from Gallery edit button modal
-$(document).on("click", ".remove-image", function () {
-    let imageId = $(this).data("image-id");
-    // console.log(id);
+    // delete media from Gallery edit button modal
+    $(document).on("click", ".remove-image", function () {
+        let imageId = $(this).data("image-id");
+        // console.log(id);
 
-    $.ajax({
-        type: "get",
-        url: "/admin/gallery-albums/image/delete",
-        data: {
-            // _token: $('meta[name="csrf-token"]').attr('content'),
-            image_id: imageId
-        },
-        success: function (response) {
-            if (response.success) {
-                $(this).closest(".col-4").fadeOut(300, function () {
-                    $(this).remove();
-                });
+        $.ajax({
+            type: "get",
+            url: "/admin/gallery-albums/image/delete",
+            data: {
+                // _token: $('meta[name="csrf-token"]').attr('content'),
+                image_id: imageId
+            },
+            success: function (response) {
+                if (response.success) {
+                    $(this).closest(".col-4").fadeOut(300, function () {
+                        $(this).remove();
+                    });
 
-                table.draw();
+                    table.draw();
+                }
+            }.bind(this),
+            error: function (response) {
+                console.error("Failed to delete image.");
             }
-        }.bind(this),
-        error: function (response) {
-            console.error("Failed to delete image.");
-        }
+        });
     });
-});
 
 });
