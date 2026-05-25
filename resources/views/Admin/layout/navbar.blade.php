@@ -201,7 +201,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.newsletters.index') }}">
 
                 <i class="mdi mdi-email-newsletter menu-icon"></i>
@@ -211,7 +211,7 @@
                 </span>
 
             </a>
-        </li>
+        </li> -->
 
 
 
