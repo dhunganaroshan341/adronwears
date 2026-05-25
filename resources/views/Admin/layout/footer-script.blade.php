@@ -17,31 +17,15 @@
 <script src="{{ asset('js/admin/core/dropzone.js') }}"></script>
 
 <script>
+    document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            const offcanvas = bootstrap.Offcanvas.getInstance(
+                document.getElementById('adminSidebar')
+            );
 
-    let sidebar = document.getElementById('sidebar');
-
-    let toggle = document.getElementById('sidebarToggle');
-
-    let overlay = document.getElementById('sidebarOverlay');
-
-
-    toggle.addEventListener('click', () => {
-
-        sidebar.classList.toggle('show');
-
-        overlay.classList.toggle('show');
-
+            if (offcanvas) offcanvas.hide();
+        });
     });
-
-
-    overlay.addEventListener('click', () => {
-
-        sidebar.classList.remove('show');
-
-        overlay.classList.remove('show');
-
-    });
-
 </script>
 @isset($extraJs)
 @foreach ($extraJs as $js)

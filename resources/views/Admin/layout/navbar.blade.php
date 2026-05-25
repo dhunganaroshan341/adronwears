@@ -1,207 +1,222 @@
-<!-- Mobile Sidebar Toggle -->
-<button class="sidebar-toggle d-lg-none" id="sidebarToggle">
-    <i class="mdi mdi-menu"></i> menu
-</button>
+<!-- Mobile Toggle -->
+<!-- <button class="btn btn-dark d-lg-none m-2" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar">
+    <i class="mdi mdi-menu"></i>
+</button> -->
 
-<div class="sidebar" id="sidebar">
+<!-- Sidebar -->
+<div class="offcanvas offcanvas-start sidebar bg-white" id="adminSidebar" data-bs-backdrop="true"
+    data-bs-scroll="false">
+    <div class="offcanvas-header d-lg-none">
+        <h5 class="offcanvas-title">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
 
-    <ul class="nav">
+    <div class="offcanvas-body p-0">
 
-        {{-- === CORE SETTINGS === --}}
-        <li class="nav-item nav-category">Core</li>
+        <ul class="nav flex-column p-2">
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                <i class="mdi mdi-view-dashboard menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.user') }}">
-                <i class="mdi mdi-account menu-icon"></i>
-                <span class="menu-title">Users</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.index') }}">
-                <i class="mdi mdi-cog menu-icon"></i>
-                <span class="menu-title">General Settings</span>
-            </a>
-        </li>
+            {{-- YOUR ENTIRE MENU HERE (UNCHANGED) --}}
 
 
-        {{-- === PRODUCT MANAGEMENT === --}}
-        <li class="nav-item nav-category">
-            Product Management
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#manageMenu">
-
-                <i class="mdi mdi-package-variant menu-icon"></i>
-                <span class="menu-title">Manage</span>
-
-                <i class="menu-arrow"></i>
-            </a>
-
-            <div class="collapse" id="manageMenu">
-                <ul class="nav flex-column sub-menu">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.gallery-albums.index') }}">
-                            Gallery
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.product-categories.index') }}">
-                            Product Categories
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.products.index') }}">
-                            All Products
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </li>
+            {{-- ONLY WRAPPED INSIDE OFFCANVAS BODY --}}
 
 
 
-        {{-- === CONTENT === --}}
-        <li class="nav-item nav-category">
-            Content
-        </li>
+            {{-- === CORE SETTINGS === --}}
+            <li class="nav-item nav-category">Core</li>
 
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#bannerMenu">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    <i class="mdi mdi-view-dashboard menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
 
-                <i class="mdi mdi-image-multiple menu-icon"></i>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.user') }}">
+                    <i class="mdi mdi-account menu-icon"></i>
+                    <span class="menu-title">Users</span>
+                </a>
+            </li>
 
-                <span class="menu-title">
-                    Banners
-                </span>
-
-                <i class="menu-arrow"></i>
-
-            </a>
-
-            <div class="collapse" id="bannerMenu">
-                <ul class="nav flex-column sub-menu">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.homeslide') }}">
-                            Home Slider
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.brand.index') }}">
-
-                <i class="mdi mdi-tag-multiple menu-icon"></i>
-
-                <span class="menu-title">
-                    Brands
-                </span>
-
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.setting.index') }}">
+                    <i class="mdi mdi-cog menu-icon"></i>
+                    <span class="menu-title">General Settings</span>
+                </a>
+            </li>
 
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.team.index') }}">
+            {{-- === PRODUCT MANAGEMENT === --}}
+            <li class="nav-item nav-category">
+                Product Management
+            </li>
 
-                <i class="mdi mdi-account-group menu-icon"></i>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#manageMenu">
 
-                <span class="menu-title">
-                    Team
-                </span>
+                    <i class="mdi mdi-package-variant menu-icon"></i>
+                    <span class="menu-title">Manage</span>
 
-            </a>
-        </li>
+                    <i class="menu-arrow"></i>
+                </a>
 
-        {{-- === MEDIA === --}}
-        <li class="nav-item nav-category">
-            Media & Marketing
-        </li>
+                <div class="collapse" id="manageMenu">
+                    <ul class="nav flex-column sub-menu">
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.gallery-albums.index') }}">
+                                Gallery
+                            </a>
+                        </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.notice.index') }}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.product-categories.index') }}">
+                                Product Categories
+                            </a>
+                        </li>
 
-                <i class="mdi mdi-bullhorn menu-icon"></i>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.products.index') }}">
+                                All Products
+                            </a>
+                        </li>
 
-                <span class="menu-title">
-                    Notice
-                </span>
-
-            </a>
-        </li>
-
-
-        <li class="nav-item">
-
-            <a class="nav-link" data-bs-toggle="collapse" href="#blogSubmenu">
-
-                <i class="mdi mdi-post-outline menu-icon"></i>
-
-                <span class="menu-title">
-                    Blogs
-                </span>
-
-                <i class="menu-arrow"></i>
-
-            </a>
+                    </ul>
+                </div>
+            </li>
 
 
-            <div class="collapse" id="blogSubmenu">
 
-                <ul class="nav flex-column sub-menu">
+            {{-- === CONTENT === --}}
+            <li class="nav-item nav-category">
+                Content
+            </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.category') }}">
-                            Category
-                        </a>
-                    </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#bannerMenu">
+
+                    <i class="mdi mdi-image-multiple menu-icon"></i>
+
+                    <span class="menu-title">
+                        Banners
+                    </span>
+
+                    <i class="menu-arrow"></i>
+
+                </a>
+
+                <div class="collapse" id="bannerMenu">
+                    <ul class="nav flex-column sub-menu">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.homeslide') }}">
+                                Home Slider
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.brand.index') }}">
+
+                    <i class="mdi mdi-tag-multiple menu-icon"></i>
+
+                    <span class="menu-title">
+                        Brands
+                    </span>
+
+                </a>
+            </li>
 
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.post') }}">
-                            Post
-                        </a>
-                    </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.team.index') }}">
 
-                </ul>
+                    <i class="mdi mdi-account-group menu-icon"></i>
 
-            </div>
+                    <span class="menu-title">
+                        Team
+                    </span>
 
-        </li>
-        <li class="nav-item nav-category">
-            Utilities
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.contact.index') }}">
+                </a>
+            </li>
 
-                <i class="mdi mdi-contacts menu-icon"></i>
+            {{-- === MEDIA === --}}
+            <li class="nav-item nav-category">
+                Media & Marketing
+            </li>
 
-                <span class="menu-title">
-                    Contact
-                </span>
 
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.notice.index') }}">
 
-        <!-- <li class="nav-item">
+                    <i class="mdi mdi-bullhorn menu-icon"></i>
+
+                    <span class="menu-title">
+                        Notice
+                    </span>
+
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+
+                <a class="nav-link" data-bs-toggle="collapse" href="#blogSubmenu">
+
+                    <i class="mdi mdi-post-outline menu-icon"></i>
+
+                    <span class="menu-title">
+                        Blogs
+                    </span>
+
+                    <i class="menu-arrow"></i>
+
+                </a>
+
+
+                <div class="collapse" id="blogSubmenu">
+
+                    <ul class="nav flex-column sub-menu">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.category') }}">
+                                Category
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.post') }}">
+                                Post
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </li>
+            <li class="nav-item nav-category">
+                Utilities
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.contact.index') }}">
+
+                    <i class="mdi mdi-contacts menu-icon"></i>
+
+                    <span class="menu-title">
+                        Contact
+                    </span>
+
+                </a>
+            </li>
+
+            <!-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.newsletters.index') }}">
 
                 <i class="mdi mdi-email-newsletter menu-icon"></i>
@@ -215,18 +230,20 @@
 
 
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.logout') }}">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.logout') }}">
 
-                <i class="mdi mdi-logout menu-icon text-danger"></i>
+                    <i class="mdi mdi-logout menu-icon text-danger"></i>
 
-                <span class="menu-title text-danger">
-                    Logout
-                </span>
+                    <span class="menu-title text-danger">
+                        Logout
+                    </span>
 
-            </a>
-        </li>
+                </a>
+            </li>
 
-    </ul>
+        </ul>
+    </div>
+
 </div>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!-- sidebar  -->

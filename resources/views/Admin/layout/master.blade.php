@@ -10,30 +10,39 @@
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
-        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-                <div class="me-3">
-                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
-                        data-bs-toggle="minimize">
-                        <span class="icon-menu"></span>
-                    </button>
-                </div>
-                <div>
-                    <a class="navbar-brand brand-logo" href="{{ url('/') }}">
-                        <img src="{{ $logo ?? asset('front/images/logo.png') }}" alt="logo" />
-                    </a>
-                    <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
-                        <img src="{{ asset('front/images/logo.png') }}" alt="logo" />
-                    </a>
-                </div>
+        <nav
+            class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-center justify-content-between bg-white shadow-sm">
+
+            <!-- LEFT SIDE -->
+            <div class="d-flex align-items-center">
+
+                <!-- Sidebar toggle (desktop minimize) -->
+
+
+                <!-- Mobile sidebar toggle -->
+                <button class="btn btn-dark " data-bs-toggle="offcanvas" data-bs-target="#adminSidebar">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+
+            </div>
+
+            <!-- RIGHT SIDE (LOGO) -->
+            <div class="d-flex align-items-center ms-auto">
+
+                <a class="navbar-brand p-0 m-0" href="{{ url('/') }}">
+
+                    <img src="{{ $logo ?? asset('front/images/logo.png') }}" alt="logo"
+                        style="height:32px; width:auto; object-fit:contain;">
+
+                </a>
+
             </div>
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                @include('Admin.layout.navbar')
-            </nav>
+
+            @include('Admin.layout.navbar')
             <!-- partial -->
             <div class="main-panel">
                 @if(session('success'))
