@@ -45,7 +45,7 @@
             @include('Admin.layout.navbar')
             <!-- partial -->
             <div class="main-panel">
-                @if(session('success'))
+                @if(session('success'))CORE
                 <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
                 @yield('content')

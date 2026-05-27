@@ -15,6 +15,7 @@
 <script src="{{ asset('js/admin/core/form-modal.js') }}"></script>
 <script src="{{ asset('js/admin/core/status.js') }}"></script>
 <script src="{{ asset('js/admin/core/dropzone.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     document.querySelectorAll('.sidebar .nav-link').forEach(link => {
