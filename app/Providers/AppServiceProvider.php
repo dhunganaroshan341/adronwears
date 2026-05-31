@@ -56,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
                 'logo' => $setting->logo ?? '',
                 'title' => $setting->title ?? '',
                 'contact' => $setting->contact ?? '',
+                'contact1' => $setting->contact1 ?? '',
                 'contact2' => $setting->contact2 ?? '',
                 'phone3' => $setting->phone3 ?? '',
                 'phone4' => $setting->phone4 ?? '',

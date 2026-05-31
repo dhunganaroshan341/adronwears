@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainFrontendController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Order\ShippingRequestController;
+use App\Http\Controllers\RecaptchaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,4 @@ Route::get('/contact-us', [ContactController::class, 'index'])->name('contact');
 
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 Route::post('whatsapp-order', [ShippingRequestController::class, 'store'])->name('order.whatsapp');
+Route::post('/recaptcha/verify', [RecaptchaController::class, 'verify']);

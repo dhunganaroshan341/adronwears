@@ -1,3 +1,10 @@
+@php
+$whatsappNumber =
+$contact ??
+$contact1 ??
+$contact2 ??
+'9851065064';
+@endphp
 <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -106,7 +113,7 @@
                     </div>
 
                 </div>
-
+                <input type="hidden" name="recaptcha_token" id="recaptcha_token">
                 <div class="modal-footer justify-content-between flex-wrap gap-2">
                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
                         Cancel
@@ -138,7 +145,10 @@
 @endOnce
 @once
 @push('scripts')
+<script src="https://www.google.com/recaptcha/api.js?render={{ config('google_recaptcha.site_key') }}"></script>
+
 <script>
+
     document.querySelectorAll('.request-whatsapp').forEach(btn => {
         btn.addEventListener('click', function () {
             document.getElementById('product_name').value = this.dataset.productName;
@@ -151,20 +161,47 @@
     document.getElementById('whatsappForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const message = document.getElementById('message').value.trim();
-        const productName = document.getElementById('product_name').value;
-        const productPrice = parseFloat(document.getElementById('product_price').value) || 0;
-        const quantity = parseInt(document.getElementById('quantity').value) || 1;
+        const form = this;
 
-        const intents = [...document.querySelectorAll('.intent-option:checked')]
-            .map(cb => `• ${cb.value}`);
+        grecaptcha.ready(function () {
+            grecaptcha.execute("{{ config('google_recaptcha.site_key') }}", { action: 'whatsapp_request' })
+                .then(function (token) {
 
-        const total = (productPrice * quantity).toFixed(2);
+                    fetch('/recaptcha/verify', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({ token })
+                    })
+                        .then(res => {
+                            if (!res.ok) throw new Error("Blocked");
+                            return res.json();
+                        })
+                        .then(data => {
 
-        const fullMessage =
-            `🛍️ *Product Inquiry*
+                            if (!data.ok) {
+                                alert("Bot detected. Try again.");
+                                return;
+                            }
+
+                            // ✅ NOW SAFE → continue WhatsApp logic
+
+                            const name = document.getElementById('name').value.trim();
+                            const phone = document.getElementById('phone').value.trim();
+                            const message = document.getElementById('message').value.trim();
+                            const productName = document.getElementById('product_name').value;
+                            const productPrice = parseFloat(document.getElementById('product_price').value) || 0;
+                            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+
+                            const intents = [...document.querySelectorAll('.intent-option:checked')]
+                                .map(cb => `• ${cb.value}`);
+
+                            const total = (productPrice * quantity).toFixed(2);
+
+                            const fullMessage =
+                                `🛍️ *Product Inquiry*
 
 👤 Name: ${name}
 📞 Phone: ${phone}
@@ -183,7 +220,18 @@ ${message || 'N/A'}
 🔗 Page:
 ${window.location.href}`;
 
-        window.open(`https://wa.me/9779825056528?text=${encodeURIComponent(fullMessage)}`, '_blank');
+                            window.open(
+                                `https://wa.me/{{ $whatsappNumber }}?text=${encodeURIComponent(fullMessage)}`,
+                                '_blank'
+                            );
+
+                        })
+                        .catch(() => {
+                            alert("Verification failed. Try again.");
+                        });
+
+                });
+        });
     });
 </script>
 @endpush

@@ -215,6 +215,17 @@
 
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.shipping-requests.index') }}">
+
+                    <i class="mdi mdi-truck menu-icon"></i>
+
+                    <span class="menu-title">
+                        Shpping Requests
+                    </span>
+
+                </a>
+            </li>
 
             <!-- <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.newsletters.index') }}">

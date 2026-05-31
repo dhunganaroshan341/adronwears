@@ -5,88 +5,7 @@
 <div class="container py-5">
     <div class="row">
         <!-- Sidebar with Categories -->
-        <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
-            <h1 class="h2 pb-4 pb-md-3">Categories</h1>
-
-            <!-- Search Filter -->
-            <div class="mb-3 mb-md-4">
-                <input type="text" id="searchProducts" class="form-control" placeholder="Search products...">
-            </div>
-
-            <!-- Price Filter -->
-            <div class="mb-3 mb-md-4">
-                <h5 class="fw-bold mb-2 mb-md-3">Price Range</h5>
-                <div class="row g-2">
-                    <div class="col-6">
-                        <input type="number" id="minPrice" class="form-control form-control-sm" placeholder="Min">
-                    </div>
-                    <div class="col-6">
-                        <input type="number" id="maxPrice" class="form-control form-control-sm" placeholder="Max">
-                    </div>
-                    <div class="col-12 mt-2">
-                        <button id="applyPriceFilter" class="btn btn-sm btn-success w-100">Apply Filter</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sort Options -->
-            <div class="mb-3 mb-md-4">
-                <h5 class="fw-bold mb-2 mb-md-3">Sort By</h5>
-                <select id="sortProducts" class="form-select form-select-sm">
-                    <option value="default">Default</option>
-                    <option value="price_asc">Price: Low to High</option>
-                    <option value="price_desc">Price: High to Low</option>
-                    <option value="name_asc">Name: A to Z</option>
-                    <option value="name_desc">Name: Z to A</option>
-                    <option value="newest">Newest First</option>
-                </select>
-            </div>
-
-            <!-- Categories Accordion -->
-            <ul class="list-unstyled templatemo-accordion">
-                @foreach($categories as $parent)
-                <li class="pb-2 pb-md-3">
-                    @if(count($parent['children']) > 0)
-                    <!-- Parent with accordion -->
-                    <a class="d-flex justify-content-between align-items-center text-decoration-none py-1"
-                        data-bs-toggle="collapse" href="#cat-{{ $parent['id'] }}" role="button" aria-expanded="false">
-                        <span class="flex-grow-1">
-                            {{ $parent['name'] }}
-                            <small class="text-muted d-inline-block ms-1">({{ $parent['products_count'] ?? 0 }})</small>
-                        </span>
-                        <i class="fa fa-fw fa-chevron-circle-down ms-2 flex-shrink-0"></i>
-                    </a>
-
-                    <!-- Children -->
-                    <ul id="cat-{{ $parent['id'] }}" class="collapse list-unstyled ps-2 ps-md-3 mt-2 mt-md-3">
-                        @foreach($parent['children'] as $child)
-                        <li class="mb-1 mb-md-2">
-                            <a class="d-flex justify-content-between align-items-center text-decoration-none category-filter py-1"
-                                href="#" data-category-id="{{ $child['id'] }}">
-                                <span class="flex-grow-1">{{ $child['name'] }}</span>
-                                <small class="text-muted ms-2 flex-shrink-0">({{ $child['products_count'] ?? 0
-                                    }})</small>
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                    @else
-                    <!-- No children -->
-                    <a class="d-flex justify-content-between align-items-center text-decoration-none category-filter py-1"
-                        href="#" data-category-id="{{ $parent['id'] }}">
-                        <span class="flex-grow-1">{{ $parent['name'] }}</span>
-                        <small class="text-muted ms-2 flex-shrink-0">({{ $parent['products_count'] ?? 0 }})</small>
-                    </a>
-                    @endif
-                </li>
-                @endforeach
-            </ul>
-
-            <!-- Clear Filters Button -->
-            <button id="clearFilters" class="btn btn-outline-secondary btn-sm w-100 mt-3 mt-md-4">
-                <i class="fas fa-eraser"></i> Clear All Filters
-            </button>
-        </div>
+        @include('components.shop.sidebar-filter', ['categories' => $categories])
 
         <!-- Products Grid -->
         <div class="col-lg-9 col-md-8">
@@ -268,13 +187,13 @@
         color: #28a745;
     }
 
-    .templatemo-accordion .collapse {
+    /* .templatemo-accordion .collapse {
         display: none;
-    }
+    } */
 
-    .templatemo-accordion .collapse.show {
+    /* .templatemo-accordion .collapse.show {
         display: block;
-    }
+    } */
 
     .templatemo-accordion li {
         position: relative;
@@ -377,7 +296,7 @@
                 }
             }
 
-            product.style.display = show ? 'block' : 'none';
+            product.style.display = show ? '' : 'none';
             if (show) visibleCount++;
         });
 
@@ -428,14 +347,17 @@
     document.querySelectorAll('.category-filter').forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-            e.stopPropagation();
 
-            // Toggle active class
-            document.querySelectorAll('.category-filter').forEach(l => l.classList.remove('active'));
+            // safety guard (only allow valid IDs)
+            if (!this.dataset.categoryId) return;
+
+            document.querySelectorAll('.category-filter')
+                .forEach(l => l.classList.remove('active'));
+
             this.classList.add('active');
 
-            // Set filter
             currentCategory = this.dataset.categoryId;
+
             filterProducts();
         });
     });

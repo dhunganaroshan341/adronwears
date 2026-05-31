@@ -18,14 +18,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    document.querySelectorAll('.sidebar .nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            const offcanvas = bootstrap.Offcanvas.getInstance(
-                document.getElementById('adminSidebar')
-            );
+    document.querySelectorAll('#adminSidebar a.nav-link').forEach(link => {
+
+        link.addEventListener('click', function () {
+
+            const href = this.getAttribute('href');
+
+            // ignore dropdown toggles
+            if (!href || href === '#' || this.dataset.bsToggle === 'collapse') {
+                return;
+            }
+
+            const offcanvasEl = document.getElementById('adminSidebar');
+            const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
 
             if (offcanvas) offcanvas.hide();
         });
+
     });
 </script>
 @isset($extraJs)
