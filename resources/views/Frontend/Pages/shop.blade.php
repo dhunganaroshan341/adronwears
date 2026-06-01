@@ -103,6 +103,7 @@
                 <div class="col-12">
                     <div class="d-flex justify-content-center">
                         {{ $products->links() }}
+
                     </div>
                 </div>
             </div>

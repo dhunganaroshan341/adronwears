@@ -20,7 +20,7 @@ class MainFrontendController extends Controller
     }
     public function shop()
     {
-        $products = Product::latest()->take(8)->get();
+        $products = Product::latest()->take(18)->paginate();
         $categories = ProductCategory::whereNull('parent_id')
             ->with([
                 'children' => function ($q) {

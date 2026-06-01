@@ -18,8 +18,10 @@ $contact2 ??
                     </svg>
                     Request Product
                 </h5>
+
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
+
             </div>
 
             <form id="whatsappForm">
@@ -41,6 +43,7 @@ $contact2 ??
                             <label class="form-label small text-muted mb-1">Price</label>
                             <input type="text" id="product_price" class="form-control form-control-sm bg-light"
                                 readonly>
+
                         </div>
                     </div>
 
