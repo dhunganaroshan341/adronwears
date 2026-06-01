@@ -258,210 +258,229 @@
 
 @push('scripts')
 <script>
-    // Global variables
-    let currentCategory = null;
-    let currentMinPrice = null;
-    let currentMaxPrice = null;
-    let currentSort = 'default';
-    let currentSearch = '';
+    document.addEventListener('DOMContentLoaded', function () {
 
-    // Filter products (Brand-side filtering)
-    function filterProducts() {
-        const products = document.querySelectorAll('.product-item');
-        let visibleCount = 0;
+        let currentCategory = null;
+        let currentMinPrice = null;
+        let currentMaxPrice = null;
+        let currentSort = 'default';
+        let currentSearch = '';
 
-        products.forEach(product => {
-            let show = true;
+        function filterProducts() {
 
-            // Category filter
-            if (currentCategory) {
-                const productCategory = product.dataset.productCategory;
-                if (productCategory != currentCategory) {
+            const products = document.querySelectorAll('.product-item');
+            let visibleCount = 0;
+
+            products.forEach(product => {
+
+                let show = true;
+
+                const category =
+                    product.dataset.productCategory ||
+                    product.dataset.category;
+
+                const price = parseFloat(
+                    product.dataset.productPrice ||
+                    product.dataset.price ||
+                    0
+                );
+
+                const name =
+                    (
+                        product.dataset.productName ||
+                        product.dataset.name ||
+                        ''
+                    ).toLowerCase();
+
+                // Category
+                if (currentCategory) {
+                    if (String(category) !== String(currentCategory)) {
+                        show = false;
+                    }
+                }
+
+                // Price
+                if (show && currentMinPrice !== null && price < currentMinPrice) {
                     show = false;
                 }
-            }
 
-            // Price filter
-            if (show && (currentMinPrice || currentMaxPrice)) {
-                const price = parseFloat(product.dataset.productPrice);
-                if (currentMinPrice && price < currentMinPrice) show = false;
-                if (currentMaxPrice && price > currentMaxPrice) show = false;
-            }
-
-            // Search filter
-            if (show && currentSearch) {
-                const productName = product.dataset.productName.toLowerCase();
-                if (!productName.includes(currentSearch.toLowerCase())) {
+                if (show && currentMaxPrice !== null && price > currentMaxPrice) {
                     show = false;
                 }
+
+                // Search
+                if (show && currentSearch) {
+                    if (!name.includes(currentSearch.toLowerCase())) {
+                        show = false;
+                    }
+                }
+
+                product.style.display = show ? '' : 'none';
+
+                if (show) {
+                    visibleCount++;
+                }
+            });
+
+            const countEl = document.getElementById('productCount');
+
+            if (countEl) {
+                countEl.textContent = visibleCount;
             }
 
-            product.style.display = show ? '' : 'none';
-            if (show) visibleCount++;
-        });
-
-        // Update product count
-        document.getElementById('productCount').textContent = visibleCount;
-
-        // Sort products
-        if (currentSort !== 'default') {
-            sortProducts();
-        }
-    }
-
-    // Sort products
-    function sortProducts() {
-        const grid = document.getElementById('productsGrid');
-        const products = Array.from(document.querySelectorAll('.product-item'));
-
-        products.sort((a, b) => {
-            const aName = a.dataset.productName;
-            const bName = b.dataset.productName;
-            const aPrice = parseFloat(a.dataset.productPrice);
-            const bPrice = parseFloat(b.dataset.productPrice);
-
-            switch (currentSort) {
-                case 'price_asc':
-                    return aPrice - bPrice;
-                case 'price_desc':
-                    return bPrice - aPrice;
-                case 'name_asc':
-                    return aName.localeCompare(bName);
-                case 'name_desc':
-                    return bName.localeCompare(aName);
-                case 'newest':
-                    // Assuming newer products have higher IDs
-                    return parseInt(b.dataset.productId) - parseInt(a.dataset.productId);
-                default:
-                    return 0;
+            if (currentSort !== 'default') {
+                sortProducts();
             }
-        });
-
-        // Reorder DOM elements
-        products.forEach(product => {
-            grid.appendChild(product);
-        });
-    }
-
-    // Category filter click handlers
-    document.querySelectorAll('.category-filter').forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // safety guard (only allow valid IDs)
-            if (!this.dataset.categoryId) return;
-
-            document.querySelectorAll('.category-filter')
-                .forEach(l => l.classList.remove('active'));
-
-            this.classList.add('active');
-
-            currentCategory = this.dataset.categoryId;
-
-            filterProducts();
-        });
-    });
-
-    // Price filter
-    document.getElementById('applyPriceFilter')?.addEventListener('click', function () {
-        currentMinPrice = parseFloat(document.getElementById('minPrice').value) || null;
-        currentMaxPrice = parseFloat(document.getElementById('maxPrice').value) || null;
-        filterProducts();
-    });
-
-    // Search filter
-    document.getElementById('searchProducts')?.addEventListener('keyup', function () {
-        currentSearch = this.value;
-        filterProducts();
-    });
-
-    // Sort products
-    document.getElementById('sortProducts')?.addEventListener('change', function () {
-        currentSort = this.value;
-        filterProducts();
-    });
-
-    // Clear all filters
-    document.getElementById('clearFilters')?.addEventListener('click', function () {
-        // Reset all filter variables
-        currentCategory = null;
-        currentMinPrice = null;
-        currentMaxPrice = null;
-        currentSearch = '';
-        currentSort = 'default';
-
-        // Reset UI elements
-        document.getElementById('minPrice').value = '';
-        document.getElementById('maxPrice').value = '';
-        document.getElementById('searchProducts').value = '';
-        document.getElementById('sortProducts').value = 'default';
-        document.querySelectorAll('.category-filter').forEach(l => l.classList.remove('active'));
-
-        // Reset product display
-        filterProducts();
-
-        // Show success message
-        showToast('All filters cleared!', 'info');
-    });
-
-    // Quick add to cart
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            const productId = this.dataset.productId;
-
-            // Save original button state
-            const originalHTML = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            this.disabled = true;
-
-            // Simulate add to cart (replace with actual AJAX)
-            setTimeout(() => {
-                this.innerHTML = '<i class="fas fa-check"></i>';
-                this.classList.remove('btn-outline-dark');
-                this.classList.add('btn-success');
-
-                setTimeout(() => {
-                    this.innerHTML = originalHTML;
-                    this.disabled = false;
-                    this.classList.remove('btn-success');
-                    this.classList.add('btn-outline-dark');
-                }, 2000);
-
-                showToast('Product added to cart! 🛒');
-            }, 500);
-        });
-    });
-
-    // Toast notification
-    function showToast(message, type = 'success') {
-        let toastContainer = document.querySelector('.toast-container');
-        if (!toastContainer) {
-            toastContainer = document.createElement('div');
-            toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
-            toastContainer.style.zIndex = '1050';
-            document.body.appendChild(toastContainer);
         }
 
-        const toastEl = document.createElement('div');
-        toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
-        toastEl.setAttribute('role', 'alert');
+        function sortProducts() {
 
-        toastEl.innerHTML = `
-            <div class="d-flex">
-                <div class="toast-body">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'} me-2"></i>
-                    ${message}
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-            </div>
-        `;
+            const grid = document.getElementById('productsGrid');
 
-        toastContainer.appendChild(toastEl);
-        const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
-        toast.show();
+            if (!grid) return;
 
-        toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
-    }
+            const products = Array.from(
+                document.querySelectorAll('.product-item')
+            );
+
+            products.sort((a, b) => {
+
+                const aName =
+                    a.dataset.productName ||
+                    a.dataset.name ||
+                    '';
+
+                const bName =
+                    b.dataset.productName ||
+                    b.dataset.name ||
+                    '';
+
+                const aPrice = parseFloat(
+                    a.dataset.productPrice ||
+                    a.dataset.price ||
+                    0
+                );
+
+                const bPrice = parseFloat(
+                    b.dataset.productPrice ||
+                    b.dataset.price ||
+                    0
+                );
+
+                const aId = parseInt(
+                    a.dataset.productId ||
+                    a.dataset.id ||
+                    0
+                );
+
+                const bId = parseInt(
+                    b.dataset.productId ||
+                    b.dataset.id ||
+                    0
+                );
+
+                switch (currentSort) {
+
+                    case 'price_asc':
+                        return aPrice - bPrice;
+
+                    case 'price_desc':
+                        return bPrice - aPrice;
+
+                    case 'name_asc':
+                        return aName.localeCompare(bName);
+
+                    case 'name_desc':
+                        return bName.localeCompare(aName);
+
+                    case 'newest':
+                        return bId - aId;
+
+                    default:
+                        return 0;
+                }
+            });
+
+            products.forEach(product => {
+                grid.appendChild(product);
+            });
+        }
+
+        // CATEGORY
+        document.querySelectorAll('.category-filter')
+            .forEach(link => {
+
+                link.addEventListener('click', function (e) {
+
+                    e.preventDefault();
+
+                    document.querySelectorAll('.category-filter')
+                        .forEach(item => item.classList.remove('active'));
+
+                    this.classList.add('active');
+
+                    currentCategory =
+                        this.dataset.category ||
+                        this.dataset.categoryId;
+
+                    filterProducts();
+                });
+            });
+
+        // PRICE
+        document.getElementById('applyPriceFilter')
+            ?.addEventListener('click', function () {
+
+                currentMinPrice =
+                    parseFloat(document.getElementById('minPrice').value) || null;
+
+                currentMaxPrice =
+                    parseFloat(document.getElementById('maxPrice').value) || null;
+
+                filterProducts();
+            });
+
+        // SEARCH
+        document.getElementById('searchProducts')
+            ?.addEventListener('input', function () {
+
+                currentSearch = this.value.trim();
+
+                filterProducts();
+            });
+
+        // SORT
+        document.getElementById('sortProducts')
+            ?.addEventListener('change', function () {
+
+                currentSort = this.value;
+
+                filterProducts();
+            });
+
+        // CLEAR
+        document.getElementById('clearFilters')
+            ?.addEventListener('click', function () {
+
+                currentCategory = null;
+                currentMinPrice = null;
+                currentMaxPrice = null;
+                currentSearch = '';
+                currentSort = 'default';
+
+                document.getElementById('minPrice').value = '';
+                document.getElementById('maxPrice').value = '';
+
+                document.getElementById('searchProducts').value = '';
+
+                document.getElementById('sortProducts').value = 'default';
+
+                document.querySelectorAll('.category-filter')
+                    .forEach(item => item.classList.remove('active'));
+
+                filterProducts();
+            });
+
+    });
 </script>
 @endpush

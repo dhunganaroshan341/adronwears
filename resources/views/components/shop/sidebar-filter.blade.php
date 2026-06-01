@@ -43,16 +43,19 @@
         @foreach($categories as $parent)
         <li class="mb-2">
 
-            <a class="d-flex justify-content-between text-decoration-none" data-bs-toggle="collapse"
-                href="#cat-{{ $parent['id'] }}">
+            <a class="category-parent d-flex justify-content-between align-items-center text-decoration-none py-2 px-2 rounded"
+                data-bs-toggle="collapse" href="#cat-{{ $parent['id'] }}" role="button">
+
                 <span>{{ $parent['name'] }}</span>
+
+                <i class="fas fa-chevron-down category-arrow"></i>
             </a>
 
             <ul class="collapse ps-3" id="cat-{{ $parent['id'] }}">
 
                 @foreach($parent['children'] as $child)
                 <li>
-                    <a href="#" class="category-filter d-block py-1 text-decoration-none"
+                    <a href="#" class="category-filter d-block py-1 text-decoration-none text-dark"
                         data-category="{{ $child['id'] }}">
                         {{ $child['name'] }}
                     </a>
@@ -70,41 +73,30 @@
         Clear All Filters
     </button>
 </div>
-<script>
-    let activeCategory = null;
 
-    function applyFilters() {
-
-        const search = document.getElementById('searchProducts').value.toLowerCase();
-        const min = parseFloat(document.getElementById('minPrice').value) || null;
-        const max = parseFloat(document.getElementById('maxPrice').value) || null;
-
-        let visible = 0;
-
-        document.querySelectorAll('.product-item').forEach(item => {
-
-            let show = true;
-
-            const name = item.dataset.name || '';
-            const price = parseFloat(item.dataset.price || 0);
-            const category = item.dataset.category || '';
-
-            // CATEGORY FILTER
-            if (activeCategory && String(category) !== String(activeCategory)) {
-                show = false;
-            }
-
-            // PRICE FILTER
-            if (show && min !== null && price < min) show = false;
-            if (show && max !== null && price > max) show = false;
-
-            // SEARCH FILTER
-            if (show && search && !name.includes(search)) show = false;
-
-            item.style.display = show ? '' : 'none';
-
-            if (show) visible++;
-        });
-
-        document.getElementById('productCount').innerText = visible;
+<style>
+    .category-parent {
+        color: #212529;
+        transition: all .2s ease;
     }
+
+    .category-parent:hover {
+        background: #f8f9fa;
+        color: #198754;
+    }
+
+    .category-parent[aria-expanded="true"] {
+        background: #f8f9fa;
+    }
+</style>
+
+<style>
+    .category-parent[aria-expanded="true"] .category-arrow {
+        transform: rotate(180deg);
+    }
+
+    .category-arrow {
+        transition: transform .25s ease;
+        font-size: 12px;
+    }
+</style>
