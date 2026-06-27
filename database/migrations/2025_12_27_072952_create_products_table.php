@@ -50,7 +50,7 @@ return new class extends Migration
             $table->boolean('is_new')->default(false);
             $table->boolean('is_on_sale')->default(false);
 
-            $table->integer('total_stock')->default(0);
+            $table->integer('total_stock')->default(1);
 
             $table->string('brand_name')->nullable();
             $table->foreignId('brand_id')->nullable()->constrained('brands')->cascadeOnUpdate()->cascadeOnDelete();
