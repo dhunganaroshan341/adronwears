@@ -1,5 +1,40 @@
 @extends('Frontend.Layouts.main')
+@push('styles')
+<style>
+    .gallery-thumb {
+        transition: .3s;
+        border: 2px solid transparent;
+    }
 
+    .gallery-thumb:hover {
+        opacity: .8;
+    }
+
+    .gallery-thumb.active {
+        border-color: #198754;
+    }
+
+    .carousel-item img {
+        height: 500px;
+        object-fit: cover;
+    }
+
+    .gallery-thumb {
+        height: 100px;
+        object-fit: cover;
+    }
+
+    @media (max-width: 767.98px) {
+        .carousel-item img {
+            height: 300px;
+        }
+
+        .gallery-thumb {
+            height: 70px;
+        }
+    }
+</style>
+@endpush
 @section('content')
 
 <section class="bg-light py-5">
@@ -10,18 +45,48 @@
             {{-- PRODUCT IMAGE --}}
             <div class="col-lg-5">
 
-                <div class="card mb-3">
+                <div id="productGallery" class="carousel slide mb-3" data-bs-ride="false">
 
+                    <div class="carousel-inner rounded border bg-white">
 
+                        {{-- Thumbnail --}}
+                        <div class="carousel-item active">
+                            <img src="{{ $product['thumbnail'] }}" class="d-block w-100" alt="{{ $product['name'] }}">
+                        </div>
 
-                    <img class="card-img img-fluid" src="{{ $product['thumbnail']??'' }}" alt="{{ $product['name'] }}">
+                        {{-- Gallery Images --}}
+                        @foreach($product['images'] as $image)
+
+                        @php
+                        $galleryImage = str_replace(
+                        'http://127.0.0.1:8000/uploads/',
+                        '',
+                        trim($image['image_path'])
+                        );
+                        @endphp
+
+                        <div class="carousel-item">
+                            <img src="{{ asset('uploads/' . ltrim($galleryImage, '/')) }}" class="d-block w-100"
+                                alt="{{ $product['name'] }}">
+                        </div>
+
+                        @endforeach
+
+                    </div>
+
                 </div>
 
-                {{-- GALLERY --}}
-                @if(!empty($product['images']))
-                <div class="row">
+                {{-- Thumbnails --}}
+                <div class="row g-2">
 
-                    @foreach($product['images'] as $image)
+                    {{-- Main Thumbnail --}}
+                    <div class="col-3">
+                        <img src="{{ $product['thumbnail'] }}" class="img-fluid border rounded gallery-thumb active"
+                            data-bs-target="#productGallery" data-bs-slide-to="0" style="width:100%;cursor:pointer;">
+                    </div>
+
+                    {{-- Gallery --}}
+                    @foreach($product['images'] as $index => $image)
 
                     @php
                     $galleryImage = str_replace(
@@ -31,15 +96,15 @@
                     );
                     @endphp
 
-                    <div class="col-4 mb-3">
-                        <img src="{{ asset('uploads/' . ltrim($galleryImage, '/')) }}" class="img-fluid border rounded"
-                            alt="{{ $product['name'] }}">
+                    <div class="col-3">
+                        <img src="{{ asset('uploads/' . ltrim($galleryImage, '/')) }}"
+                            class="img-fluid border rounded gallery-thumb" data-bs-target="#productGallery"
+                            data-bs-slide-to="{{ $index + 1 }}" style="width:100%;cursor:pointer;">
                     </div>
 
                     @endforeach
 
                 </div>
-                @endif
 
             </div>
 
@@ -144,10 +209,6 @@
                         </div>
 
                         {{-- REQUEST BUTTON --}}
-                        <!-- <button class="btn btn-outline-dark" data-bs-toggle="modal"
-                            data-bs-target="#productRequestModal">
-                            Request This Product
-                        </button> -->
                         @include('components.product.whatsapp-cart-button', ['product' => $product])
 
 
@@ -301,6 +362,20 @@
                 }
             }
         ]
+    });
+
+    const gallery = document.getElementById('productGallery');
+
+    gallery.addEventListener('slid.bs.carousel', function (e) {
+
+        document.querySelectorAll('.gallery-thumb').forEach(function (item) {
+            item.classList.remove('active');
+        });
+
+        document.querySelector(
+            '.gallery-thumb[data-bs-slide-to="' + e.to + '"]'
+        ).classList.add('active');
+
     });
 
 </script>

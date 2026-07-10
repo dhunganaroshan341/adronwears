@@ -38,8 +38,8 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             TagSeeder::class,
             ProductCategorySeeder::class,
-            ProductSeeder::class,
-            ProductTagSeeder::class,
+            // ProductSeeder::class,
+            // ProductTagSeeder::class,
         ]);
     }
 }

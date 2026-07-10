@@ -6,44 +6,59 @@ return [
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
     |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default filesystem disk that should be used
-    | by the framework. The "local" disk, as well as a variety of cloud
-    | based disks are available to your application. Just store away!
-    |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
     | Filesystem Disks
     |--------------------------------------------------------------------------
-    |
-    | Here you may configure as many filesystem "disks" as you wish, and you
-    | may even configure multiple disks of the same driver. Defaults have
-    | been set up for each driver as an example of the required values.
-    |
-    | Supported Drivers: "local", "ftp", "sftp", "s3"
-    |
     */
 
     'disks' => [
 
+        /*
+        |--------------------------------------------------------------------------
+        | Private Local Storage
+        |--------------------------------------------------------------------------
+        */
         'local' => [
             'driver' => 'local',
-            'root' =>public_path('uploads'),
+            'root' => storage_path('app/private'),
             'throw' => false,
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Public Uploads
+        |--------------------------------------------------------------------------
+        | Files will be stored in:
+        | public/uploads/
+        |
+        | Example:
+        | products/image.jpg
+        |
+        | Physical path:
+        | public/uploads/products/image.jpg
+        |
+        | URL:
+        | https://example.com/uploads/products/image.jpg
+        |--------------------------------------------------------------------------
+        */
         'public' => [
             'driver' => 'local',
-            'root' =>public_path('uploads'),
-            'url' => env('APP_URL').'/uploads',
+            'root' => public_path('uploads'),
+            'url' => env('APP_URL') . '/uploads',
             'visibility' => 'public',
             'throw' => false,
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Amazon S3
+        |--------------------------------------------------------------------------
+        */
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -63,9 +78,9 @@ return [
     | Symbolic Links
     |--------------------------------------------------------------------------
     |
-    | Here you may configure the symbolic links that will be created when the
-    | `storage:link` Artisan command is executed. The array keys should be
-    | the locations of the links and the values should be their targets.
+    | Required only if you use storage/app/public.
+    | Since we're storing directly in public/uploads,
+    | this isn't used, but it's fine to leave it.
     |
     */
 

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class BrandSeeder extends Seeder
@@ -13,12 +12,43 @@ class BrandSeeder extends Seeder
      */
     public function run(): void
     {
-        $clients = Brand::factory()->count(10)->make(); // generate but don't insert yet
+        $brands = [
+            ['name' => 'Nike'],
+            ['name' => 'Adidas'],
+            ['name' => 'Puma'],
+            ['name' => 'Reebok'],
+            ['name' => 'Under Armour'],
+            ['name' => 'New Balance'],
+            ['name' => 'Converse'],
+            ['name' => 'Vans'],
+            ['name' => 'Levi\'s'],
+            ['name' => 'Wrangler'],
+            ['name' => 'Lee'],
+            ['name' => 'Tommy Hilfiger'],
+            ['name' => 'Calvin Klein'],
+            ['name' => 'Lacoste'],
+            ['name' => 'Hugo Boss'],
+            ['name' => 'Ralph Lauren'],
+            ['name' => 'Diesel'],
+            ['name' => 'Gap'],
+            ['name' => 'Uniqlo'],
+            ['name' => 'Zara'],
+            ['name' => 'H&M'],
+            ['name' => 'Mango'],
+            ['name' => 'Superdry'],
+            ['name' => 'Jack & Jones'],
+            ['name' => 'The North Face'],
+            ['name' => 'Columbia'],
+            ['name' => 'Patagonia'],
+            ['name' => 'Champion'],
+            ['name' => 'Fila'],
+            ['name' => 'Asics'],
+        ];
 
-        foreach ($clients as $client) {
+        foreach ($brands as $brand) {
             Brand::updateOrCreate(
-                ['email' => $client->email], // condition
-                $client->toArray()           // data to insert/update
+                ['name' => $brand['name']],
+                $brand
             );
         }
     }

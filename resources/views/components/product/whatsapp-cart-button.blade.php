@@ -1,16 +1,19 @@
 @if($product['total_stock'] > 0)
-<a class="btn btn-sm btn-outline-dark request-whatsapp" data-product-id="{{ $product['id'] }}"
-    data-product-name="{{ $product['name'] }}" data-product-price="{{ $product['sale_price'] ?? $product['price'] }}"
+<a href="javascript:void(0);" class="btn btn-success btn-sm request-whatsapp" title="WhatsApp"
+    data-product-id="{{ $product['id'] }}" data-product-name="{{ $product['name'] }}"
+    data-product-price="{{ $product['sale_price'] ?? $product['price'] }}"
     data-product-image="{{ asset('storage/products/' . ($product['thumbnail'] ?? 'default-product.jpg')) }}">
-    <i class="fab fa-whatsapp me-1"></i> WhatsApp
+
+    <i class="fab fa-whatsapp"></i>
+    <small>WhatsApp</small>
+
 </a>
 
-
-<button class="btn btn-sm btn-outline-dark add-to-cart" data-product-id="{{ $product['id'] }}">
-    <i class="fas fa-cart-plus"></i>
-</button>
+<!-- <i class="fab fa-whatsapp me-1"></i> -->
+</a>
 @else
-<button class="btn btn-sm btn-secondary" disabled>
-    <i class="fas fa-times"></i> Out of Stock
+<button class="btn btn-secondary btn-sm px-2 py-1" disabled>
+    <i class="fas fa-times me-1"></i>
+    <small>Out of Stock</small>
 </button>
 @endif

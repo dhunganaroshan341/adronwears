@@ -50,18 +50,20 @@ class ProductController extends Controller
             $request,
             'thumbnail',
             null,
-            '/products'
+            'products'
         );
+
+
 
         $product = Product::create($data);
 
         // Multiple images
+
         $images = $this->handleMultipleMedia(
             $request,
             'images',
-            '/products/gallery'
+            'products/gallery'
         );
-
         foreach ($images as $path) {
             $product->images()->create([
                 'image_path' => $path,
@@ -82,8 +84,10 @@ class ProductController extends Controller
             $request,
             'thumbnail',
             $product->thumbnail,
-            '/products'
+            'products'
         );
+
+
 
         $product->update($data);
 
@@ -91,9 +95,8 @@ class ProductController extends Controller
         $images = $this->handleMultipleMedia(
             $request,
             'images',
-            '/products/gallery'
+            'products/gallery'
         );
-
         foreach ($images as $path) {
             $product->images()->create([
                 'image_path' => $path,
