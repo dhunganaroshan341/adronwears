@@ -43,15 +43,15 @@
 
             @include('Admin.layout.navbar')
             <!-- partial -->
-            <div class="main-panel">
-                @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-                @yield('content')
+            <!-- <div class="main-panel"> -->
+            @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @yield('content')
 
 
-                <!-- partial -->
-            </div>
+            <!-- partial -->
+            <!-- </div> -->
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->

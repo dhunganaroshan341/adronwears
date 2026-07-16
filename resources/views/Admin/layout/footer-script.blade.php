@@ -1,5 +1,5 @@
 <!-- plugins:js -->
-<script src="{{ asset('admin/vendors/js/vendor.bundle.base.js') }}"></script>
+<!-- <script src="{{ asset('admin/vendors/js/vendor.bundle.base.js') }}"></script> -->
 
 
 <script src="{{ asset('admin/js/template.js') }}"></script>
