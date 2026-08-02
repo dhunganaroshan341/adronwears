@@ -72,7 +72,7 @@ class ShippingRequestService
     public function create(array $data): ShippingRequest
     {
         // Validate cart existence
-        $cart = Cart::findOrFail($data['cart_id']);
+        // $cart = Cart::findOrFail($data['cart_id']);
 
         // Attach user if logged in
         if (Auth::check()) {
