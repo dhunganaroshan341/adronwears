@@ -8,7 +8,7 @@ use App\Services\DataTable\CustomDataTableRequest;
 use App\Services\DataTable\CustomDatatableService;
 use Illuminate\Http\Request;
 
-class ProductCategoryControllerv1 extends Controller
+class ProductCategoryControllerV1 extends Controller
 {
     public function index(Request $request, CustomDatatableService $dtService)
     {

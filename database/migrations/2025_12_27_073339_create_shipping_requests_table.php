@@ -16,14 +16,19 @@ return new class extends Migration
 
             // Shipping always comes from cart
             $table->foreignId('cart_id')
+            ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
-
+$table->foreignId('product_id')
+    ->constrained('products')
+    ->cascadeOnUpdate()
+    ->cascadeOnDelete();
             // User (optional)
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete();
+
 
             // Guest info (if not logged in)
             $table->string('customer_name')->nullable();

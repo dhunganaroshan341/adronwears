@@ -14,7 +14,7 @@ class ProductService
     */
     public function getProductsWithCategory(int $perPage = 15)
     {
-        return Product::with(['category', 'tags'])
+        return Product::where(['category', 'tags'])
             ->latest()
             ->paginate($perPage);
     }
@@ -28,7 +28,7 @@ class ProductService
     {
         return Cache::remember('home.featured_products', 600, function () {
             return Product::with('category')
-                ->where('is_featured', 1)
+                ->where('type', 'featured')
                 ->latest()
                 ->take(10)
                 ->get();

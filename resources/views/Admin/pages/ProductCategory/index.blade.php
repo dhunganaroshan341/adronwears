@@ -3,14 +3,18 @@
 @section('content')
 <div class="container">
     <x-admin.breadcrumb>
-        <button class="btn btn-outline-dark mb-3" data-bs-toggle="modal" data-bs-target="#categoryModal"
-            onclick="openCreateForm()">Add Category</button>
+        <button class="mb-3 btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#categoryModal"
+            onclick="openCreateForm()">simple Add</button>
+           <a href="{{ route('admin.v1-product-categories.create') }}"
+   class="mb-3 btn btn-outline-dark">
+    Add Advanced Category
+</a>
 
     </x-admin.breadcrumb>
 
     {{-- 🔍 FILTER BAR --}}
-    <div class="card shadow-sm border-0 mb-3">
-        <div class="card-body py-2">
+    <div class="mb-3 border-0 shadow-sm card">
+        <div class="py-2 card-body">
 
             <form method="GET">
                 <div class="row g-2 align-items-center">
@@ -59,7 +63,7 @@
                     </div>
 
                     {{-- Buttons --}}
-                    <div class="col-md-1 col-sm-12 d-flex gap-1">
+                    <div class="gap-1 col-md-1 col-sm-12 d-flex">
                         <button class="btn btn-sm btn-outline-dark w-100">Go</button>
                         <a href="{{ route('admin.product-categories.index') }}"
                             class="btn btn-sm btn-outline-secondary w-100">
