@@ -103,14 +103,14 @@
                         </label>
 
                         <select name="type" class="form-select">
-                             <option value="simple" @selected(old('type', $product->type ?? 'category_of_the_month') == 'category_of_the_month')>
+                             <option value="category_of_the_month" @selected(old('type', $product->type ?? 'category_of_the_month') == 'category_of_the_month')>
                                 Category of the Month
                             </option>
                             <option value="simple" @selected(old('type', $product->type ?? 'simple') == 'simple')>
                                 Simple
                             </option>
 
-                            <option value="bundle" @selected(old('type', $product->type ?? '') == 'featured')>
+                            <option value="featured" @selected(old('type', $product->type ?? '') == 'featured')>
                                 Featured
                             </option>
                             <option value="bundle" @selected(old('type', $product->type ?? '') == 'bundle')>
@@ -158,8 +158,12 @@
                                 Male
                             </option>
 
+
                             <option value="female" @selected(old('gender', $product->gender ?? '') == 'female')>
                                 Female
+                            </option>
+                            <option value="unisex" @selected(old('gender', $product->gender ?? '') == 'unisex')>
+                                Unisex
                             </option>
 
                         </select>

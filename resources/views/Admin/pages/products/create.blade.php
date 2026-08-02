@@ -65,9 +65,9 @@
                 col.className = 'col-md-3 mb-3';
 
                 col.innerHTML = `
-                    <div class="border rounded p-2 text-center">
+                    <div class="p-2 text-center border rounded">
                         <img src="${e.target.result}"
-                             class="img-fluid rounded"
+                             class="rounded img-fluid"
                              style="height:150px;object-fit:cover;">
                     </div>
                 `;

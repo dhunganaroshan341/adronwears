@@ -96,7 +96,7 @@ class ProductRequest extends FormRequest
             ],
             'type' => [
                 'nullable',
-                Rule::in(['simple', 'bundle']),
+                Rule::in(['simple', 'bundle','featured','category_of_the_month']),
             ],
 
             'target_group' => [
