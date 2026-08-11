@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Order\DTOs;
+namespace App\Domain\Order\DTOs;
 
 class CreateOrderDTO
 {

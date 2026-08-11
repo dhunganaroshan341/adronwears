@@ -87,19 +87,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="navbar align-self-center d-flex">
 
-                <a class="nav-icon position-relative text-decoration-none" href="#">
-                    <i class="mr-1 fa fa-fw fa-cart-arrow-down text-dark"></i>
-                    <span
-                        class="top-0 position-absolute left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
-                </a>
-                <a class="nav-icon position-relative text-decoration-none" href="#">
-                    <i class="mr-3 fa fa-fw fa-user text-dark"></i>
-                    <span
-                        class="top-0 position-absolute left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
-                </a>
-            </div>
         </div>
 
     </div>

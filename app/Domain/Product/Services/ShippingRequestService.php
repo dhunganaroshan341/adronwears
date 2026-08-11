@@ -2,7 +2,7 @@
 
 namespace App\Domain\Order\Services;
 
-use App\Domains\Order\DTOs\CreateOrderDTO;
+use App\Domain\Order\DTOs\CreateOrderDTO;
 use App\Models\ShippingRequest;
 use Illuminate\Support\Facades\DB;
 

@@ -1,9 +1,5 @@
 @php
-$whatsappNumber =
-$contact ??
-$contact1 ??
-$contact2 ??
-'9851065064';
+    $whatsappNumber = $contact ?? ($contact1 ?? ($contact2 ?? '9851065064'));
 @endphp
 <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -26,7 +22,7 @@ $contact2 ??
 
             <form id="whatsappForm">
                 <div class="modal-body">
-<input type="hidden" id="product_id" name="product_id">
+                    <input type="hidden" id="product_id" name="product_id">
                     {{-- Product Preview --}}
                     <div class="mb-3 text-center">
                         <img id="modal_product_image" src="" alt="Product" class="rounded img-fluid"
@@ -37,7 +33,8 @@ $contact2 ??
                     <div class="mb-2 row g-2">
                         <div class="col-12 col-sm-7">
                             <label class="mb-1 form-label small text-muted">Product</label>
-                            <input type="text" id="product_name" class="form-control form-control-sm bg-light" readonly>
+                            <input type="text" id="product_name" class="form-control form-control-sm bg-light"
+                                readonly>
                         </div>
                         <div class="col-12 col-sm-5">
                             <label class="mb-1 form-label small text-muted">Price</label>
@@ -50,7 +47,8 @@ $contact2 ??
                     {{-- Quantity --}}
                     <div class="mb-3">
                         <label class="mb-1 form-label small text-muted" for="quantity">Quantity</label>
-                        <input type="number" id="quantity" class="form-control form-control-sm" value="1" min="1">
+                        <input type="number" id="quantity" class="form-control form-control-sm" value="1"
+                            min="1">
                     </div>
 
                     {{-- Intent Options --}}
@@ -111,8 +109,7 @@ $contact2 ??
                     {{-- Custom Message --}}
                     <div class="mb-2">
                         <label class="mb-1 form-label small text-muted" for="message">Custom Message</label>
-                        <textarea id="message" class="form-control form-control-sm" rows="3"
-                            placeholder="Optional..."></textarea>
+                        <textarea id="message" class="form-control form-control-sm" rows="3" placeholder="Optional..."></textarea>
                     </div>
 
                 </div>
@@ -136,76 +133,90 @@ $contact2 ??
     </div>
 </div>
 @once
-@push('styles')
-<style>
-    .modal-dialog-scrollable .modal-body {
-        max-height: calc(100vh - 200px);
-        /* critical */
-        overflow-y: auto;
-    }
-</style>
-@endpush
+    @push('styles')
+        <style>
+            .modal-dialog-scrollable .modal-body {
+                max-height: calc(100vh - 200px);
+                /* critical */
+                overflow-y: auto;
+            }
+        </style>
+    @endpush
 @endOnce
 @once
-@push('scripts')
+  @push('scripts')
 <script src="https://www.google.com/recaptcha/api.js?render={{ config('google_recaptcha.site_key') }}"></script>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 
+    // Open modal and fill product data
     document.querySelectorAll('.request-whatsapp').forEach(btn => {
         btn.addEventListener('click', function () {
+
             document.getElementById('product_id').value = this.dataset.productId;
             document.getElementById('product_name').value = this.dataset.productName;
             document.getElementById('product_price').value = this.dataset.productPrice;
             document.getElementById('modal_product_image').src = this.dataset.productImage;
+
             new bootstrap.Modal(document.getElementById('whatsappModal')).show();
         });
     });
 
-    document.getElementById('whatsappForm').addEventListener('submit', function (e) {
+    // Form submit
+    const whatsappForm = document.getElementById('whatsappForm');
+
+    whatsappForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const form = this;
-
         grecaptcha.ready(function () {
-            grecaptcha.execute("{{ config('google_recaptcha.site_key') }}", { action: 'whatsapp_request' })
-                .then(function (token) {
 
-                    fetch('/recaptcha/verify', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({ token })
+            grecaptcha.execute('{{ config('google_recaptcha.site_key') }}', {
+                action: 'whatsapp_request'
+            }).then(function (token) {
+
+                // Verify captcha first
+                fetch('/recaptcha/verify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: token
                     })
-                        .then(res => {
-                            if (!res.ok) throw new Error("Blocked");
-                            return res.json();
-                        })
-                        .then(data => {
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Verification failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
 
-                            if (!data.ok) {
-                                alert("Bot detected. Try again.");
-                                return;
-                            }
+                    if (!data.ok) {
+                        alert('Bot detected. Please try again.');
+                        return;
+                    }
 
-                            // ✅ NOW SAFE → continue WhatsApp logic
+                    // Collect form values
+                    const name = document.getElementById('name').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const message = document.getElementById('message').value.trim();
 
-                            const name = document.getElementById('name').value.trim();
-                            const phone = document.getElementById('phone').value.trim();
-                            const message = document.getElementById('message').value.trim();
-                            const productName = document.getElementById('product_name').value;
-                            const productPrice = parseFloat(document.getElementById('product_price').value) || 0;
-                            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+                    const productId = document.getElementById('product_id').value;
+                    const productName = document.getElementById('product_name').value;
+                    const productPrice = parseFloat(document.getElementById('product_price').value) || 0;
+                    const quantity = parseInt(document.getElementById('quantity').value) || 1;
 
-                            const intents = [...document.querySelectorAll('.intent-option:checked')]
-                                .map(cb => `• ${cb.value}`);
+                    const intents = [...document.querySelectorAll('.intent-option:checked')]
+                        .map(cb => `• ${cb.value}`);
 
-                            const total = (productPrice * quantity).toFixed(2);
+                    const total = (productPrice * quantity).toFixed(2);
 
-                            const fullMessage =
-                                `🛍️ *Product Inquiry*
+                    // WhatsApp message
+                    const fullMessage = `🛍️ *Product Inquiry*
 
 👤 Name: ${name}
 📞 Phone: ${phone}
@@ -224,19 +235,54 @@ ${message || 'N/A'}
 🔗 Page:
 ${window.location.href}`;
 
-                            window.open(
-                                `https://wa.me/{{ $whatsappNumber }}?text=${encodeURIComponent(fullMessage)}`,
-                                '_blank'
-                            );
+                    // 1️⃣ OPEN WHATSAPP IMMEDIATELY
+                    window.open(
+                        `https://wa.me/{{ $whatsappNumber }}?text=${encodeURIComponent(fullMessage)}`,
+                        '_blank'
+                    );
 
+                    // 2️⃣ FIRE-AND-FORGET BACKGROUND SAVE
+                    fetch('{{ route('shipping-requests.store') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            product_id: productId,
+                            customer_name: name,
+                            customer_phone: phone,
+                            message: message,
+                            quantity: quantity,
+                            product_name: productName,
+                            product_price: productPrice,
+                            total: total,
+                            intents: intents,
+                            page_url: window.location.href,
+                            recaptcha_token: token
                         })
-                        .catch(() => {
-                            alert("Verification failed. Try again.");
-                        });
+                    }).catch(error => {
+                        console.error('Background save failed:', error);
+                    });
 
+                    // 3️⃣ Close modal
+                    bootstrap.Modal
+                        .getInstance(document.getElementById('whatsappModal'))
+                        ?.hide();
+
+                    // Optional: reset form
+                    whatsappForm.reset();
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert('Verification failed. Please try again.');
                 });
+
+            });
         });
     });
+});
 </script>
 @endpush
 @endOnce

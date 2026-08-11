@@ -2,19 +2,22 @@
 
 namespace App\Domain\Order\Resolvers;
 
-
+use App\Domain\Order\DTOs\CreateOrderDTO;
 use App\Models\Cart;
 use App\Models\Product;
 
 class OrderItemResolver
 {
-    public function resolve(array $data): array
+    public function resolve(CreateOrderDTO $dto): array
     {
         // From cart
-        if (!empty($data['cart_id'])) {
-            $cart = Cart::with('items.product')->findOrFail($data['cart_id']);
+        if (!empty($dto->cart_id)) {
+
+            $cart = Cart::with('items.product')
+                ->findOrFail($dto->cart_id);
 
             return $cart->items->map(function ($item) {
+
                 return [
                     'name' => $item->product->name,
                     'qty' => $item->quantity,
@@ -24,8 +27,9 @@ class OrderItemResolver
         }
 
         // Single product
-        if (!empty($data['product_id'])) {
-            $product = Product::findOrFail($data['product_id']);
+        if (!empty($dto->product_id)) {
+
+            $product = Product::findOrFail($dto->product_id);
 
             return [[
                 'name' => $product->name,

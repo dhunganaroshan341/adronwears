@@ -15,8 +15,13 @@ class StoreShippingRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'address_line' => $this->input('address_line', 'Nepal'),
-            'country' => $this->input('country', 'Nepal'),
+            'address_line' => $this->filled('address_line')
+                ? $this->input('address_line')
+                : 'Nepal',
+
+            'city' => $this->filled('city')
+                ? $this->input('city')
+                : 'Kathmandu',
         ]);
     }
 
@@ -24,13 +29,12 @@ class StoreShippingRequest extends FormRequest
     {
         return [
             'cart_id' => 'nullable|exists:carts,id',
-            'product_id' => 'nullable|exists:products,id',
+            'product_id' => 'required|exists:products,id',
             'customer_name' => 'nullable|string|max:255',
             'customer_phone' => 'required|string|max:20',
             'customer_email' => 'nullable|email',
-            'address_line' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'country' => 'nullable|string|max:255',
+            'address_line' => 'required|string',
+            'city' => 'required|string',
             'notes' => 'nullable|string',
         ];
     }

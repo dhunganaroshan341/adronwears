@@ -2,41 +2,38 @@
 
 namespace App\Http\Controllers\Order;
 
-use Illuminate\Http\Request;
-use App\Domain\Order\Services\ShippingRequestService;
-use App\Domain\Order\Resolvers\OrderItemResolver as ResolversOrderItemResolver;
-use App\Domain\Order\Support\WhatsappMessageBuilder;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Order\StoreShippingRequest;
+use App\Domain\Order\Services\ShippingRequestService;
+use App\Domain\Order\Resolvers\OrderItemResolver;
+use App\Domain\Order\Support\WhatsappMessageBuilder;
 
 class ShippingRequestController extends Controller
 {
     public function store(
-        Request $request,
+        StoreShippingRequest $request,
         ShippingRequestService $shippingService,
-        ResolversOrderItemResolver $resolver,
+        OrderItemResolver $resolver,
         WhatsappMessageBuilder $whatsapp
     ) {
-        $data = $request->validate([
-            'cart_id' => 'nullable|exists:carts,id',
-            'product_id' => 'nullable|exists:products,id',
-            'customer_name' => 'nullable|string|max:255',
-            'customer_phone' => 'required|string|max:20',
-            'customer_email' => 'nullable|email',
-            'address_line' => 'required|string',
-            'city' => 'required|string',
-        ]);
 
-        $items = $resolver->resolve($data);
+        // DTO from Form Request
+        $dto = $request->toDto();
+        // Resolve order items
+        // Create shipping request
+        // dd($dto);
+        $shipping = $shippingService->create($dto);
+        $items = $resolver->resolve($dto);
 
-        $shipping = $shippingService->create($data);
-
+        // Build WhatsApp message
         $message = $whatsapp->buildMessage($shipping, $items);
 
+        // Generate WhatsApp URL
         $url = $whatsapp->generateUrl($message);
 
         return response()->json([
             'success' => true,
-            'whatsapp_url' => $url
+            'whatsapp_url' => $url,
         ]);
     }
 }

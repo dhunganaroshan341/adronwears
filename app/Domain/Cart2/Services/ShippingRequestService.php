@@ -2,7 +2,7 @@
 
 namespace App\Domain\Order\Services;
 
-use App\Domains\Order\DTOs\CreateOrderDTO;
+use App\Domain\Order\DTOs\CreateOrderDTO;
 use App\Models\ShippingRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -10,10 +10,11 @@ class ShippingRequestService
 {
     public function create(CreateOrderDTO $dto): ShippingRequest
     {
-        return DB::transaction(function () use ($dto) {
+        // return DB::transaction(function () use ($dto) {
 
             return ShippingRequest::create([
                 'cart_id' => $dto->cart_id,
+                'product_id' => $dto->product_id,
                 'user_id' => $dto->user_id,
                 'customer_name' => $dto->customer_name,
                 'customer_phone' => $dto->customer_phone,
@@ -22,6 +23,6 @@ class ShippingRequestService
                 'city' => $dto->city,
                 'notes' => $dto->notes,
             ]);
-        });
+        // });
     }
 }

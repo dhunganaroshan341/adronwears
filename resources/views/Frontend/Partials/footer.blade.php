@@ -93,9 +93,9 @@
                 <a class="text-light me-3" target="_blank" href="{{ $tiktok??'#' }}">
                     <i class="fab fa-tiktok fa-lg"></i>
                 </a>
-                <a class="text-light" target="_blank" href="#">
+                {{-- <a class="text-light" target="_blank" href="#">
                     <i class="fab fa-whatsapp fa-lg"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
 

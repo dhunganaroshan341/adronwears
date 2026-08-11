@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\PageBannerController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductCategoryController;
-use App\Http\Controllers\Admin\ProductCategoryControllerv1;
+use App\Http\Controllers\Admin\StandardProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -179,8 +179,8 @@ Route::prefix('setting')->name('setting.')->group(function () {
     Route::post('/', [SettingController::class, 'store'])->name('store');
 });
 
-Route::resource('product-categories', ProductCategoryController::class);
-Route::resource('v1-product-categories', ProductCategoryControllerV1::class);
+Route::resource('product-categories', StandardProductCategoryController::class);
+Route::resource('v1-product-categories', StandardProductCategoryController::class);
 
 Route::resource('products', ProductController::class);
 // routes/web.php
