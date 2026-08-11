@@ -1,19 +1,19 @@
 <!-- Mobile Toggle -->
-<!-- <button class="btn btn-dark d-lg-none m-2" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar">
+<!-- <button class="m-2 btn btn-dark d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar">
     <i class="mdi mdi-menu"></i>
 </button> -->
 
 <!-- Sidebar -->
-<div class="offcanvas offcanvas-start sidebar bg-white" id="adminSidebar" data-bs-backdrop="true"
+<div class="bg-white offcanvas offcanvas-start sidebar" id="adminSidebar" data-bs-backdrop="true"
     data-bs-scroll="false">
     <div class="offcanvas-header d-lg-none">
         <h5 class="offcanvas-title">Menu</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
 
-    <div class="offcanvas-body p-0">
+    <div class="p-0 offcanvas-body">
 
-        <ul class="nav flex-column p-2">
+        <ul class="p-2 nav flex-column">
 
             {{-- YOUR ENTIRE MENU HERE (UNCHANGED) --}}
 
@@ -64,17 +64,17 @@
                 <div class="collapse" id="manageMenu">
                     <ul class="nav flex-column sub-menu">
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.gallery-albums.index') }}">
                                 Gallery
                             </a>
-                        </li>
+                        </li> --}}
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.product-categories.index') }}">
                                 Product Categories
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.products.index') }}">

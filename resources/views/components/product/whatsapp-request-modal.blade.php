@@ -9,8 +9,8 @@ $contact2 ??
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
 
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title d-flex align-items-center gap-2" id="whatsappModalLabel">
+            <div class="text-white modal-header bg-success">
+                <h5 class="gap-2 modal-title d-flex align-items-center" id="whatsappModalLabel">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         viewBox="0 0 16 16">
                         <path
@@ -26,21 +26,21 @@ $contact2 ??
 
             <form id="whatsappForm">
                 <div class="modal-body">
-
+<input type="hidden" id="product_id" name="product_id">
                     {{-- Product Preview --}}
-                    <div class="text-center mb-3">
-                        <img id="modal_product_image" src="" alt="Product" class="img-fluid rounded"
+                    <div class="mb-3 text-center">
+                        <img id="modal_product_image" src="" alt="Product" class="rounded img-fluid"
                             style="max-height: 150px; object-fit: contain;">
                     </div>
 
                     {{-- Product & Price --}}
-                    <div class="row g-2 mb-2">
+                    <div class="mb-2 row g-2">
                         <div class="col-12 col-sm-7">
-                            <label class="form-label small text-muted mb-1">Product</label>
+                            <label class="mb-1 form-label small text-muted">Product</label>
                             <input type="text" id="product_name" class="form-control form-control-sm bg-light" readonly>
                         </div>
                         <div class="col-12 col-sm-5">
-                            <label class="form-label small text-muted mb-1">Price</label>
+                            <label class="mb-1 form-label small text-muted">Price</label>
                             <input type="text" id="product_price" class="form-control form-control-sm bg-light"
                                 readonly>
 
@@ -49,30 +49,30 @@ $contact2 ??
 
                     {{-- Quantity --}}
                     <div class="mb-3">
-                        <label class="form-label small text-muted mb-1" for="quantity">Quantity</label>
+                        <label class="mb-1 form-label small text-muted" for="quantity">Quantity</label>
                         <input type="number" id="quantity" class="form-control form-control-sm" value="1" min="1">
                     </div>
 
                     {{-- Intent Options --}}
-                    <div class="mb-3 p-3 bg-light rounded">
-                        <label class="form-label fw-semibold small mb-2">What do you want?</label>
+                    <div class="p-3 mb-3 rounded bg-light">
+                        <label class="mb-2 form-label fw-semibold small">What do you want?</label>
                         <div class="row g-2">
                             <div class="col-6">
-                                <div class="form-check mb-0">
+                                <div class="mb-0 form-check">
                                     <input class="form-check-input intent-option" type="checkbox" id="intent_buy"
                                         value="I want to buy this product">
                                     <label class="form-check-label small" for="intent_buy">Buy Product</label>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="form-check mb-0">
+                                <div class="mb-0 form-check">
                                     <input class="form-check-input intent-option" type="checkbox" id="intent_details"
                                         value="I want more details about this product">
                                     <label class="form-check-label small" for="intent_details">More Details</label>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="form-check mb-0">
+                                <div class="mb-0 form-check">
                                     <input class="form-check-input intent-option" type="checkbox"
                                         id="intent_availability" value="Is this product available?">
                                     <label class="form-check-label small" for="intent_availability">Check
@@ -80,7 +80,7 @@ $contact2 ??
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="form-check mb-0">
+                                <div class="mb-0 form-check">
                                     <input class="form-check-input intent-option" type="checkbox" id="intent_price"
                                         value="Can you give me best price?">
                                     <label class="form-check-label small" for="intent_price">Best Price</label>
@@ -90,14 +90,14 @@ $contact2 ??
                     </div>
 
                     {{-- Name & Phone --}}
-                    <div class="row g-2 mb-2">
+                    <div class="mb-2 row g-2">
                         <div class="col-12 col-sm-6">
-                            <label class="form-label small text-muted mb-1" for="name">Your Name</label>
+                            <label class="mb-1 form-label small text-muted" for="name">Your Name</label>
                             <input type="text" id="name" class="form-control form-control-sm" required
                                 placeholder="Full name">
                         </div>
                         <div class="col-12 col-sm-6">
-                            <label class="form-label small text-muted mb-1" for="phone">Phone</label>
+                            <label class="mb-1 form-label small text-muted" for="phone">Phone</label>
                             <input type="tel" id="phone" class="form-control form-control-sm" required
                                 placeholder="+977 ...">
                         </div>
@@ -110,18 +110,18 @@ $contact2 ??
 
                     {{-- Custom Message --}}
                     <div class="mb-2">
-                        <label class="form-label small text-muted mb-1" for="message">Custom Message</label>
+                        <label class="mb-1 form-label small text-muted" for="message">Custom Message</label>
                         <textarea id="message" class="form-control form-control-sm" rows="3"
                             placeholder="Optional..."></textarea>
                     </div>
 
                 </div>
                 <input type="hidden" name="recaptcha_token" id="recaptcha_token">
-                <div class="modal-footer justify-content-between flex-wrap gap-2">
+                <div class="flex-wrap gap-2 modal-footer justify-content-between">
                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
                         Cancel
                     </button>
-                    <button type="submit" class="btn btn-sm btn-success d-flex align-items-center gap-2">
+                    <button type="submit" class="gap-2 btn btn-sm btn-success d-flex align-items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             viewBox="0 0 16 16">
                             <path
@@ -154,6 +154,7 @@ $contact2 ??
 
     document.querySelectorAll('.request-whatsapp').forEach(btn => {
         btn.addEventListener('click', function () {
+            document.getElementById('product_id').value = this.dataset.productId;
             document.getElementById('product_name').value = this.dataset.productName;
             document.getElementById('product_price').value = this.dataset.productPrice;
             document.getElementById('modal_product_image').src = this.dataset.productImage;

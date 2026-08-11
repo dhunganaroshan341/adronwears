@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid px-3 px-md-5 py-4">
+<div class="px-3 py-4 container-fluid px-md-5">
     <div class="row g-4">
         <!-- Sidebar -->
         <div class="col-lg-3 col-12">
@@ -11,13 +11,13 @@
 
         <div class="col-lg-9 col-12">
             <!-- Header -->
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4 shop-header">
+            <div class="flex-wrap gap-2 mb-4 d-flex justify-content-between align-items-center shop-header">
                 <div>
-                    <h1 class="shop-title mb-0">Shop</h1>
+                    <h1 class="mb-0 shop-title">Shop</h1>
                     <span class="text-muted small"><span id="productCount">{{ count($products) }}</span> items</span>
                 </div>
 
-                <!-- <div class="d-flex align-items-center gap-2">
+                <!-- <div class="gap-2 d-flex align-items-center">
                     <input type="text" id="searchProducts" class="form-control form-control-sm shop-input"
                         placeholder="Search..." style="width: 180px;">
 
@@ -32,7 +32,7 @@
                 </div> -->
             </div>
 
-            <div id="loadingSpinner" class="text-center py-5" style="display: none;">
+            <div id="loadingSpinner" class="py-5 text-center" style="display: none;">
                 <div class="spinner-border" style="color:#111;" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
@@ -86,7 +86,7 @@
                 </div>
                 @empty
                 <div class="col-12">
-                    <div class="empty-state text-center py-5">
+                    <div class="py-5 text-center empty-state">
                         <p class="mb-0 text-muted">No products found.</p>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
 
             <!-- Pagination -->
             @if(isset($products) && method_exists($products, 'links'))
-            <div class="d-flex justify-content-center mt-5">
+            <div class="mt-5 d-flex justify-content-center">
                 {{ $products->links() }}
             </div>
             @endif
@@ -106,10 +106,10 @@
 <x-product.whatsapp-request-modal />
 
 <!-- Brands -->
-<section class="brands-section py-5 mt-4">
+<section class="py-5 mt-4 brands-section">
     <div class="container text-center">
-        <h2 class="h4 mb-1">Top Brands</h2>
-        <p class="text-muted small mb-4">Shop from the world's most trusted brands</p>
+        <h2 class="mb-1 h4">Top Brands</h2>
+        <p class="mb-4 text-muted small">Shop from the world's most trusted brands</p>
         <div class="row justify-content-center align-items-center g-4">
             @php
             $brandLogos = ['brand_01.png', 'brand_02.png', 'brand_03.png', 'brand_04.png', 'brand_05.png',
@@ -323,6 +323,7 @@
                 const category = product.dataset.productCategory || product.dataset.category;
                 const price = parseFloat(product.dataset.productPrice || product.dataset.price || 0);
                 const name = (product.dataset.productName || product.dataset.name || '').toLowerCase();
+                const productId = product.dataset.productId || product.dataset.id;
 
                 if (currentCategory && String(category) !== String(currentCategory)) show = false;
                 if (show && currentMinPrice !== null && price < currentMinPrice) show = false;
