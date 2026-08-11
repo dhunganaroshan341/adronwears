@@ -21,7 +21,7 @@ class ProductCategoryService
   public function getHomeCategories(int $limit = 10)
 {
     return Cache::remember(
-        "home.categories.featured.v1.{$limit}",
+      "home.categories.featured.v2.{$limit}",
         now()->addHours(6),
         function () use ($limit) {
 
@@ -35,16 +35,21 @@ class ProductCategoryService
             $categories = $products
                 ->unique('product_category_id')
                 ->take($limit)
-                ->map(function ($product) {
-                    return [
-                        'id' => $product->category->id,
-                        'name' => $product->category->name,
-                        'slug' => $product->category->slug,
-                        'thumbnail_image' => asset('storage/' . $product->thumbnail),
-                    ];
-                })
-                ->values();
+              ->map(function ($product) {
 
+    dd([
+        'raw' => $product->getRawOriginal('thumbnail'),
+        'attribute' => $product->thumbnail,
+    ]);
+
+    return [
+        'id' => $product->category->id,
+        'name' => $product->category->name,
+        'slug' => $product->category->slug,
+        'thumbnail_image' => $product->thumbnail,
+    ];
+})
+                ->values();
             return $categories;
         }
     );

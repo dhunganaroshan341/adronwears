@@ -14,12 +14,12 @@
         @foreach($bannerSliders as $index => $slider)
         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
             <div class="container">
-                <div class="row p-5">
+                <div class="p-5 row">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
                         <img class="img-fluid" src="{{ asset('/uploads/'.$slider['image'] )}}"
                             alt="{{ $slider['title'] }}">
                     </div>
-                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                    <div class="mb-0 col-lg-6 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
                             <h1 class="h1 text-success"><b>{{ $slider['title'] }}</b></h1>
                             <h3 class="h2">{{ Str::limit($slider['shortdesc'], 100) }}</h3>
@@ -38,11 +38,11 @@
         </div>
         @endforeach
     </div>
-    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
+    <a class="w-auto carousel-control-prev text-decoration-none ps-3" href="#template-mo-zay-hero-carousel"
         role="button" data-bs-slide="prev">
         <i class="fas fa-chevron-left"></i>
     </a>
-    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel"
+    <a class="w-auto carousel-control-next text-decoration-none pe-3" href="#template-mo-zay-hero-carousel"
         role="button" data-bs-slide="next">
         <i class="fas fa-chevron-right"></i>
     </a>
@@ -51,20 +51,20 @@
 
 <!-- Start Categories of The Month -->
 <section class="container py-5">
-    <div class="row text-center pt-3">
-        <div class="col-lg-6 m-auto">
+    <div class="pt-3 text-center row">
+        <div class="m-auto col-lg-6">
             <h1 class="h1">Categories of The Month</h1>
             <p>Shop by category and find your perfect style</p>
         </div>
     </div>
     <div class="row">
         @foreach($categories->take(3) as $category)
-        <div class="col-12 col-md-4 p-5 mt-3">
+        <div class="p-5 mt-3 col-12 col-md-4">
             <a href="{{ route('shop.category', $category['slug']) }}">
-                <img src="{{ asset('storage/categories/' . ($category['image'] ?? 'default-category.jpg')) }}"
-                    class="rounded-circle img-fluid border" style="width: 200px; height: 200px; object-fit: cover;">
+                <img src="{{ $category['thumbnail_image'] }}"
+                    class="border rounded-circle img-fluid" style="width: 200px; height: 200px; object-fit: cover;">
             </a>
-            <h5 class="text-center mt-3 mb-3">{{ $category['name'] }}</h5>
+            <h5 class="mt-3 mb-3 text-center">{{ $category['name'] }}</h5>
             <p class="text-center">
                 <a href="{{ route('shop.category', $category['slug']) }}" class="btn btn-outline-dark">Go Shop</a>
             </p>
@@ -72,7 +72,7 @@
         @endforeach
     </div>
     @if($categories->count() > 3)
-    <div class="row text-center mt-3">
+    <div class="mt-3 text-center row">
         <div class="col-12">
             <a href="{{ route('shop.categories') }}" class="btn btn-outline-dark btn-lg">
                 View All Categories <i class="fas fa-arrow-right"></i>
@@ -86,22 +86,22 @@
 <!-- Start Featured Product -->
 <section class="bg-light">
     <div class="container py-5">
-        <div class="row text-center py-3">
-            <div class="col-lg-6 m-auto">
+        <div class="py-3 text-center row">
+            <div class="m-auto col-lg-6">
                 <h1 class="h1">Featured Products</h1>
                 <p>Discover our hand-picked featured products just for you</p>
             </div>
         </div>
         <div class="row">
             @foreach($featuredProducts as $product)
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
+            <div class="mb-4 col-12 col-md-6 col-lg-4">
+                <div class="shadow-sm card h-100">
                     <a href="{{ route('shop.product', $product['slug']) }}">
                         <img src="{{ asset('storage/products/' . ($product['thumbnail'] ?? 'default-product.jpg')) }}"
                             class="card-img-top" alt="{{ $product['name'] }}" style="height: 250px; object-fit: cover;">
                     </a>
                     <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between align-items-center mb-3">
+                        <ul class="mb-3 list-unstyled d-flex justify-content-between align-items-center">
                             <li>
                                 @php
                                 $rating = rand(3, 5); // Dynamic rating placeholder
@@ -124,10 +124,10 @@
                             class="h5 text-decoration-none text-dark fw-bold">
                             {{ $product['name'] }}
                         </a>
-                        <p class="card-text text-muted mt-2">
+                        <p class="mt-2 card-text text-muted">
                             {{ Str::limit($product['description'] ?? 'No description available', 80) }}
                         </p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="mt-3 d-flex justify-content-between align-items-center">
                             <span class="badge bg-secondary">{{ $product['category']['name'] ?? 'Uncategorized'
                                 }}</span>
                             <button class="btn btn-sm btn-outline-dark add-to-cart"
@@ -140,9 +140,9 @@
             </div>
             @endforeach
         </div>
-        <div class="row text-center mt-4">
+        <div class="mt-4 text-center row">
             <div class="col-12">
-                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg px-5">
+                <a href="{{ route('shop.index') }}" class="px-5 btn btn-outline-dark btn-lg">
                     View All Products <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -154,22 +154,22 @@
 <!-- Start Bundles/Combos Section -->
 @if(isset($bundles) && count($bundles) > 0)
 <section class="container py-5">
-    <div class="row text-center py-3">
-        <div class="col-lg-6 m-auto">
+    <div class="py-3 text-center row">
+        <div class="m-auto col-lg-6">
             <h1 class="h1">Bundle Deals 🔥</h1>
             <p>Save more with our combo offers - Limited time only!</p>
         </div>
     </div>
     <div class="row">
         @foreach($bundles->take(4) as $bundle)
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="card h-100 border-success shadow-sm">
+        <div class="mb-4 col-12 col-md-6 col-lg-3">
+            <div class="shadow-sm card h-100 border-success">
                 <div class="position-relative">
                     @if($bundle['sale_price'])
-                    <span class="position-absolute top-0 start-0 badge bg-danger m-2">SALE</span>
+                    <span class="top-0 m-2 position-absolute start-0 badge bg-danger">SALE</span>
                     @endif
                     @if($bundle['is_new'])
-                    <span class="position-absolute top-0 end-0 badge bg-info m-2">NEW</span>
+                    <span class="top-0 m-2 position-absolute end-0 badge bg-info">NEW</span>
                     @endif
                     <a href="{{ route('shop.product', $bundle['slug']) }}">
                         <img src="{{ asset('storage/products/' . ($bundle['thumbnail'] ?? 'default-product.jpg')) }}"
@@ -199,7 +199,7 @@
         @endforeach
     </div>
     @if($bundles->count() > 4)
-    <div class="row text-center mt-3">
+    <div class="mt-3 text-center row">
         <div class="col-12">
             <a href="#" class="btn btn-outline-dark btn-lg">
                 View All Bundles <i class="fas fa-arrow-right"></i>
@@ -394,7 +394,7 @@
                 <div class="toast-body">
                     <i class="fas fa-check-circle me-2"></i> ${message}
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                <button type="button" class="m-auto btn-close btn-close-white me-2" data-bs-dismiss="toast"></button>
             </div>
         `;
 

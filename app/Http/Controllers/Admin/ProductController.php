@@ -80,12 +80,12 @@ class ProductController extends Controller
         $data = $request->validated();
 
         // Update thumbnail
-        $data['thumbnail'] = $this->handleSingleMedia(
-            $request,
-            'thumbnail',
-            $product->thumbnail,
-            'products'
-        );
+       $data['thumbnail'] = $this->handleSingleMedia(
+    $request,
+    'thumbnail',
+    null,
+    'products'
+);
 
 
 
