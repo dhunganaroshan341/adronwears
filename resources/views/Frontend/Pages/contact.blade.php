@@ -29,7 +29,7 @@
                     <i class="mb-3 fas fa-map-marker-alt fa-3x text-success"></i>
                     <h5 class="card-title">Our Location</h5>
                     <p class="card-text text-muted">
-                        {{ $contactInfo['address'] ?? 'Seti O.P. marga Koteshwor - Kathmandu , Nepal' }}
+                        {{ $address ?? 'Seti O.P. marga Koteshwor - Kathmandu , Nepal' }}
                     </p>
                 </div>
             </div>
@@ -41,8 +41,9 @@
                     <i class="mb-3 fas fa-phone-alt fa-3x text-success"></i>
                     <h5 class="card-title">Phone Number</h5>
                     <p class="card-text text-muted">
-                        {{ $contactInfo['phone'] ?? '+977 9825056528' }}<br>
-                        {{ $contactInfo['phone_alt'] ?? '+1 (555) 765-4321' }}
+                       +977 {{ $contact ?? ' 9825056528' }}<br>
+                        {{ $contact2?? '' }}
+                        {{ $contact1?? '' }}
                     </p>
                 </div>
             </div>
@@ -54,8 +55,8 @@
                     <i class="mb-3 fas fa-envelope fa-3x text-success"></i>
                     <h5 class="card-title">Email Address</h5>
                     <p class="card-text text-muted">
-                        {{ $contactInfo['email'] ?? 'info@adronfashionwear.com' }}<br>
-                        {{ $contactInfo['email_alt'] ?? 'support@adronfashionwear.com' }}
+                        {{ $email?? 'info@adronfashionwear.com' }}<br>
+                        {{ $email2?? '' }}
                     </p>
                 </div>
             </div>

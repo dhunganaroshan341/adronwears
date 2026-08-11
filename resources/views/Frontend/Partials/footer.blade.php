@@ -1,12 +1,12 @@
 <!-- Start Footer -->
 <!-- Start Footer -->
-<footer class="bg-dark text-light pt-5" id="tempaltemo_footer">
+<footer class="pt-5 bg-dark text-light" id="tempaltemo_footer">
     <div class="container">
         <div class="row">
 
             <!-- Store Info -->
-            <div class="col-md-4 mb-4">
-                <h2 class="h4 text-success border-bottom pb-3 border-light">
+            <div class="mb-4 col-md-4">
+                <h2 class="pb-3 h4 text-success border-bottom border-light">
                     Adron Fashion Wear
                 </h2>
 
@@ -15,7 +15,7 @@
                     Serving customers for over 7 years with trendy and classic styles.
                 </p>
 
-                <ul class="list-unstyled footer-link-list mt-3">
+                <ul class="mt-3 list-unstyled footer-link-list">
                     <li class="mb-2">
                         <i class="fas fa-map-marker-alt me-2"></i>
                         Koteshwor-32, Kathmandu, Nepal
@@ -23,25 +23,25 @@
                     <li class="mb-2">
                         <i class="fa fa-phone me-2"></i>
                         <a class="text-light text-decoration-none" href="tel:+977XXXXXXXXX">
-                            +977-XXXXXXXXX
+                        +977    {{ $contact??'9825056528' }}
                         </a>
                     </li>
                     <li>
                         <i class="fa fa-envelope me-2"></i>
                         <a class="text-light text-decoration-none" href="mailto:info@adronfashion.com">
-                            info@adronfashion.com
+                            {{ $email??'info@adronfashion.com' }}
                         </a>
                     </li>
                 </ul>
             </div>
 
             <!-- Quick Links -->
-            <div class="col-md-4 mb-4">
-                <h2 class="h4 text-light border-bottom pb-3 border-light">
+            <div class="mb-4 col-md-4">
+                <h2 class="pb-3 h4 text-light border-bottom border-light">
                     Quick Links
                 </h2>
 
-                <ul class="list-unstyled footer-link-list mt-3">
+                <ul class="mt-3 list-unstyled footer-link-list">
                     <li class="mb-2">
                         <a class="text-light text-decoration-none" href="{{ route('index') }}">Home</a>
                     </li>
@@ -58,12 +58,12 @@
             </div>
 
             <!-- Products / Categories -->
-            <div class="col-md-4 mb-4">
-                <h2 class="h4 text-light border-bottom pb-3 border-light">
+            <div class="mb-4 col-md-4">
+                <h2 class="pb-3 h4 text-light border-bottom border-light">
                     Our Collections
                 </h2>
 
-                <ul class="list-unstyled footer-link-list mt-3">
+                <ul class="mt-3 list-unstyled footer-link-list">
                     <li class="mb-2">Men's Wear</li>
                     <li class="mb-2">Women's Wear</li>
                     <li class="mb-2">Trendy Fashion</li>
@@ -76,14 +76,14 @@
         </div>
 
         <!-- Social Media -->
-        <div class="row border-top border-light pt-4 mt-3">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <div class="pt-4 mt-3 row border-top border-light">
+            <div class="mb-3 text-center col-md-6 text-md-start mb-md-0">
                 <p class="mb-0">
                     &copy; {{ now()->year }} Adron Fashion Wear. All rights reserved.
                 </p>
             </div>
 
-            <div class="col-md-6 text-center text-md-end">
+            <div class="text-center col-md-6 text-md-end">
                 <a class="text-light me-3" target="_blank" href="{{$facebook??'#' }}">
                     <i class="fab fa-facebook-f fa-lg"></i>
                 </a>
