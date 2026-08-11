@@ -35,20 +35,14 @@ class ProductCategoryService
             $categories = $products
                 ->unique('product_category_id')
                 ->take($limit)
-              ->map(function ($product) {
-
-    dd([
-        'raw' => $product->getRawOriginal('thumbnail'),
-        'attribute' => $product->thumbnail,
-    ]);
-
-    return [
-        'id' => $product->category->id,
-        'name' => $product->category->name,
-        'slug' => $product->category->slug,
-        'thumbnail_image' => $product->thumbnail,
-    ];
-})
+                ->map(function ($product) {
+                    return [
+                        'id' => $product->category->id,
+                        'name' => $product->category->name,
+                        'slug' => $product->category->slug,
+                        'thumbnail_image' =>  $product->thumbnail,
+                    ];
+                })
                 ->values();
             return $categories;
         }

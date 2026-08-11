@@ -8,14 +8,14 @@
             <div>
 
                 @if(!empty($email))
-                <i class="fa fa-envelope mx-2"></i>
+                <i class="mx-2 fa fa-envelope"></i>
                 <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:{{ $email }}">
                     {{ $email }}
                 </a>
                 @endif
 
                 @if(!empty($phone))
-                <i class="fa fa-phone mx-2"></i>
+                <i class="mx-2 fa fa-phone"></i>
                 <a class="navbar-sm-brand text-light text-decoration-none" href="tel:{{ $phone }}">
                     {{ $phone }}
                 </a>
@@ -54,20 +54,24 @@
 
 
 <!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-light shadow">
+<nav class="shadow navbar navbar-expand-lg navbar-light">
     <div class="container d-flex justify-content-between align-items-center">
 
         <a class="navbar-brand text-success logo h1 align-self-center" href="{{ route('index') }}">
-            AFashion
+            @if(!empty($logo))
+            <img src="{{  $logo }}" alt="Logo" class="img-fluid" style="max-height: 50px;">
+            @else
+            Adro
+            @endif
         </a>
 
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+        <button class="border-0 navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+        <div class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between"
             id="templatemo_main_nav">
             <div class="flex-fill">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -86,14 +90,14 @@
             <div class="navbar align-self-center d-flex">
 
                 <a class="nav-icon position-relative text-decoration-none" href="#">
-                    <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    <i class="mr-1 fa fa-fw fa-cart-arrow-down text-dark"></i>
                     <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                        class="top-0 position-absolute left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                 </a>
                 <a class="nav-icon position-relative text-decoration-none" href="#">
-                    <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                    <i class="mr-3 fa fa-fw fa-user text-dark"></i>
                     <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                        class="top-0 position-absolute left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                 </a>
             </div>
         </div>

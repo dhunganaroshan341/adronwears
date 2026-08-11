@@ -62,7 +62,7 @@
         <div class="p-5 mt-3 col-12 col-md-4">
             <a href="{{ route('shop.category', $category['slug']) }}">
                 <img src="{{ $category['thumbnail_image'] }}"
-                    class="border rounded-circle img-fluid" style="width: 200px; height: 200px; object-fit: cover;">
+                    class="border rounded-circle img-fluid" style="width: 200px; height: 200px; object-fit: contain;">
             </a>
             <h5 class="mt-3 mb-3 text-center">{{ $category['name'] }}</h5>
             <p class="text-center">

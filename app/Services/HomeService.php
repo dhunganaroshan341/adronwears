@@ -27,7 +27,6 @@ class HomeService
 
     public function getHomeData()
     {
-        // dd($this->categoryService->getHomeCategories());
         return [
             'bannerSliders'    => $this->getBannerSliders(),
             'featuredProducts' => $this->productService->getFeaturedProducts(),

@@ -22,15 +22,15 @@ class AppServiceProvider extends ServiceProvider
 
         // FRONTEND COMPOSER (your existing system kept)
         $this->composeFrontendViews([
-            'frontend.layout.main',
-            'frontend.layout.footer',
-            'frontend.contact',
+            'Frontend.Layouts.main',
+            'Frontend.layout.footer',
+            'Frontend.contact',
         ]);
 
         $this->composeFrontendViews([
-            'frontend-tailwind.layout.main',
-            'frontend-tailwind.layout.footer',
-            'frontend-tailwind.contact',
+            'Frontend-tailwind.layout.main',
+            'Frontend-tailwind.layout.footer',
+            'Frontend-tailwind.contact',
         ]);
 
         // BACKEND COMPOSER (FIXED - now added properly)

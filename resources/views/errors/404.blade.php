@@ -1,4 +1,4 @@
-:::writing{variant="document" id="58321"}
+
 @extends('Frontend.Layouts.main')
 
 @section('content')
@@ -214,4 +214,4 @@
     }
 </style>
 @endpush
-:::
+
