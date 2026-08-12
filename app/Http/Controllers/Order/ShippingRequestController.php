@@ -21,7 +21,6 @@ class ShippingRequestController extends Controller
         $dto = $request->toDto();
         // Resolve order items
         // Create shipping request
-        // dd($dto);
         $shipping = $shippingService->create($dto);
         $items = $resolver->resolve($dto);
 
