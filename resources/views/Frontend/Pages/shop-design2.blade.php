@@ -329,7 +329,7 @@
 
 @push('scripts')
 
-<script src="{{ asset('fashions-shop-template/assets/js/slick.min.js') }}"></script>
+<script src="{{ asset('fashion-shop-template/assets/js/slick.min.js') }}"></script>
 
 <script>
 
