@@ -311,7 +311,7 @@
         </div>
 
     </div>
-    <x-product.whatsapp-request-modal />
+    {{-- <x-product.whatsapp-request-modal /> --}}
 
 </section>
 
@@ -329,7 +329,7 @@
 
 @push('scripts')
 
-<script src="{{ asset('fashion-shop-template/assets/js/slick.min.js') }}"></script>
+<script src="{{ asset('fashions-shop-template/assets/js/slick.min.js') }}"></script>
 
 <script>
 
