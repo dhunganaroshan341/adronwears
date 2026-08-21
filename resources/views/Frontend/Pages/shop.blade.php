@@ -2,134 +2,301 @@
 
 @section('content')
 
-<div class="px-3 py-4 container-fluid px-md-5">
-    <div class="row g-4">
-        <!-- Sidebar -->
-        <div class="col-lg-3 col-12">
-            @include('components.shop.sidebar-filter', ['categories' => $categories])
-        </div>
+<div class="px-3 py-4 container-fluid shop-page px-md-5">
 
-        <div class="col-lg-9 col-12">
-            <!-- Header -->
-            <div class="flex-wrap gap-2 mb-4 d-flex justify-content-between align-items-center shop-header">
+    <div class="row shop-layout">
+
+        {{-- ========================================================= --}}
+        {{-- SIDEBAR --}}
+        {{-- ========================================================= --}}
+        <aside class="col-12 col-lg-3 shop-sidebar">
+            @include('components.shop.sidebar-filter', [
+                'categories' => $categories
+            ])
+        </aside>
+
+
+        {{-- ========================================================= --}}
+        {{-- PRODUCTS --}}
+        {{-- ========================================================= --}}
+        <main class="col-12 col-lg-9 shop-content">
+
+            {{-- ===================================================== --}}
+            {{-- HEADER --}}
+            {{-- ===================================================== --}}
+            <div class="mb-4 shop-header">
+
                 <div>
-                    <h1 class="mb-0 shop-title">Shop</h1>
-                    <span class="text-muted small"><span id="productCount">{{ count($products) }}</span> items</span>
+                    <h1 class="mb-1 shop-title">
+                        Shop
+                    </h1>
+
+                    <span class="shop-count text-muted small">
+                        <span id="productCount">{{ $products->count() }}</span>
+                        items
+                    </span>
                 </div>
 
-                <!-- <div class="gap-2 d-flex align-items-center">
-                    <input type="text" id="searchProducts" class="form-control form-control-sm shop-input"
-                        placeholder="Search..." style="width: 180px;">
-
-                    <select id="sortProducts" class="form-select form-select-sm shop-input" style="width: 160px;">
-                        <option value="default">Sort: Featured</option>
-                        <option value="price_asc">Price: Low to High</option>
-                        <option value="price_desc">Price: High to Low</option>
-                        <option value="name_asc">Name: A-Z</option>
-                        <option value="name_desc">Name: Z-A</option>
-                        <option value="newest">Newest</option>
-                    </select>
-                </div> -->
             </div>
 
-            <div id="loadingSpinner" class="py-5 text-center" style="display: none;">
-                <div class="spinner-border" style="color:#111;" role="status">
-                    <span class="visually-hidden">Loading...</span>
+
+            {{-- ===================================================== --}}
+            {{-- LOADING --}}
+            {{-- ===================================================== --}}
+            <div id="loadingSpinner"
+                 class="py-5 text-center loading-spinner"
+                 style="display: none;">
+
+                <div class="spinner-border"
+                     role="status"
+                     aria-label="Loading">
                 </div>
+
             </div>
 
-            <!-- Grid -->
-            <div class="row g-3 g-md-4" id="productsGrid">
+
+            {{-- ===================================================== --}}
+            {{-- PRODUCT GRID --}}
+            {{-- ===================================================== --}}
+            <div class="row products-grid" id="productsGrid">
+
                 @forelse($products as $product)
-                <div class="col-6 col-md-4 col-xl-3 product-item" data-product-id="{{ $product['id'] }}"
-                    data-product-name="{{ $product['name'] }}"
-                    data-product-price="{{ $product['sale_price'] ?? $product['price'] }}"
-                    data-product-category="{{ $product['category']['id'] ?? '' }}">
-                    <div class="product-card">
-                        <div class="product-media">
-                            @if($product['is_new'])
-                            <span class="tag tag-new">New</span>
-                            @endif
-                            @if($product['is_on_sale'] && $product['sale_price'])
-                            <span class="tag tag-sale">Sale</span>
-                            @endif
-                            <a href="{{ route('shop.product', $product['slug']) }}">
-                                <img src="{{ $product['thumbnail'] ?? asset('default-product.jpg') }}"
-                                    alt="{{ $product['name'] }}" loading="lazy">
-                            </a>
-                        </div>
 
-                        <div class="product-info">
-                            <div class="product-meta">
-                                <span>{{ $product['category']['name'] ?? 'Uncategorized' }}</span>
-                                @if($product['brand'])
-                                <span>· {{ $product['brand']['name'] }}</span>
+                    <div
+                        class="col-6 col-md-4 col-xl-3 product-item"
+                        data-product-id="{{ $product['id'] }}"
+                        data-product-name="{{ $product['name'] }}"
+                        data-product-price="{{ $product['sale_price'] ?? $product['price'] }}"
+                        data-product-category="{{ $product['category']['id'] ?? '' }}"
+                    >
+
+                        <article class="product-card">
+
+                            {{-- ===================================== --}}
+                            {{-- IMAGE --}}
+                            {{-- ===================================== --}}
+                            <div class="product-media">
+
+                                {{-- New --}}
+                                @if($product['is_new'])
+                                    <span class="tag tag-new">
+                                        New
+                                    </span>
                                 @endif
+
+                                {{-- Sale --}}
+                                @if(
+                                    $product['is_on_sale'] &&
+                                    !empty($product['sale_price']) &&
+                                    $product['sale_price'] < $product['price']
+                                )
+                                    <span class="tag tag-sale">
+                                        Sale
+                                    </span>
+                                @endif
+
+
+                                <a
+                                    href="{{ route('shop.product', $product['slug']) }}"
+                                    class="product-image-link"
+                                >
+                                    <img
+                                        src="{{ $product['thumbnail'] ?? asset('default-product.jpg') }}"
+                                        alt="{{ $product['name'] }}"
+                                        class="product-image"
+                                        loading="lazy"
+                                    >
+                                </a>
+
                             </div>
 
-                            <a href="{{ route('shop.product', $product['slug']) }}" class="product-name">
-                                {{ $product['name'] }}
-                            </a>
 
-                            <div class="product-price">
-                                @if($product['sale_price'] && $product['sale_price'] < $product['price']) <span
-                                    class="price-now">${{ number_format($product['sale_price'], 2) }}</span>
-                                    <span class="price-old">${{ number_format($product['price'], 2) }}</span>
-                                    @else
-                                    <span class="price-now">${{ number_format($product['price'], 2) }}</span>
+                            {{-- ===================================== --}}
+                            {{-- INFORMATION --}}
+                            {{-- ===================================== --}}
+                            <div class="product-info">
+
+                                {{-- Category / Brand --}}
+                                <div class="product-meta">
+
+                                    <span>
+                                        {{ $product['category']['name'] ?? 'Uncategorized' }}
+                                    </span>
+
+                                    @if(!empty($product['brand']))
+                                        <span>
+                                            · {{ $product['brand']['name'] }}
+                                        </span>
                                     @endif
+
+                                </div>
+
+
+                                {{-- Product Name --}}
+                                <a
+                                    href="{{ route('shop.product', $product['slug']) }}"
+                                    class="product-name"
+                                    title="{{ $product['name'] }}"
+                                >
+                                    {{ $product['name'] }}
+                                </a>
+
+
+                                {{-- Price --}}
+                                <div class="product-price">
+
+                                    @if(
+                                        !empty($product['sale_price']) &&
+                                        $product['sale_price'] < $product['price']
+                                    )
+
+                                        <span class="price-now">
+                                            ${{ number_format($product['sale_price'], 2) }}
+                                        </span>
+
+                                        <span class="price-old">
+                                            ${{ number_format($product['price'], 2) }}
+                                        </span>
+
+                                    @else
+
+                                        <span class="price-now">
+                                            ${{ number_format($product['price'], 2) }}
+                                        </span>
+
+                                    @endif
+
+                                </div>
+
+
+                                {{-- WhatsApp --}}
+                                @include(
+                                    'components.product.whatsapp-cart-button',
+                                    ['product' => $product]
+                                )
+
                             </div>
 
-                            @include('components.product.whatsapp-cart-button', ['product' => $product])
-                        </div>
+                        </article>
+
                     </div>
-                </div>
+
                 @empty
-                <div class="col-12">
-                    <div class="py-5 text-center empty-state">
-                        <p class="mb-0 text-muted">No products found.</p>
+
+                    <div class="col-12">
+
+                        <div class="py-5 text-center empty-state">
+
+                            <p class="mb-0 text-muted">
+                                No products found.
+                            </p>
+
+                        </div>
+
                     </div>
-                </div>
+
                 @endforelse
+
             </div>
 
-            <!-- Pagination -->
-            @if(isset($products) && method_exists($products, 'links'))
-            <div class="mt-5 d-flex justify-content-center">
-                {{ $products->links() }}
-            </div>
+
+            {{-- ===================================================== --}}
+            {{-- PAGINATION --}}
+            {{-- ===================================================== --}}
+            @if(
+                isset($products) &&
+                method_exists($products, 'links')
+            )
+
+                <div class="mt-5 shop-pagination d-flex justify-content-center">
+                    {{ $products->links() }}
+                </div>
+
             @endif
-        </div>
+
+        </main>
+
     </div>
+
 </div>
+
+
+{{-- ============================================================= --}}
+{{-- WHATSAPP REQUEST MODAL --}}
+{{-- ============================================================= --}}
 
 <x-product.whatsapp-request-modal />
 
-<!-- Brands -->
+
+{{-- ============================================================= --}}
+{{-- BRANDS --}}
+{{-- ============================================================= --}}
+
 <section class="py-5 mt-4 brands-section">
+
     <div class="container text-center">
-        <h2 class="mb-1 h4">Top Brands</h2>
-        <p class="mb-4 text-muted small">Shop from the world's most trusted brands</p>
-        <div class="row justify-content-center align-items-center g-4">
+
+        <h2 class="mb-1 h4">
+            Top Brands
+        </h2>
+
+        <p class="mb-4 text-muted small">
+            Shop from the world's most trusted brands
+        </p>
+
+
+        <div class="row justify-content-center align-items-center brands-grid">
+
             @php
-            $brandLogos = ['brand_01.png', 'brand_02.png', 'brand_03.png', 'brand_04.png', 'brand_05.png',
-            'brand_06.png'];
+                $brandLogos = [
+                    'brand_01.png',
+                    'brand_02.png',
+                    'brand_03.png',
+                    'brand_04.png',
+                    // 'brand_05.png',
+                    // 'brand_06.png',
+                ];
             @endphp
+
+
             @foreach($brandLogos as $logo)
-            <div class="col-4 col-md-2">
-                <a href="#" class="brand-logo d-block">
-                    <img class="img-fluid" src="{{ asset('assets/img/' . $logo) }}" alt="Brand Logo">
-                </a>
-            </div>
+
+                <div class="col-4 col-md-2">
+
+                    <a
+                        href="#"
+                        class="brand-logo d-flex justify-content-center align-items-center"
+                    >
+
+                        <img
+                            src="{{ asset('assets/img/' . $logo) }}"
+                            alt="Brand Logo"
+                            loading="lazy"
+                        >
+
+                    </a>
+
+                </div>
+
             @endforeach
+
         </div>
+
     </div>
+
 </section>
 
 @endsection
 
+
+{{-- ============================================================= --}}
+{{-- STYLES --}}
+{{-- ============================================================= --}}
+
 @push('styles')
+
 <style>
+
     :root {
         --ink: #111111;
         --muted: #767676;
@@ -138,142 +305,315 @@
         --sale: #c0392b;
     }
 
+
+    /* =============================================================
+       BASE
+    ============================================================= */
+
     body {
         color: var(--ink);
     }
+
+
+    .shop-page {
+        width: 100%;
+    }
+
+
+    .shop-layout {
+        --bs-gutter-x: 2rem;
+        --bs-gutter-y: 2rem;
+    }
+
+
+    /* =============================================================
+       HEADER
+    ============================================================= */
+
+    .shop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
 
     .shop-title {
         font-size: 1.9rem;
         font-weight: 600;
         letter-spacing: -0.02em;
+        line-height: 1.2;
     }
 
-    .shop-input {
-        border-color: var(--line);
-        border-radius: 0;
+
+    .shop-count {
+        font-size: 0.8rem;
     }
 
-    .shop-input:focus {
-        box-shadow: none;
-        border-color: var(--ink);
+
+    /* =============================================================
+       PRODUCT GRID
+    ============================================================= */
+
+    .products-grid {
+        --bs-gutter-x: 1.25rem;
+        --bs-gutter-y: 2rem;
     }
 
-    /* Product card */
+
+    .product-item {
+        min-width: 0;
+        animation: fadeIn 0.4s ease-out;
+    }
+
+
+    /* =============================================================
+       PRODUCT CARD
+    ============================================================= */
+
     .product-card {
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+
         display: flex;
         flex-direction: column;
-        height: 100%;
     }
+
+
+    /* =============================================================
+       PRODUCT MEDIA
+    ============================================================= */
 
     .product-media {
         position: relative;
+
+        width: 100%;
+
         aspect-ratio: 3 / 4;
+
         overflow: hidden;
+
         background: var(--bg-soft);
-        margin-bottom: 0.75rem;
+
+        margin-bottom: 0.7rem;
     }
 
-    .product-media img {
+
+    .product-image-link {
+        display: block;
+
         width: 100%;
         height: 100%;
+    }
+
+
+    .product-image {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
         object-fit: cover;
+
         transition: transform 0.5s ease;
     }
 
-    .product-card:hover .product-media img {
+
+    .product-card:hover .product-image {
         transform: scale(1.04);
     }
 
+
+    /* =============================================================
+       TAGS
+    ============================================================= */
+
     .tag {
         position: absolute;
+
         top: 10px;
-        font-size: 0.65rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        padding: 3px 8px;
+
         z-index: 2;
+
+        padding: 3px 8px;
+
+        font-size: 0.65rem;
         font-weight: 600;
+
+        letter-spacing: 0.05em;
+
+        text-transform: uppercase;
     }
+
 
     .tag-new {
         left: 10px;
+
         background: var(--ink);
         color: #fff;
     }
 
+
     .tag-sale {
         right: 10px;
+
         background: var(--sale);
         color: #fff;
     }
 
+
+    /* =============================================================
+       PRODUCT INFO
+    ============================================================= */
+
     .product-info {
         display: flex;
         flex-direction: column;
+
+        min-width: 0;
+
         gap: 2px;
     }
 
+
+    /* =============================================================
+       CATEGORY / BRAND
+    ============================================================= */
+
     .product-meta {
-        font-size: 0.72rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+        min-width: 0;
+
+        overflow: hidden;
+
+        font-size: 0.7rem;
+
+        line-height: 1.3;
+
         color: var(--muted);
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.04em;
+
+        white-space: nowrap;
+
+        text-overflow: ellipsis;
     }
 
+
+    /* =============================================================
+       PRODUCT NAME
+    ============================================================= */
+
     .product-name {
+        display: -webkit-box;
+
+        overflow: hidden;
+
+        min-width: 0;
+
+        margin: 2px 0 6px;
+
+        color: var(--ink);
+
         font-size: 0.92rem;
         font-weight: 500;
-        color: var(--ink);
-        text-decoration: none;
+
         line-height: 1.3;
-        margin: 2px 0 6px;
+
+        text-decoration: none;
+
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
     }
+
 
     .product-name:hover {
         text-decoration: underline;
     }
 
+
+    /* =============================================================
+       PRICE
+    ============================================================= */
+
     .product-price {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        gap: 5px;
+
         margin-bottom: 8px;
     }
 
+
     .price-now {
-        font-weight: 600;
         font-size: 0.95rem;
+        font-weight: 600;
     }
+
 
     .price-old {
         color: var(--muted);
-        text-decoration: line-through;
+
         font-size: 0.8rem;
-        margin-left: 6px;
+
+        text-decoration: line-through;
     }
+
+
+    /* =============================================================
+       EMPTY STATE
+    ============================================================= */
 
     .empty-state {
         border: 1px dashed var(--line);
     }
 
+
+    /* =============================================================
+       BRANDS
+    ============================================================= */
+
     .brands-section {
         background: var(--bg-soft);
     }
 
-    .brand-logo img {
-        max-height: 40px;
-        opacity: 0.55;
-        filter: grayscale(100%);
-        transition: opacity 0.25s ease, filter 0.25s ease;
+
+    .brand-logo {
+        min-height: 50px;
     }
+
+
+    .brand-logo img {
+        display: block;
+
+        max-width: 100%;
+        max-height: 40px;
+
+        opacity: 0.55;
+
+        filter: grayscale(100%);
+
+        transition:
+            opacity 0.25s ease,
+            filter 0.25s ease;
+    }
+
 
     .brand-logo:hover img {
         opacity: 1;
         filter: grayscale(0%);
     }
 
-    .product-item {
-        animation: fadeIn 0.4s ease-out;
-    }
+
+    /* =============================================================
+       ANIMATION
+    ============================================================= */
 
     @keyframes fadeIn {
+
         from {
             opacity: 0;
             transform: translateY(12px);
@@ -283,137 +623,597 @@
             opacity: 1;
             transform: translateY(0);
         }
+
     }
 
-    @media (max-width: 576px) {
+
+    /* =============================================================
+       TABLET
+    ============================================================= */
+
+    @media (min-width: 768px) {
+
+        .products-grid {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 2rem;
+        }
+
+    }
+
+
+    /* =============================================================
+       MOBILE
+    ============================================================= */
+
+    @media (max-width: 767.98px) {
+
+        .shop-page {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+        }
+
+
+        .shop-layout {
+            --bs-gutter-x: 0;
+            --bs-gutter-y: 1.5rem;
+        }
+
+
+        .shop-header {
+            margin-bottom: 1.25rem !important;
+        }
+
+
         .shop-title {
             font-size: 1.5rem;
         }
 
-        .shop-header .form-control,
-        .shop-header .form-select {
-            width: 100% !important;
+
+        /*
+         * IMPORTANT:
+         *
+         * col-6 = exactly 2 products per row.
+         *
+         * We reduce the gutter so each card gets
+         * enough horizontal space.
+         */
+
+        .products-grid {
+            --bs-gutter-x: 10px;
+            --bs-gutter-y: 24px;
         }
 
-        .shop-header {
-            flex-direction: column;
-            align-items: stretch !important;
+
+        /*
+         * Slightly less tall images on mobile.
+         *
+         * 3/4 can feel too tall when the card is narrow.
+         */
+
+        .product-media {
+            aspect-ratio: 4 / 5;
+            margin-bottom: 0.55rem;
         }
+
+
+        .tag {
+            top: 7px;
+
+            padding: 3px 6px;
+
+            font-size: 0.58rem;
+        }
+
+
+        .tag-new {
+            left: 7px;
+        }
+
+
+        .tag-sale {
+            right: 7px;
+        }
+
+
+        .product-meta {
+            font-size: 0.62rem;
+        }
+
+
+        .product-name {
+            margin: 2px 0 5px;
+
+            font-size: 0.82rem;
+
+            line-height: 1.3;
+        }
+
+
+        .product-price {
+            margin-bottom: 7px;
+        }
+
+
+        .price-now {
+            font-size: 0.85rem;
+        }
+
+
+        .price-old {
+            font-size: 0.7rem;
+        }
+
     }
+
+
+    /* =============================================================
+       VERY SMALL PHONES
+    ============================================================= */
+
+    @media (max-width: 380px) {
+
+        .products-grid {
+            --bs-gutter-x: 8px;
+            --bs-gutter-y: 20px;
+        }
+
+
+        .product-name {
+            font-size: 0.78rem;
+        }
+
+
+        .product-meta {
+            font-size: 0.58rem;
+        }
+
+
+        .price-now {
+            font-size: 0.82rem;
+        }
+
+    }
+
 </style>
+
 @endpush
 
+
+{{-- ============================================================= --}}
+{{-- SCRIPTS --}}
+{{-- ============================================================= --}}
+
 @push('scripts')
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
 
-        let currentCategory = null;
-        let currentMinPrice = null;
-        let currentMaxPrice = null;
-        let currentSort = 'default';
-        let currentSearch = '';
+document.addEventListener('DOMContentLoaded', function () {
 
-        function filterProducts() {
-            const products = document.querySelectorAll('.product-item');
-            let visibleCount = 0;
+    /*
+    |--------------------------------------------------------------------------
+    | State
+    |--------------------------------------------------------------------------
+    */
 
-            products.forEach(product => {
-                let show = true;
+    let currentCategory = null;
+    let currentMinPrice = null;
+    let currentMaxPrice = null;
+    let currentSort = 'default';
+    let currentSearch = '';
 
-                const category = product.dataset.productCategory || product.dataset.category;
-                const price = parseFloat(product.dataset.productPrice || product.dataset.price || 0);
-                const name = (product.dataset.productName || product.dataset.name || '').toLowerCase();
-                const productId = product.dataset.productId || product.dataset.id;
 
-                if (currentCategory && String(category) !== String(currentCategory)) show = false;
-                if (show && currentMinPrice !== null && price < currentMinPrice) show = false;
-                if (show && currentMaxPrice !== null && price > currentMaxPrice) show = false;
-                if (show && currentSearch && !name.includes(currentSearch.toLowerCase())) show = false;
+    /*
+    |--------------------------------------------------------------------------
+    | Elements
+    |--------------------------------------------------------------------------
+    */
 
-                product.style.display = show ? '' : 'none';
-                if (show) visibleCount++;
-            });
+    const grid = document.getElementById('productsGrid');
+    const countElement = document.getElementById('productCount');
 
-            const countEl = document.getElementById('productCount');
-            if (countEl) countEl.textContent = visibleCount;
 
-            if (currentSort !== 'default') sortProducts();
+    /*
+    |--------------------------------------------------------------------------
+    | Get Products
+    |--------------------------------------------------------------------------
+    */
+
+    function getProducts() {
+
+        if (!grid) {
+            return [];
         }
 
-        function sortProducts() {
-            const grid = document.getElementById('productsGrid');
-            if (!grid) return;
+        return Array.from(
+            grid.querySelectorAll('.product-item')
+        );
 
-            const products = Array.from(document.querySelectorAll('.product-item'));
+    }
 
-            products.sort((a, b) => {
-                const aName = a.dataset.productName || a.dataset.name || '';
-                const bName = b.dataset.productName || b.dataset.name || '';
-                const aPrice = parseFloat(a.dataset.productPrice || a.dataset.price || 0);
-                const bPrice = parseFloat(b.dataset.productPrice || b.dataset.price || 0);
-                const aId = parseInt(a.dataset.productId || a.dataset.id || 0);
-                const bId = parseInt(b.dataset.productId || b.dataset.id || 0);
 
-                switch (currentSort) {
-                    case 'price_asc': return aPrice - bPrice;
-                    case 'price_desc': return bPrice - aPrice;
-                    case 'name_asc': return aName.localeCompare(bName);
-                    case 'name_desc': return bName.localeCompare(aName);
-                    case 'newest': return bId - aId;
-                    default: return 0;
-                }
-            });
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Products
+    |--------------------------------------------------------------------------
+    */
 
-            products.forEach(product => grid.appendChild(product));
+    function filterProducts() {
+
+        const products = getProducts();
+
+        let visibleCount = 0;
+
+
+        products.forEach(product => {
+
+            const category =
+                product.dataset.productCategory || '';
+
+            const price =
+                parseFloat(product.dataset.productPrice || 0);
+
+            const name =
+                (product.dataset.productName || '')
+                    .toLowerCase();
+
+
+            let visible = true;
+
+
+            /*
+            | Category
+            */
+
+            if (
+                currentCategory !== null &&
+                String(category) !== String(currentCategory)
+            ) {
+                visible = false;
+            }
+
+
+            /*
+            | Minimum price
+            */
+
+            if (
+                visible &&
+                currentMinPrice !== null &&
+                price < currentMinPrice
+            ) {
+                visible = false;
+            }
+
+
+            /*
+            | Maximum price
+            */
+
+            if (
+                visible &&
+                currentMaxPrice !== null &&
+                price > currentMaxPrice
+            ) {
+                visible = false;
+            }
+
+
+            /*
+            | Search
+            */
+
+            if (
+                visible &&
+                currentSearch &&
+                !name.includes(currentSearch.toLowerCase())
+            ) {
+                visible = false;
+            }
+
+
+            /*
+            | Apply
+            */
+
+            product.style.display =
+                visible ? '' : 'none';
+
+
+            if (visible) {
+                visibleCount++;
+            }
+
+        });
+
+
+        /*
+        | Count
+        */
+
+        if (countElement) {
+            countElement.textContent = visibleCount;
         }
 
-        document.querySelectorAll('.category-filter').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelectorAll('.category-filter').forEach(item => item.classList.remove('active'));
+
+        /*
+        | Sort
+        */
+
+        if (currentSort !== 'default') {
+            sortProducts();
+        }
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sort Products
+    |--------------------------------------------------------------------------
+    */
+
+    function sortProducts() {
+
+        if (!grid) {
+            return;
+        }
+
+
+        const products = getProducts();
+
+
+        products.sort((a, b) => {
+
+            const aName =
+                a.dataset.productName || '';
+
+            const bName =
+                b.dataset.productName || '';
+
+
+            const aPrice =
+                parseFloat(a.dataset.productPrice || 0);
+
+            const bPrice =
+                parseFloat(b.dataset.productPrice || 0);
+
+
+            const aId =
+                Number(a.dataset.productId || 0);
+
+            const bId =
+                Number(b.dataset.productId || 0);
+
+
+            switch (currentSort) {
+
+                case 'price_asc':
+                    return aPrice - bPrice;
+
+                case 'price_desc':
+                    return bPrice - aPrice;
+
+                case 'name_asc':
+                    return aName.localeCompare(bName);
+
+                case 'name_desc':
+                    return bName.localeCompare(aName);
+
+                case 'newest':
+                    return bId - aId;
+
+                default:
+                    return 0;
+
+            }
+
+        });
+
+
+        /*
+        | Re-append in sorted order
+        */
+
+        products.forEach(product => {
+            grid.appendChild(product);
+        });
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Category Filter
+    |--------------------------------------------------------------------------
+    */
+
+    document
+        .querySelectorAll('.category-filter')
+        .forEach(filter => {
+
+            filter.addEventListener('click', function (event) {
+
+                event.preventDefault();
+
+
+                /*
+                | Active state
+                */
+
+                document
+                    .querySelectorAll('.category-filter')
+                    .forEach(item => {
+                        item.classList.remove('active');
+                    });
+
+
                 this.classList.add('active');
-                currentCategory = this.dataset.category || this.dataset.categoryId;
+
+
+                /*
+                | Category
+                */
+
+                currentCategory =
+                    this.dataset.category ||
+                    this.dataset.categoryId ||
+                    null;
+
+
                 filterProducts();
+
             });
+
         });
 
-        document.getElementById('applyPriceFilter')?.addEventListener('click', function () {
-            currentMinPrice = parseFloat(document.getElementById('minPrice').value) || null;
-            currentMaxPrice = parseFloat(document.getElementById('maxPrice').value) || null;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Price Filter
+    |--------------------------------------------------------------------------
+    */
+
+    document
+        .getElementById('applyPriceFilter')
+        ?.addEventListener('click', function () {
+
+            const minElement =
+                document.getElementById('minPrice');
+
+            const maxElement =
+                document.getElementById('maxPrice');
+
+
+            currentMinPrice =
+                minElement?.value !== ''
+                    ? parseFloat(minElement.value)
+                    : null;
+
+
+            currentMaxPrice =
+                maxElement?.value !== ''
+                    ? parseFloat(maxElement.value)
+                    : null;
+
+
             filterProducts();
+
         });
 
-        document.getElementById('searchProducts')?.addEventListener('input', function () {
-            currentSearch = this.value.trim();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    */
+
+    document
+        .getElementById('searchProducts')
+        ?.addEventListener('input', function () {
+
+            currentSearch =
+                this.value.trim();
+
+
             filterProducts();
+
         });
 
-        document.getElementById('sortProducts')?.addEventListener('change', function () {
-            currentSort = this.value;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sort
+    |--------------------------------------------------------------------------
+    */
+
+    document
+        .getElementById('sortProducts')
+        ?.addEventListener('change', function () {
+
+            currentSort =
+                this.value;
+
+
             filterProducts();
+
         });
 
-        document.getElementById('clearFilters')?.addEventListener('click', function () {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Clear Filters
+    |--------------------------------------------------------------------------
+    */
+
+    document
+        .getElementById('clearFilters')
+        ?.addEventListener('click', function () {
+
             currentCategory = null;
             currentMinPrice = null;
             currentMaxPrice = null;
             currentSearch = '';
             currentSort = 'default';
 
-            const minEl = document.getElementById('minPrice');
-            const maxEl = document.getElementById('maxPrice');
-            const searchEl = document.getElementById('searchProducts');
-            const sortEl = document.getElementById('sortProducts');
 
-            if (minEl) minEl.value = '';
-            if (maxEl) maxEl.value = '';
-            if (searchEl) searchEl.value = '';
-            if (sortEl) sortEl.value = 'default';
+            /*
+            | Reset inputs
+            */
 
-            document.querySelectorAll('.category-filter').forEach(item => item.classList.remove('active'));
+            const minElement =
+                document.getElementById('minPrice');
+
+            const maxElement =
+                document.getElementById('maxPrice');
+
+            const searchElement =
+                document.getElementById('searchProducts');
+
+            const sortElement =
+                document.getElementById('sortProducts');
+
+
+            if (minElement) {
+                minElement.value = '';
+            }
+
+
+            if (maxElement) {
+                maxElement.value = '';
+            }
+
+
+            if (searchElement) {
+                searchElement.value = '';
+            }
+
+
+            if (sortElement) {
+                sortElement.value = 'default';
+            }
+
+
+            /*
+            | Reset category
+            */
+
+            document
+                .querySelectorAll('.category-filter')
+                .forEach(item => {
+                    item.classList.remove('active');
+                });
+
+
+            /*
+            | Reset products
+            */
+
             filterProducts();
+
         });
 
-    });
+});
+
 </script>
+
 @endpush

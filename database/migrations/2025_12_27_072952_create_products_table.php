@@ -19,7 +19,7 @@ return new class extends Migration
                 ->constrained('product_categories')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-
+$table->string('product_code', 20)->unique();
             // Basic product info
             $table->string('name');
             $table->string('slug')->unique();
