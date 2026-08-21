@@ -1,8 +1,7 @@
 <?php
+namespace App\Domain\Order\DTOs;
 
-namespace App\Domain\Cart2\DTOs;
-
-class CreateOrderDTO
+class CreateShippingRequestDTO
 {
     public function __construct(
         public readonly ?int $cart_id,
@@ -22,11 +21,15 @@ class CreateOrderDTO
             cart_id: $data['cart_id'] ?? null,
             product_id: $data['product_id'] ?? null,
             user_id: auth()->id(),
-            customer_name: $data['customer_name'] ?? auth()->user()?->name ?? '',
+            customer_name: $data['customer_name']
+                ?? auth()->user()?->name
+                ?? '',
             customer_phone: $data['customer_phone'],
             address_line: $data['address_line'],
             city: $data['city'],
-            email: $data['customer_email'] ?? auth()->user()?->email ?? null,
+            email: $data['customer_email']
+                ?? auth()->user()?->email
+                ?? null,
             notes: $data['notes'] ?? null,
         );
     }

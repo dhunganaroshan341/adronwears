@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Order;
 
+use App\Domain\Order\Resolvers\OrderItemResolver;
+use App\Domain\Order\Services\ShippingRequestService;
+use App\Domain\Order\Support\WhatsappMessageBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\StoreShippingRequest;
-use App\Domain\Order\Services\ShippingRequestService;
-use App\Domain\Order\Resolvers\OrderItemResolver;
-use App\Domain\Order\Support\WhatsappMessageBuilder;
 
 class ShippingRequestController extends Controller
 {
@@ -16,18 +16,17 @@ class ShippingRequestController extends Controller
         OrderItemResolver $resolver,
         WhatsappMessageBuilder $whatsapp
     ) {
+        $data = $request->validated();
 
-        // DTO from Form Request
-        $dto = $request->toDto();
-        // Resolve order items
-        // Create shipping request
-        $shipping = $shippingService->create($dto);
-        $items = $resolver->resolve($dto);
+        $shipping = $shippingService->create($data);
 
-        // Build WhatsApp message
-        $message = $whatsapp->buildMessage($shipping, $items);
+        $items = $resolver->resolve($data);
 
-        // Generate WhatsApp URL
+        $message = $whatsapp->buildMessage(
+            $shipping,
+            $items
+        );
+
         $url = $whatsapp->generateUrl($message);
 
         return response()->json([

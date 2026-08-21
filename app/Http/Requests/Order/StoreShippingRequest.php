@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Order;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Domain\Order\DTOs\CreateOrderDTO;
 
 class StoreShippingRequest extends FormRequest
 {
@@ -37,10 +36,5 @@ class StoreShippingRequest extends FormRequest
             'city' => 'required|string',
             'notes' => 'nullable|string',
         ];
-    }
-
-    public function toDto(): CreateOrderDTO
-    {
-        return CreateOrderDTO::fromArray($this->validated());
     }
 }
