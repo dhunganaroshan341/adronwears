@@ -1,42 +1,67 @@
 <?php
 
-namespace App\Http\Requests\Order;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Foundation\Http\FormRequest;
-use App\Domain\Order\DTOs\CreateOrderDTO;
-
-class StoreShippingRequest extends FormRequest
+return new class extends Migration
 {
-    public function authorize(): bool
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        return true;
+        Schema::create('shipping_requests', function (Blueprint $table) {
+            $table->id();
+
+            // Shipping always comes from cart
+            $table->foreignId('cart_id')
+            ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+$table->foreignId('product_id')
+    ->constrained('products')
+    ->cascadeOnUpdate()
+    ->cascadeOnDelete();
+            // User (optional)
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+
+
+            // Guest info (if not logged in)
+            $table->string('customer_name')->nullable();
+            $table->string('customer_phone')->nullable();
+            $table->string('customer_email')->nullable();
+
+            // Shipping address
+            $table->string('address_line');
+            $table->string('city');
+            $table->string('state')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('country')->default('Nepal');
+
+            // Shipping status
+            $table->enum('status', [
+                'pending',
+                'confirmed',
+                'shipped',
+                'delivered',
+                'cancelled'
+            ])->default('pending');
+
+            $table->text('notes')->nullable();
+
+            $table->timestamps();
+        });
     }
 
-    protected function prepareForValidation(): void
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        $this->merge([
-            'address_line' => $this->input('address_line', 'Nepal'),
-            'country' => $this->input('country', 'Nepal'),
-        ]);
+        Schema::dropIfExists('shipping_requests');
     }
-
-    public function rules(): array
-    {
-        return [
-            'cart_id' => 'nullable|exists:carts,id',
-            'product_id' => 'nullable|exists:products,id',
-            'customer_name' => 'nullable|string|max:255',
-            'customer_phone' => 'required|string|max:20',
-            'customer_email' => 'nullable|email',
-            'address_line' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'country' => 'nullable|string|max:255',
-            'notes' => 'nullable|string',
-        ];
-    }
-
-    public function toDto(): CreateOrderDTO
-    {
-        return CreateOrderDTO::fromArray($this->validated());
-    }
-}
+};
