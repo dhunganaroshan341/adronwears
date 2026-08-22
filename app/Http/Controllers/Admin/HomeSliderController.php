@@ -58,7 +58,7 @@ class HomeSliderController extends Controller
                 ->addColumn('status', function ($status) {
                     $checked = $status->status == 'Active' ? 'checked' : '';
                     return '<div class="form-check form-switch d-flex">
-                                <input class="form-check-input statusIdData mx-auto" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . $checked . '>
+                                <input class="mx-auto form-check-input statusIdData" type="checkbox" data-id="' . $status->id . '" role="switch" id="flexSwitchCheckChecked" ' . $checked . '>
                             </div>';
                 })
                 ->rawColumns(['action', 'image', 'status'])
@@ -85,7 +85,7 @@ class HomeSliderController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = $request->only(['title', 'shortdesc']);
+            $data = $request->only(['title', 'shortdesc','link_text','link_url']);
             if ($request->hasFile('image')) {
                 $folder = 'images/homeslide/';
                 $imagename = time() . '.' . $request->image->extension();
@@ -115,7 +115,7 @@ class HomeSliderController extends Controller
     {
         try {
             $homeslide = HomeSlide::find($id);
-            $data = $request->only(['title', 'shortdesc']);
+            $data = $request->only(['title', 'shortdesc','link_text','link_url']);
             // dd($data);
             if ($request->hasFile('image')) {
                 $path = '/images/homeslide/';
