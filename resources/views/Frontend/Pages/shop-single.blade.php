@@ -37,7 +37,7 @@
 @endpush
 @section('content')
 
-<section class="bg-light py-5">
+<section class="py-5 bg-light">
     <div class="container">
 
         <div class="row">
@@ -45,9 +45,9 @@
             {{-- PRODUCT IMAGE --}}
             <div class="col-lg-5">
 
-                <div id="productGallery" class="carousel slide mb-3" data-bs-ride="false">
+                <div id="productGallery" class="mb-3 carousel slide" data-bs-ride="false">
 
-                    <div class="carousel-inner rounded border bg-white">
+                    <div class="bg-white border rounded carousel-inner">
 
                         {{-- Thumbnail --}}
                         <div class="carousel-item active">
@@ -81,7 +81,7 @@
 
                     {{-- Main Thumbnail --}}
                     <div class="col-3">
-                        <img src="{{ $product['thumbnail'] }}" class="img-fluid border rounded gallery-thumb active"
+                        <img src="{{ $product['thumbnail'] }}" class="border rounded img-fluid gallery-thumb active"
                             data-bs-target="#productGallery" data-bs-slide-to="0" style="width:100%;cursor:pointer;">
                     </div>
 
@@ -98,7 +98,7 @@
 
                     <div class="col-3">
                         <img src="{{ asset('uploads/' . ltrim($galleryImage, '/')) }}"
-                            class="img-fluid border rounded gallery-thumb" data-bs-target="#productGallery"
+                            class="border rounded img-fluid gallery-thumb" data-bs-target="#productGallery"
                             data-bs-slide-to="{{ $index + 1 }}" style="width:100%;cursor:pointer;">
                     </div>
 
@@ -117,9 +117,16 @@
                         <h1 class="h2">
                             {{ $product['name'] }}
                         </h1>
-
+ {{-- PRODUCT CODE --}}
+    @if (!empty($product['product_code']))
+        <div class="mb-2">
+            <span class="border badge bg-light text-muted">
+                SKU: {{ $product['product_code'] }}
+            </span>
+        </div>
+    @endif
                         {{-- CATEGORY --}}
-                        <p class="text-muted mb-2">
+                        <p class="mb-2 text-muted">
                             Category:
                             {{ $product['category']['name'] ?? 'N/A' }}
                         </p>
@@ -228,7 +235,7 @@
 
     <div class="container">
 
-        <div class="row mb-4">
+        <div class="mb-4 row">
             <div class="col">
                 <h3>Related Products</h3>
             </div>
@@ -250,7 +257,7 @@
 
             <div class="p-2">
 
-                <div class="card h-100 shadow-sm border-0">
+                <div class="border-0 shadow-sm card h-100">
 
                     <a href="{{ route('shop.product', $related['slug']) }}">
 
@@ -266,7 +273,7 @@
                             {{ $related['name'] }}
                         </h5>
 
-                        <p class="text-muted mb-2">
+                        <p class="mb-2 text-muted">
                             {{ $related['category']['name'] ?? 'N/A' }}
                         </p>
 
@@ -294,7 +301,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="{{ route('shop.product', $related['slug']) }}"
-                                    class="btn btn-outline-dark btn-sm mt-2">
+                                    class="mt-2 btn btn-outline-dark btn-sm">
                                     View Product
                                 </a>
                             </div>

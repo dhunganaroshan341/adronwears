@@ -132,14 +132,21 @@
                                 </div>
 
 
-                                {{-- Product Name --}}
-                                <a
-                                    href="{{ route('shop.product', $product['slug']) }}"
-                                    class="product-name"
-                                    title="{{ $product['name'] }}"
-                                >
-                                    {{ $product['name'] }}
-                                </a>
+                              <a
+    href="{{ route('shop.product', $product['slug']) }}"
+    class="product-name d-block"
+    title="{{ $product['name'] }}"
+>
+    <span class="d-block">
+        {{ $product['name'] }}
+    </span>
+
+    @if (!empty($product['product_code']))
+        <small class="mt-1 text-muted d-block">
+            SKU: {{ $product['product_code'] }}
+        </small>
+    @endif
+</a>
 
 
                                 {{-- Price --}}
