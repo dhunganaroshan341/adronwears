@@ -13,6 +13,7 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         $brands = [
+            ['name' => 'General/Unknown'],
             ['name' => 'Nike'],
             ['name' => 'Adidas'],
             ['name' => 'Puma'],
